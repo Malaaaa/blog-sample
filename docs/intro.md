@@ -12,10 +12,8 @@ sidebar_position: 1
 
 Output is important, which can push me get more information and reorganize what I have leant.
 
-## Who can see this content?
-
-Ever information can give you some tips is my pleasure.
-
 ## What if some mistake happens?
 
-You can just [Mail Me](mailto:15703476199ma@gmail.com)
+If an article on this site violates your rights, please send an email to [Mail Me](mailto:15703476199ma@gmail.com) for feedback and removal.
+
+I apologize for any inconvenience caused to you.
