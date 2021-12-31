@@ -2,8 +2,7 @@ name: Publish Blog
 
 on:
   push: 
-    tags:
-      - v* # 这里表示只有新增tag才会触发自动化脚本执行
+
 
 jobs:
   gh-release:
