@@ -1,4 +1,4 @@
-# Computer Network Overview
+# Computer Network Basic
 
 ## Network hierarchy
 
@@ -74,9 +74,7 @@ Service Object
 MAC address, used to identify network devices, similar to an ID number, and theoretically unique worldwide.
 Composition: MAC address within Ethernet is a 48bit value
 
-***Translated with www.DeepL.com/Translator (free version)***
-
-<img src="https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png" style="zoom:150%;" />
+![image-20210108195656267](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png")
 
 - **IP address IPv4 (network layer) host and host 32bit**
 
@@ -127,7 +125,7 @@ Mainly used for host connection planning in local area network
 ![image-20210108202556176](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108202556176.png)
 
 **Loopback address**
-<img src="https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png" alt="image-20210108203054234" style="zoom:150%;" />
+![image-20210108203054234](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png)
 
 Function
 The main purpose is to test the network configuration of this machine, being able to ping through 127.0.0.1 means
@@ -147,7 +145,6 @@ Features:
 **port number**: similar to a pid to identify a process; in a network program, the port number is used to identify a running network program
 
 ![image-20210108203342082](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203342082.png)
-
 **Features**
 
 1. The port number is an unsigned short integer type
