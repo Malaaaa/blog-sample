@@ -25,7 +25,7 @@ Link layer: complete frame data sent and received (transmitted independently on 
 
 - **IP Protocol Inter-networking Protocol (Network Layer)**
 
-The transmission of packets** (Internet packets)** from **source address to destination on an interconnected network system provides the necessary functionality**
+The transmission of packets**(Internet packets)** from **source address to destination on an interconnected network system provides the necessary functionality**
 **capable protocol**
 Try to send data from the source address to the destination
 Features.
@@ -74,7 +74,7 @@ Service Object
 MAC address, used to identify network devices, similar to an ID number, and theoretically unique worldwide.
 Composition: MAC address within Ethernet is a 48bit value
 
-*** Translated with www.DeepL.com/Translator (free version) ***
+***Translated with www.DeepL.com/Translator (free version)***
 
 <img src="https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png" style="zoom:150%;" />
 
@@ -151,9 +151,9 @@ Features:
 **Features**
 
 1. The port number is an unsigned short integer type
-2、Each port has a port number
-3, TCP, UDP maintain their own independent port number
-4、Network applications must occupy at least one port number, but can also occupy multiple port numbers
+2. Each port has a port number
+3. TCP, UDP maintain their own independent port number
+4. Network applications must occupy at least one port number, but can also occupy multiple port numbers
 
 - Classification of ports
 

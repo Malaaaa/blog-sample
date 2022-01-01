@@ -1,60 +1,60 @@
-### Flutter 学习
+### Flutter Learning
 
-#### 概述 Overview 
+#### Overview Overview 
 
-- 是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。也可以做web等等 多端公用。
-- [flutter实战](https://book.flutterchina.club/) 之后的操作也都以此书为基础
-- DOM 树 和 控件树 类似 
-  - DOM tree (html)![DOM tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/pic_htmltree.gif)
-  - Widget tree(flutter) ![Widget tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/OIP.Bw-atr2JI-0ypRc2E9JcZgHaGa)
+- is Google's mobile UI framework for quickly building high-quality native user interfaces on iOS and Android. It can also be used for web and other multi-end utilities.
+- [flutter hands-on](https://book.flutterchina.club/) The subsequent operations are also based on this book
+- DOM tree and control tree are similar 
+  - DOM tree (html)! [DOM tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/pic_htmltree.gif)
+  - Widget tree (flutter) ! [Widget tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/OIP.Bw-atr2JI-0ypRc2E9JcZgHaGa)
 
-> 层级关系 像Unity一样
+> Hierarchical relationships like Unity
 
-- Flutter使用自己的高性能渲染引擎来绘制widget。
-- Flutter高性能主要靠两点来保证，首先，Flutter APP采用Dart语言开发。Dart在 JIT（即时编译）模式下，速度与 JavaScript基本持平。但是 Dart支持 AOT，当以 AOT（运行前编译）模式运行时，JavaScript便远远追不上了。速度的提升对高帧率下的视图数据计算很有帮助。其次，Flutter使用自己的渲染引擎来绘制UI，布局数据等由Dart语言直接控制，所以在布局过程中不需要像RN那样要在JavaScript和Native之间通信，这在一些滑动和拖动的场景下具有明显优势。
+- Flutter uses its own high performance rendering engine to draw widgets.
+- Flutter's high performance is mainly ensured by two things, firstly, Flutter APP is developed in Dart language, which is basically the same speed as JavaScript in JIT (Just-In-Time) mode. However, Dart supports AOT, and when running in AOT (compile before run) mode, JavaScript is far behind. The speed increase is useful for calculating view data at high frame rates. Secondly, Flutter uses its own rendering engine to draw UI, and layout data etc. is directly controlled by Dart language, so there is no need to communicate between JavaScript and Native during the layout process like RN, which is a clear advantage in some sliding and dragging scenarios.
   
-- Flutter框架结构
+- Flutter framework structure
 
-  > ![框架结构](https://pcdn.flutterchina.club/imgs/1-1.png
+  > ! [Framework Structure](https://pcdn.flutterchina.club/imgs/1-1.png)
   
-- “Hot Reload”只会重新构建整个widget树)
+- "Hot Reload" only rebuilds the entire widget tree)
 
-#### Dart 语言基础
+#### Dart Language Fundamentals
 
-##### 变量声明
+##### Variable Declarations
 
 1. **var**
 
-   类似于JavaScript中的`var`，它可以接收任何类型的变量，但最大的不同是Dart中var变量一旦赋值，类型便会确定，则不能再改变其类型，如：
+   Similar to `var` in JavaScript, it can receive variables of any type, but the biggest difference is that once a var variable is assigned a value in Dart, the type is determined and then the type cannot be changed, e.g.
 
    ```dart
    var t;
    t = "hi world";
-   // 下面代码在dart中会报错，因为变量t的类型已经确定为String，
-   // 类型一旦确定后则不能再更改其类型。
+   // The following code will report an error in dart, because the type of variable t has been determined as String.
+   // Once the type is determined, it cannot be changed again.
    t = 1000;
    ```
 
-   Dart是一个强类型语言，任何变量都是有确定类型的，在Dart中，当用`var`声明一个变量后，Dart在编译时会根据第一次赋值数据的类型来推断其类型，编译结束后其类型就已经被确定。
+   Dart is a strongly typed language, any variable has a definite type. In Dart, when a variable is declared with `var`, Dart will infer its type according to the type of the first assignment, and its type will be determined after compilation.
 
-2. **dynamic**和**Object**
+2. **dynamic** and **Object**
 
-    `Object` 是Dart所有对象的根基类，也就是说所有类型都是`Object`的子类(包括Function和Null)，所以任何类型的数据都可以赋值给`Object`声明的对象.
-    `dynamic`与`var`一样都是关键词,声明的变量可以赋值任意对象。
-    而`dynamic`与`Object`相同之处在于,他们声明的变量可以在后期改变赋值类型。
+    `Object` is the root class of all Dart objects, that is, all types are subclasses of `Object` (including Function and Null), so any type of data can be assigned to an object declared by `Object`.
+    `dynamic` is the same keyword as `var`, and the declared variables can be assigned to any object.
+    And `dynamic` is the same as `Object` in that the variables they declare can change the type of assignment at a later stage.
 
     ```dart
     dynamic t;
     Object x;
     t = "hi world";
     x = 'Hello Object';
-    //下面代码没有问题
+    // The following code is fine
     t = 1000;
     x = 1000;
     ```
 
-   `dynamic`与`Object`不同的是,`dynamic`声明的对象编译器会提供所有可能的组合,
-   而`Object`声明的对象只能使用Object的属性与方法, 否则编译器会报错。如:
+   The difference between `dynamic` and `Object` is that the compiler will provide all possible combinations of objects declared by `dynamic`,
+   The object declared by `Object` can only use the properties and methods of Object, otherwise the compiler will report an error. For example:
 
    ```dart
     dynamic a;
@@ -74,59 +74,59 @@
     }
    ```
 
-   变量a不会报错, 变量b编译器会报错
+   Variable a will not report an error, variable b will be reported by the compiler
 
-   `dynamic`的这个特性与`Objective-C`中的`id`作用很像.
-   `dynamic`的这个特点使得我们在使用它时需要格外注意,这很容易引入一个运行时错误.
+   This feature of `dynamic` is similar to the role of `id` in `Objective-C`.
+   This feature of `dynamic` makes us need to be careful when using it, as it can easily introduce a runtime error.
 
-3. **final**和**const**
+3. **final** and **const**
 
-   如果您从未打算更改一个变量，那么使用 `final` 或 `const`，不是`var`，也不是一个类型。 一个 `final` 变量只能被设置一次，两者区别在于：`const` 变量是一个编译时常量，`final`变量在第一次使用时被初始化。被`final`或者`const`修饰的变量，变量类型可以省略，如：
+   If you never intend to change a variable, then use `final` or `const`, not `var`, and not a type. A `final` variable can only be set once, the difference being that a `const` variable is a compile-time constant and a `final` variable is initialized the first time it is used. Variables modified by `final` or `const` have variable types that can be omitted, e.g.
 
    ```dart
-   //可以省略String这个类型声明
+   // The type declaration String can be omitted
    final str = "hi world";
    //final String str = "hi world"; 
    const str1 = "hi world";
    //const String str1 = "hi world";
    ```
 
-##### 函数
+##### Functions
 
-Dart是一种真正的面向对象的语言，所以即使是函数也是对象，并且有一个类型**Function**。这意味着函数可以赋值给变量或作为参数传递给其他函数，这是函数式编程的典型特征。
+Dart is a true object-oriented language, so even functions are objects and have a type **Function**. This means that functions can be assigned to variables or passed as arguments to other functions, which is typical of functional programming.
 
-1. 函数声明
+1. Function declaration
 
    ```dart
    bool isNoble(int atomicNumber) {
-     return _nobleGases[atomicNumber] != null;
+     return _nobleGases[atomicNumber] ! = null;
    }
    ```
 
-   Dart函数声明如果没有显式声明返回值类型时会默认当做`dynamic`处理，注意，函数返回值没有类型推断：
+   Dart function declarations that do not explicitly declare the return value type are treated as ``dynamic`` by default, note that there is no type inference for the function return value.
 
    ```dart
    typedef bool CALLBACK();
    
-   //不指定返回类型，此时默认为dynamic，不是bool
+   //do not specify the return type, the default is dynamic, not bool
    isNoble(int atomicNumber) {
-     return _nobleGases[atomicNumber] != null;
+     return _nobleGases[atomicNumber] ! = null;
    }
    
    void test(CALLBACK cb){
       print(cb()); 
    }
-   //报错，isNoble不是bool类型
+   // error, isNoble is not a bool type
    test(isNoble);
    ```
 
-2. 对于只包含一个表达式的函数，可以使用简写语法
+2. For functions that contain only one expression, you can use the abbreviated syntax
 
    ```dart
-   bool isNoble (int atomicNumber)=> _nobleGases [ atomicNumber ] ！= null ;   
+   bool isNoble (int atomicNumber) => _nobleGases [ atomicNumber ] ! = null ;   
    ```
 
-3. 函数作为变量
+3. Functions as variables
 
    ```dart
    var say = (str){
@@ -135,7 +135,7 @@ Dart是一种真正的面向对象的语言，所以即使是函数也是对象�
    say("hi world");
    ```
 
-4. 函数作为参数传递
+4. Functions passed as arguments
 
    ```dart
    void execute(var callback) {
@@ -144,71 +144,71 @@ Dart是一种真正的面向对象的语言，所以即使是函数也是对象�
    execute(() => print("xxx"))
    ```
 
-5. 可选的位置参数
+5. Optional positional arguments
 
-   包装一组函数参数，用[]标记为可选的位置参数，并放在参数列表的最后面：
+   Wrap a set of function arguments, mark them as optional positional arguments with [], and place them at the end of the argument list.
 
    ```dart
    String say(String from, String msg, [String device]) {
      var result = '$from says $msg';
-     if (device != null) {
+     if (device ! = null) {
        result = '$result with a $device';
      }
      return result;
    }
    ```
 
-   下面是一个不带可选参数调用这个函数的例子：
+   Here is an example of calling this function without optional arguments.
 
    ```dart
-   say('Bob', 'Howdy'); //结果是： Bob says Howdy
+   say('Bob', 'Howdy'); // the result is: Bob says Howdy
    ```
 
-   下面是用第三个参数调用这个函数的例子：
+   The following is an example of calling this function with the third argument.
 
    ```dart
-   say('Bob', 'Howdy', 'smoke signal'); //结果是：Bob says Howdy with a smoke signal
+   say('Bob', 'Howdy', 'smoke signal'); // the result is: Bob says Howdy with a smoke signal
    ```
 
-6. 可选的命名参数
+6. Optional named parameters
 
-   定义函数时，使用{param1, param2, …}，放在参数列表的最后面，用于指定命名参数。例如：
+   When defining a function, use {param1, param2, ...}, placed at the end of the parameter list, to specify named parameters. For example.
 
    ```dart
-   //设置[bold]和[hidden]标志
+   // Set the [bold] and [hidden] flags
    void enableFlags({bool bold, bool hidden}) {
        // ... 
    }
    ```
 
-   调用函数时，可以使用指定命名参数。例如：`paramName: value`
+   When calling a function, you can use the specified named parameter. For example: ``paramName: value``
 
    ```dart
    enableFlags(bold: true, hidden: false);
    ```
 
-   可选命名参数在Flutter中使用非常多。
+   Optional named parameters are very much used in Flutter.
 
-   **注意，不能同时使用可选的位置参数和可选的命名参数**
+   **Note that you cannot use both optional position parameters and optional named parameters**
 
-##### 异步支持
+##### Asynchronous support
 
-Dart类库有非常多的返回`Future`或者`Stream`对象的函数。 这些函数被称为**异步函数**：它们只会在设置好一些耗时操作之后返回，比如像 IO操作。而不是等到这个操作完成。
+The Dart class library has a very large number of functions that return `Future` or `Stream` objects. These functions are called **Asynchronous functions**: they only return after some time-consuming operation has been set up, like an IO operation. Instead of waiting until the operation is complete.
 
-`async`和`await`关键词支持了异步编程，允许您写出和同步代码很像的异步代码。
+The `async` and `await` keywords support asynchronous programming, allowing you to write asynchronous code much like synchronous code.
 
 ###### Future
 
-`Future`与JavaScript中的`Promise`非常相似，表示一个异步操作的最终完成（或失败）及其结果值的表示。简单来说，它就是用于处理异步操作的，异步处理成功了就执行成功的操作，异步处理失败了就捕获错误或者停止后续操作。一个Future只会对应一个结果，要么成功，要么失败。
+`Future` is very similar to `Promise` in JavaScript and represents the final completion (or failure) of an asynchronous operation and the representation of its result value. In short, it is used to handle asynchronous operations. If the asynchronous processing succeeds, the successful operation is executed, and if the asynchronous processing fails, an error is caught or the subsequent operation is stopped. A Future will only correspond to one result, either success or failure.
 
-由于本身功能较多，这里我们只介绍其常用的API及特性。还有，请记住，`Future` 的所有API的返回值仍然是一个`Future`对象，所以可以很方便的进行链式调用。
+Since it has a lot of functions, we will only introduce its common API and features here. Also, remember that the return value of all `Future` APIs is still a `Future` object, so it is easy to chain calls.
 
 ####### Future.then
 
-为了方便示例，在本例中我们使用`Future.delayed` 创建了一个延时任务（实际场景会是一个真正的耗时任务，比如一次网络请求），即2秒后返回结果字符串"hi world!"，然后我们在`then`中接收异步结果并打印结果，代码如下：
+For the sake of example, in this case we use `Future.delayed` to create a delayed task (the actual scenario would be a real time-consuming task, like a network request) that returns the result string "hi world!" after 2 seconds, and then we receive the asynchronous result in `then` and print the result with the following code.
 
 ```dart
-Future.delayed(new Duration(seconds: 2),(){
+Future.delayed(new Duration(seconds: 2), (){
    return "hi world!";
 }).then((data){
    print(data);
@@ -217,22 +217,22 @@ Future.delayed(new Duration(seconds: 2),(){
 
 ##### Future.catchError
 
-如果异步任务发生错误，我们可以在`catchError`中捕获错误，我们将上面示例改为：
+If an error occurs in an asynchronous task, we can catch the error in ``catchError``, and we change the above example to
 
 ```dart
 Future.delayed(new Duration(seconds: 2),(){
    //return "hi world!";
    throw AssertionError("Error");  
 }).then((data){
-   //执行成功会走到这里  
+   //execute successfully will go here  
    print("success");
 }).catchError((e){
-   //执行失败会走到这里  
+   //execution failure goes here  
    print(e);
 });
 ```
 
-在本示例中，我们在异步任务中抛出了一个异常，`then `的回调函数将不会被执行，取而代之的是 `catchError`回调函数将被调用；但是，并不是只有 `catchError`回调才能捕获错误，`then`方法还有一个可选参数`onError`，我们也可以它来捕获异常：
+In this example, we have thrown an exception in an asynchronous task and the `then` callback function will not be executed, instead the `catchError` callback function will be called; however, the `catchError` callback is not the only one that catches errors, the `then` method has an optional parameter `onError` that we can also use to catch the exception.
 
 ```dart
 Future.delayed(new Duration(seconds: 2), () {
@@ -247,20 +247,20 @@ Future.delayed(new Duration(seconds: 2), () {
 
 ####### Future.whenComplete
 
-有些时候，我们会遇到无论异步任务执行成功或失败都需要做一些事的场景，比如在网络请求前弹出加载对话框，在请求结束后关闭对话框。这种场景，有两种方法，第一种是分别在`then`或`catch`中关闭一下对话框，第二种就是使用`Future`的`whenComplete`回调，我们将上面示例改一下：
+There are times when we encounter scenarios where we need to do something regardless of the success or failure of the asynchronous task execution, such as popping up the load dialog before the network request and closing it after the request is finished. The first one is to close the dialog in `then` or `catch` respectively, and the second one is to use `whenComplete` callback of `Future`, we will change the above example as follows
 
 ```dart
 Future.delayed(new Duration(seconds: 2),(){
    //return "hi world!";
    throw AssertionError("Error");
 }).then((data){
-   //执行成功会走到这里 
+   // execution success will go here 
    print(data);
 }).catchError((e){
-   //执行失败会走到这里   
+   //Failed execution goes here   
    print(e);
 }).whenComplete((){
-   //无论成功或失败都会走到这里
+   //will go here whether it succeeds or fails
 });
 ```
 
@@ -268,15 +268,15 @@ Future.delayed(new Duration(seconds: 2),(){
 
 ####### Future.wait
 
-有些时候，我们需要等待多个异步任务都执行结束后才进行一些操作，比如我们有一个界面，需要先分别从两个网络接口获取数据，获取成功后，我们需要将两个接口数据进行特定的处理后再显示到UI界面上，应该怎么做？答案是`Future.wait`，它接受一个`Future`数组参数，只有数组中所有`Future`都执行成功后，才会触发`then`的成功回调，只要有一个`Future`执行失败，就会触发错误回调。下面，我们通过模拟`Future.delayed` 来模拟两个数据获取的异步任务，等两个异步任务都执行成功时，将两个异步任务的结果拼接打印出来，代码如下：
+There are times when we need to wait for multiple asynchronous tasks to finish executing before performing some operations, for example, we have an interface that needs to fetch data from two web interfaces separately first, and after the successful fetching, we need to perform specific processing on the two interface data before displaying it on the UI interface, how should we do that? The answer is `Future.wait`, which accepts an array of `Future` parameters, only after all `Future` in the array are executed successfully, the success callback of `then` will be triggered, as long as there is a `Future` execution failure, the error callback will be triggered. In the following, we simulate two asynchronous tasks of data fetching by simulating ``Future.delayed``, and when both asynchronous tasks are executed successfully, the results of the two asynchronous tasks are stitched together and printed out, with the following code.
 
 ```dart
 Future.wait([
-  // 2秒后返回结果  
+  // return the result after 2 seconds  
   Future.delayed(new Duration(seconds: 2), () {
     return "hello";
   }),
-  // 4秒后返回结果  
+  // return the result after 4 seconds  
   Future.delayed(new Duration(seconds: 4), () {
     return " world";
   })
@@ -287,108 +287,106 @@ Future.wait([
 });
 ```
 
-执行上面代码，4秒后你会在控制台中看到“hello world”。
+Execute the above code and you will see "hello world" in the console after 4 seconds.
 
 ###### Async/await
 
-Dart中的`async/await` 和JavaScript中的`async/await`功能和用法是一模一样的，如果你已经了解JavaScript中的`async/await`的用法，可以直接跳过本节。
+The function and usage of `async/await` in Dart and `async/await` in JavaScript are exactly the same, so if you already know the usage of `async/await` in JavaScript, you can just skip this section.
 
-####### 回调地狱(Callback Hell)
+####### Callback Hell
 
-如果代码中有大量异步逻辑，并且出现大量异步任务依赖其它异步任务的结果时，必然会出现`Future.then`回调中套回调情况。举个例子，比如现在有个需求场景是用户先登录，登录成功后会获得用户ID，然后通过用户ID，再去请求用户个人信息，获取到用户个人信息后，为了使用方便，我们需要将其缓存在本地文件系统，代码如下：
+If there is a lot of asynchronous logic in the code, and if there are a lot of asynchronous tasks that depend on the results of other asynchronous tasks, there is bound to be a callback situation in the `Future.then` callback. For example, let's say there is a requirement scenario where the user logs in first, and then gets the user ID after successful login, and then requests the user's personal information through the user ID, and after getting the user's personal information, we need to cache it in the local file system for ease of use, with the following code.
 
 ```dart
-//先分别定义各个异步任务
+// First define each asynchronous task separately
 Future<String> login(String userName, String pwd){
     ...
-    //用户登录
+    //user login
 };
 Future<String> getUserInfo(String id){
     ...
-    //获取用户信息 
+    //get user information 
 };
 Future saveUserInfo(String userInfo){
     ...
-    // 保存用户信息 
+    // Save user information 
 }; 
 ```
 
-接下来，执行整个任务流：
+Next, execute the entire task flow.
 
 ```dart
-login("alice","******").then((id){
- //登录成功后通过，id获取用户信息    
+login("alice", "******").then((id){
+ //get user information by, id after successful login    
  getUserInfo(id).then((userInfo){
-    //获取用户信息后保存 
+    //Get the user information and save it 
     saveUserInfo(userInfo).then((){
-       //保存用户信息，接下来执行其它操作
+       //Save the user information and perform other operations next
         ...
     });
   });
 })
 ```
 
-可以感受一下，如果业务逻辑中有大量异步依赖的情况，将会出现上面这种在回调里面套回调的情况，过多的嵌套会导致的代码可读性下降以及出错率提高，并且非常难维护，这个问题被形象的称为**回调地狱（Callback Hell）**。回调地狱问题在之前JavaScript中非常突出，也是JavaScript被吐槽最多的点，但随着ECMAScript6和ECMAScript7标准发布后，这个问题得到了非常好的解决，而解决回调地狱的两大神器正是ECMAScript6引入了`Promise`，以及ECMAScript7中引入的`async/await`。 而在Dart中几乎是完全平移了JavaScript中的这两者：`Future`相当于`Promise`，而`async/await`连名字都没改。接下来我们看看通过`Future`和`async/await`如何消除上面示例中的嵌套问题。
+If there are a lot of asynchronous dependencies in the business logic, there will be a callback inside the callback, too much nesting will lead to a decrease in readability and error rate, and it is very difficult to maintain, this problem is imaginatively called **Callback Hell**. The callback hell problem was very prominent in JavaScript before, and was the most trolled point of JavaScript, but with the release of the ECMAScript6 and ECMAScript7 standards, this problem has been very well solved, and the two magic tools to solve the callback hell are the introduction of `Promise` in ECMAScript6, and the introduction of `Promise` in ECMAScript7. and the introduction of `async/await` in ECMAScript7. In Dart, the two are almost completely panned in JavaScript: `Future` is equivalent to `Promise`, and `async/await` doesn't even change its name. Next, let's see how we can eliminate the nesting problem in the above example by using `Future` and `async/await`.
 
-####### 使用Future消除Callback Hell
+####### Eliminating Callback Hell with Future
 
 ```dart
-login("alice","******").then((id){
+login("alice", "******").then((id){
   	return getUserInfo(id);
 }).then((userInfo){
     return saveUserInfo(userInfo);
 }).then((e){
-   //执行接下来的操作 
+   //execute the next action 
 }).catchError((e){
-  //错误处理  
+  // error handling  
   print(e);
 });
 ```
 
-正如上文所述， *“`Future` 的所有API的返回值仍然是一个`Future`对象，所以可以很方便的进行链式调用”* ，如果在then中返回的是一个`Future`的话，该`future`会执行，执行结束后会触发后面的`then`回调，这样依次向下，就避免了层层嵌套。
+As mentioned above, *"the return value of all the APIs of `Future` is still a `Future` object, so it's easy to chain calls "* , if a `Future` is returned in then, the `future` will execute, and the end of execution will trigger the The `then` callback will be triggered after the execution, so that the nesting of layers is avoided by sequentially going down.
 
-###### 使用async/await消除callback hell
+###### Eliminate callback hell with async/await
 
-通过`Future`回调中再返回`Future`的方式虽然能避免层层嵌套，但是还是有一层回调，有没有一种方式能够让我们可以像写同步代码那样来执行异步任务而不使用回调的方式？答案是肯定的，这就要使用`async/await`了，下面我们先直接看代码，然后再解释，代码如下：
+Is there a way to execute asynchronous tasks as we write synchronous code without using callbacks? The answer is yes, this is to use `async/await`, the following we look directly at the code first, and then explain, the code is as follows.
 
 ```dart
 task() async {
    try{
-    String id = await login("alice","******");
+    String id = await login("alice", "******");
     String userInfo = await getUserInfo(id);
     await saveUserInfo(userInfo);
-    //执行接下来的操作   
+    //execute the next action   
    } catch(e){
-    //错误处理   
+    // error handling   
     print(e);   
    }  
 }
 ```
 
-- `async`用来表示函数是异步的，定义的函数会返回一个`Future`对象，可以使用then方法添加回调函数。
-- `await` 后面是一个`Future`，表示等待该异步任务完成，异步完成后才会往下走；`await`必须出现在 `async` 函数内部。
+- `async` is used to indicate that the function is asynchronous, and the defined function returns a `Future` object, which can be used to add a callback function using the then method.
+- `await` is followed by a `Future`, which indicates that it waits for that asynchronous task to complete, and will only go down when the asynchrony is complete; `await` must appear inside the `async` function.
 
-可以看到，我们通过`async/await`将一个异步流用同步的代码表示出来了。
+As you can see, we have represented an asynchronous stream in synchronous code by `async/await`.
 
-> 其实，无论是在JavaScript还是Dart中，`async/await`都只是一个语法糖，编译器或解释器最终都会将其转化为一个Promise（Future）的调用链。
-
-
+> In fact, in both JavaScript and Dart, `async/await` is just syntactic sugar that the compiler or interpreter will eventually translate into a chain of calls to a Promise (Future).
 
 ##### Stream
 
-`Stream` 也是用于接收异步事件数据，和`Future` 不同的是，它可以接收多个异步操作的结果（成功或失败）。 也就是说，在执行异步任务时，可以通过多次触发成功或失败事件来传递结果数据或错误异常。 `Stream` 常用于会多次读取数据的异步任务场景，如网络内容下载、文件读写等。举个例子：
+`Stream` is also used to receive asynchronous event data, unlike `Future`, it can receive the result of multiple asynchronous operations (success or failure). That is, when executing an asynchronous task, the result data or error exceptions can be passed by triggering the success or failure event multiple times. `Stream` is often used in asynchronous task scenarios where data is read multiple times, such as downloading network content, reading and writing files, etc. As an example.
 
 ```dart
 Stream.fromFutures([
-  // 1秒后返回结果
+  // return the result after 1 second
   Future.delayed(new Duration(seconds: 1), () {
     return "hello 1";
   }),
-  // 抛出一个异常
-  Future.delayed(new Duration(seconds: 2),(){
+  // Throw an exception
+  Future.delayed(new Duration(seconds: 2), () {
     throw AssertionError("Error");
   }),
-  // 3秒后返回结果
+  // return result after 3 seconds
   Future.delayed(new Duration(seconds: 3), () {
     return "hello 3";
   })
@@ -401,34 +399,38 @@ Stream.fromFutures([
 });
 ```
 
-上面的代码依次会输出：
+The above code will output in turn.
 
 ```dart
 I/flutter (17666): hello 1
 I/flutter (17666): Error
 I/flutter (17666): hello 3
 ```
-##### 继承(extends)
 
-dart中的继承规则：
+##### Inheritance (extends)
 
-- 子类使用extends关键词来继承父类
-- 子类会继承父类里面可见的属性和方法 但是不会继承构造函数
-- 子类能复写父类的方法 getter和setter 
-- 子类重写超类的方法，要用@override 
-- 子类调用超类的方法，要用super
-- 子类可以继承父类的非私有变量 
+The inheritance rules in dart.
 
-##### 混合 mixins (with)
-mixins的中文意思是混入，就是在类中混入其他功能。在Dart中可以使用mixins实现类似多继承的功能因为mixins使用的条件，随着Dart版本一直在变，这里说的是Dart2.x中使用mixins的条件：
-- (1) 作为mixins的类只能继承自Object，不能继承其他类
-- (2) 作为mixins的类不能有构造函数
-- (3) 一个类可以mixins多个mixins类
-- (4) mixins绝不是继承，也不是接口，而是一种全新的特性 看具体代码：
+- Subclasses use the extends keyword to inherit from the parent class
+- Subclasses inherit the properties and methods visible in the parent class, but not the constructor.
+- subclasses can override the parent's methods getter and setter 
+- subclasses override superclass methods with @override 
+- subclasses call superclass methods with super
+- Subclasses can inherit non-private variables from the parent class 
 
-##### 接口实现(implements)
-  Flutter是没有interface的，但是Flutter中的每个类都是一个隐式的接口，这个接口包含类里的所有成员变量，以及定义的方法。如果有一个类 A,你想让类B拥有A的API，但又不想拥有A里的实现，那么你就应该把A当做接口，类B implements 类A.
-  所以在Flutter中:class 就是 interface
+##### mixins (with)
 
-- 当class被当做interface用时，class中的方法就是接口的方法，需要在子类里重新实现，在子类实现的时候要加@override
-- 当class被当做interface用时，class中的成员变量也需要在子类里重新实现。在成员变量前加@override
+The Chinese word for mixins means to mix in, which means to mix in other functions in the class. In Dart, mixins can be used to achieve similar functionality as multiple inheritance because the conditions for using mixins have been changing with the Dart version, here are the conditions for using mixins in Dart 2.x.
+
+- (1) as mixins class can only inherit from Object, can not inherit from other classes
+- (2) the class as mixins can not have a constructor
+- (3) a class can mixins more than one mixins class
+- (4) mixins is never inheritance, nor is it an interface, but is a completely new feature Look at the specific code.
+
+##### interface implementation(implementations)
+
+  Flutter does not have interfaces, but each class in Flutter is an implicit interface that contains all the member variables and defined methods of the class. If you have a class A, and you want class B to have the API of A, but you don't want to have the implementation of A, then you should treat A as an interface, and class B implements class A.
+  So in Flutter: class is interface
+
+- When a class is used as an interface, the methods in the class are the methods of the interface and need to be reimplemented in the subclass, with @override in the subclass implementation.
+- When a class is used as an interface, the member variables in the class also need to be reimplemented in the subclass. Add @override in front of member variables
