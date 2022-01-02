@@ -1,10 +1,14 @@
-### Flutter Learning
+---
+sidebar_position: 1
+---
 
-#### Overview Overview 
+# Flutter Learning
+
+## Overview Overview
 
 - is Google's mobile UI framework for quickly building high-quality native user interfaces on iOS and Android. It can also be used for web and other multi-end utilities.
 - [flutter hands-on](https://book.flutterchina.club/) The subsequent operations are also based on this book
-- DOM tree and control tree are similar 
+- DOM tree and control tree are similar
   - DOM tree (html)! [DOM tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/pic_htmltree.gif)
   - Widget tree (flutter) ! [Widget tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/OIP.Bw-atr2JI-0ypRc2E9JcZgHaGa)
 
@@ -19,9 +23,9 @@
   
 - "Hot Reload" only rebuilds the entire widget tree)
 
-#### Dart Language Fundamentals
+## Dart Language Fundamentals
 
-##### Variable Declarations
+### Variable Declarations
 
 1. **var**
 
@@ -91,7 +95,7 @@
    //const String str1 = "hi world";
    ```
 
-##### Functions
+### Functions
 
 Dart is a true object-oriented language, so even functions are objects and have a type **Function**. This means that functions can be assigned to variables or passed as arguments to other functions, which is typical of functional programming.
 
@@ -191,19 +195,19 @@ Dart is a true object-oriented language, so even functions are objects and have 
 
    **Note that you cannot use both optional position parameters and optional named parameters**
 
-##### Asynchronous support
+### Asynchronous support
 
 The Dart class library has a very large number of functions that return `Future` or `Stream` objects. These functions are called **Asynchronous functions**: they only return after some time-consuming operation has been set up, like an IO operation. Instead of waiting until the operation is complete.
 
 The `async` and `await` keywords support asynchronous programming, allowing you to write asynchronous code much like synchronous code.
 
-###### Future
+#### Future
 
 `Future` is very similar to `Promise` in JavaScript and represents the final completion (or failure) of an asynchronous operation and the representation of its result value. In short, it is used to handle asynchronous operations. If the asynchronous processing succeeds, the successful operation is executed, and if the asynchronous processing fails, an error is caught or the subsequent operation is stopped. A Future will only correspond to one result, either success or failure.
 
 Since it has a lot of functions, we will only introduce its common API and features here. Also, remember that the return value of all `Future` APIs is still a `Future` object, so it is easy to chain calls.
 
-####### Future.then
+##### Future.then
 
 For the sake of example, in this case we use `Future.delayed` to create a delayed task (the actual scenario would be a real time-consuming task, like a network request) that returns the result string "hi world!" after 2 seconds, and then we receive the asynchronous result in `then` and print the result with the following code.
 
@@ -215,7 +219,7 @@ Future.delayed(new Duration(seconds: 2), (){
 });
 ```
 
-##### Future.catchError
+### Future.catchError
 
 If an error occurs in an asynchronous task, we can catch the error in ``catchError``, and we change the above example to
 
@@ -245,7 +249,7 @@ Future.delayed(new Duration(seconds: 2), () {
 });
 ```
 
-####### Future.whenComplete
+##### Future.whenComplete
 
 There are times when we encounter scenarios where we need to do something regardless of the success or failure of the asynchronous task execution, such as popping up the load dialog before the network request and closing it after the request is finished. The first one is to close the dialog in `then` or `catch` respectively, and the second one is to use `whenComplete` callback of `Future`, we will change the above example as follows
 
@@ -264,9 +268,7 @@ Future.delayed(new Duration(seconds: 2),(){
 });
 ```
 
-
-
-####### Future.wait
+##### Future.wait
 
 There are times when we need to wait for multiple asynchronous tasks to finish executing before performing some operations, for example, we have an interface that needs to fetch data from two web interfaces separately first, and after the successful fetching, we need to perform specific processing on the two interface data before displaying it on the UI interface, how should we do that? The answer is `Future.wait`, which accepts an array of `Future` parameters, only after all `Future` in the array are executed successfully, the success callback of `then` will be triggered, as long as there is a `Future` execution failure, the error callback will be triggered. In the following, we simulate two asynchronous tasks of data fetching by simulating ``Future.delayed``, and when both asynchronous tasks are executed successfully, the results of the two asynchronous tasks are stitched together and printed out, with the following code.
 
@@ -289,11 +291,11 @@ Future.wait([
 
 Execute the above code and you will see "hello world" in the console after 4 seconds.
 
-###### Async/await
+#### Async/await
 
 The function and usage of `async/await` in Dart and `async/await` in JavaScript are exactly the same, so if you already know the usage of `async/await` in JavaScript, you can just skip this section.
 
-####### Callback Hell
+##### Callback Hell
 
 If there is a lot of asynchronous logic in the code, and if there are a lot of asynchronous tasks that depend on the results of other asynchronous tasks, there is bound to be a callback situation in the `Future.then` callback. For example, let's say there is a requirement scenario where the user logs in first, and then gets the user ID after successful login, and then requests the user's personal information through the user ID, and after getting the user's personal information, we need to cache it in the local file system for ease of use, with the following code.
 
@@ -330,11 +332,11 @@ login("alice", "******").then((id){
 
 If there are a lot of asynchronous dependencies in the business logic, there will be a callback inside the callback, too much nesting will lead to a decrease in readability and error rate, and it is very difficult to maintain, this problem is imaginatively called **Callback Hell**. The callback hell problem was very prominent in JavaScript before, and was the most trolled point of JavaScript, but with the release of the ECMAScript6 and ECMAScript7 standards, this problem has been very well solved, and the two magic tools to solve the callback hell are the introduction of `Promise` in ECMAScript6, and the introduction of `Promise` in ECMAScript7. and the introduction of `async/await` in ECMAScript7. In Dart, the two are almost completely panned in JavaScript: `Future` is equivalent to `Promise`, and `async/await` doesn't even change its name. Next, let's see how we can eliminate the nesting problem in the above example by using `Future` and `async/await`.
 
-####### Eliminating Callback Hell with Future
+##### Eliminating Callback Hell with Future
 
 ```dart
 login("alice", "******").then((id){
-  	return getUserInfo(id);
+   return getUserInfo(id);
 }).then((userInfo){
     return saveUserInfo(userInfo);
 }).then((e){
@@ -347,7 +349,7 @@ login("alice", "******").then((id){
 
 As mentioned above, *"the return value of all the APIs of `Future` is still a `Future` object, so it's easy to chain calls "* , if a `Future` is returned in then, the `future` will execute, and the end of execution will trigger the The `then` callback will be triggered after the execution, so that the nesting of layers is avoided by sequentially going down.
 
-###### Eliminate callback hell with async/await
+#### Eliminate callback hell with async/await
 
 Is there a way to execute asynchronous tasks as we write synchronous code without using callbacks? The answer is yes, this is to use `async/await`, the following we look directly at the code first, and then explain, the code is as follows.
 
@@ -372,7 +374,7 @@ As you can see, we have represented an asynchronous stream in synchronous code b
 
 > In fact, in both JavaScript and Dart, `async/await` is just syntactic sugar that the compiler or interpreter will eventually translate into a chain of calls to a Promise (Future).
 
-##### Stream
+### Stream
 
 `Stream` is also used to receive asynchronous event data, unlike `Future`, it can receive the result of multiple asynchronous operations (success or failure). That is, when executing an asynchronous task, the result data or error exceptions can be passed by triggering the success or failure event multiple times. `Stream` is often used in asynchronous task scenarios where data is read multiple times, such as downloading network content, reading and writing files, etc. As an example.
 
@@ -407,18 +409,18 @@ I/flutter (17666): Error
 I/flutter (17666): hello 3
 ```
 
-##### Inheritance (extends)
+### Inheritance (extends)
 
 The inheritance rules in dart.
 
 - Subclasses use the extends keyword to inherit from the parent class
 - Subclasses inherit the properties and methods visible in the parent class, but not the constructor.
-- subclasses can override the parent's methods getter and setter 
-- subclasses override superclass methods with @override 
+- subclasses can override the parent's methods getter and setter
+- subclasses override superclass methods with @override
 - subclasses call superclass methods with super
-- Subclasses can inherit non-private variables from the parent class 
+- Subclasses can inherit non-private variables from the parent class
 
-##### mixins (with)
+### mixins (with)
 
 The Chinese word for mixins means to mix in, which means to mix in other functions in the class. In Dart, mixins can be used to achieve similar functionality as multiple inheritance because the conditions for using mixins have been changing with the Dart version, here are the conditions for using mixins in Dart 2.x.
 
@@ -427,7 +429,7 @@ The Chinese word for mixins means to mix in, which means to mix in other functio
 - (3) a class can mixins more than one mixins class
 - (4) mixins is never inheritance, nor is it an interface, but is a completely new feature Look at the specific code.
 
-##### interface implementation(implementations)
+### interface implementation(implementations)
 
   Flutter does not have interfaces, but each class in Flutter is an implicit interface that contains all the member variables and defined methods of the class. If you have a class A, and you want class B to have the API of A, but you don't want to have the implementation of A, then you should treat A as an interface, and class B implements class A.
   So in Flutter: class is interface
