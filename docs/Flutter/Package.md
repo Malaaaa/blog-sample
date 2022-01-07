@@ -1,6 +1,6 @@
-#  包管理
+# Package Management
 
-YAML是一种直观、可读性高并且容易被人类阅读的文件格式，它和xml或Json相比，它语法简单并非常容易解析，所以YAML常用于配置文件，Flutter也是用yaml文件作为其配置文件。Flutter项目默认的配置文件是`pubspec.yaml`，我们看一个简单的示例：
+YAML is an intuitive, highly readable and human-readable file format, it's syntax is simple and very easy to parse compared to xml or Json, so YAML is often used for configuration files, Flutter also uses yaml files as its configuration files. the default configuration file for Flutter projects is `pubspec.yaml`, let's look at a simple example.
 
 ```yaml
 name: flutter_in_action
@@ -21,28 +21,28 @@ flutter:
   uses-material-design: true
 ```
 
-- `name`：应用或包名称。
-- `description`: 应用或包的描述、简介。
-- `version`：应用或包的版本号。
-- `dependencies`：应用或包依赖的其它包或插件。
-- `dev_dependencies`：开发环境依赖的工具包（而不是flutter应用本身依赖的包）。
-- `flutter`：flutter相关的配置选项。
+- `name`: the name of the application or package.
+- ``description``: description, introduction of the application or package.
+- `version`: version number of the application or package.
+- ``dependencies``: other packages or plugins that the application or package depends on.
+- `dev_dependencies`: the toolkits that the development environment depends on (not the packages that the flutter application itself depends on).
+- `flutter`: flutter-related configuration options.
 
-如果我们的Flutter应用本身依赖某个包，我们需要将所依赖的包添加到`dependencies` 下，接下来我们通过一个例子来演示一下如何添加、下载并使用第三方包。
+If our Flutter application itself depends on a package, we need to add the dependent package under `dependencies`, next we will demonstrate how to add, download and use third-party packages with an example.
 
-## Pub仓库
+## Pub repository
 
-Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
+Pub (<https://pub.dev/> ) is the official Google repository for **Dart Packages**.
 
-## 示例
+## Example
 
-接下来，我们实现一个显示随机字符串的widget。有一个名为“english_words”的开源软件包，其中包含数千个常用的英文单词以及一些实用功能。我们首先在pub上找到english_words这个包（如图2-5所示），确定其最新的版本号和是否支持Flutter。
+Next, we implement a widget that displays random strings. there is an open source package called "english_words" that contains thousands of common English words and some useful functions. We first find the package "english_words" on pub (shown in Figure 2-5), determine its latest version number and whether it supports Flutter.
 
-![图2-5](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/2-5.png)
+! [Figure 2-5](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/2-5.png)
 
-我们看到“english_words”包最新的版本是3.1.3，并且支持flutter，接下来：
+We see that the latest version of the "english_words" package is 3.1.3, and it supports flutter.
 
-1. 将“english_words”（3.1.3版本）添加到依赖项列表，如下：
+1. add "english_words" (version 3.1.3) to the list of dependencies, as follows.
 
    ```yaml
    dependencies:
@@ -50,15 +50,15 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
        sdk: flutter
    
      cupertino_icons: ^0.1.0
-     # 新添加的依赖
+     # New dependencies added
      : ^3.1.3
    ```
 
-2. 下载包。在Android Studio的编辑器视图中查看pubspec.yaml时（图2-6），单击右上角的 **Packages get** 。
+2. Download the package. When viewing pubspec.yaml in the editor view of Android Studio (Figure 2-6), click **Packages get** in the upper right corner.
 
-   ![图2-6](https://pcdn.flutterchina.club/imgs/2-6.png)
+   ! [Figure 2-6](https://pcdn.flutterchina.club/imgs/2-6.png)
 
-   这会将依赖包安装到您的项目。我们可以在控制台中看到以下内容：
+   This will install the dependency packages to your project. We can see the following in the console.
 
    ```shell
    flutter packages get
@@ -66,23 +66,23 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
    Process finished with exit code 0
    ```
 
-   我们也可以在控制台，定位到当前工程目录，然后手动运行`flutter packages get` 命令来下载依赖包。另外，需要注意`dependencies`和`dev_dependencies`的区别，前者的依赖包将作为APP的源码的一部分参与编译，生成最终的安装包。而后者的依赖包只是作为开发阶段的一些工具包，主要是用于帮助我们提高开发、测试效率，比如flutter的自动化测试包等。
+   We can also download the dependencies from the console by locating the current project directory and running the `flutter packages get` command manually. Also, note the difference between `dependencies` and `dev_dependencies`, the former dependencies will be compiled as part of the source code of the app to generate the final installer. The latter dependencies are only used as some toolkits in the development stage, mainly to help us improve the development and testing efficiency, such as flutter's automation test package, etc.
 
-3. 引入`english_words`包。
+3. introduce the `english_words` package.
 
    ```dart
    import 'package:english_words/english_words.dart';
    ```
 
-   在输入时，Android Studio会自动提供有关库导入的建议选项。导入后该行代码将会显示为灰色，表示导入的库尚未使用。
+   On import, Android Studio will automatically provide suggested options for library import. The line of code will be grayed out after importing, indicating that the imported library is not used yet. 4.
 
-4. 使用`english_words`包来生成随机字符串。
+4. Use `english_words` package to generate random strings.
 
    ```dart
    class RandomWordsWidget extends StatelessWidget {
      @override
      Widget build(BuildContext context) {
-      // 生成随机字符串
+      // Generate random strings
        final wordPair = new WordPair.random();
        return Padding(
          padding: const EdgeInsets.all(8.0),
@@ -92,7 +92,7 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
    }
    ```
 
-   我们将`RandomWordsWidget` 添加到 `_MyHomePageState.build` 的`Column`的子widget中。
+   We add `RandomWordsWidget` to the child widget of `Column` of `_MyHomePageState.build`.
 
    ```dart
    Column(
@@ -102,28 +102,28 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
      ],
    )
    ```
-   
-5. 如果应用程序正在运行，请使用热重载按钮（⚡️图标） 更新正在运行的应用程序。每次单击热重载或保存项目时，都会在正在运行的应用程序中随机选择不同的单词对。 这是因为单词对是在 `build` 方法内部生成的。每次热更新时，`build`方法都会被执行，运行效果如图2-7所示。
 
-   ![图2-7](https://pcdn.flutterchina.club/imgs/2-7.png)
+5. If the application is running, use the Hot Reload button (⚡️ icon) to update the running application. Each time you click Hot Reload or Save Item, a different word pair is randomly selected in the running application. This is because the word pairs are generated inside the `build` method. The `build` method is executed each time a hot update is performed, and runs as shown in Figure 2-7.
 
-## 其它依赖方式
+   ! [Figure 2-7](https://pcdn.flutterchina.club/imgs/2-7.png)
 
-上文所述的依赖方式是依赖Pub仓库的。但我们还可以依赖本地包和git仓库。
+## Other dependency methods
 
-- 依赖本地包
+The dependency methods described above rely on Pub repositories. However, we can also rely on local packages and git repositories.
 
-  如果我们正在本地开发一个包，包名为pkg1，我们可以通过下面方式依赖：
+- Reliance on local packages
+
+  If we are developing a package locally, named pkg1, we can depend on it by doing the following.
 
   ```yaml
   dependencies:
       pkg1:
-          path: ../../code/pkg1
+          path: ... /... /code/pkg1
   ```
 
-  路径可以是相对的，也可以是绝对的。
+  Paths can be either relative or absolute.
 
-- 依赖Git：你也可以依赖存储在Git仓库中的包。如果软件包位于仓库的根目录中，请使用以下语法
+- Dependency on Git: You can also depend on packages stored in a Git repository. If the package is located in the root of the repository, use the following syntax
 
   ```yaml
   dependencies:
@@ -132,7 +132,7 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
         url: git://github.com/xxx/pkg1.git
   ```
 
-  上面假定包位于Git存储库的根目录中。如果不是这种情况，可以使用path参数指定相对位置，例如：
+  The above assumes that the package is located in the root directory of the Git repository. If this is not the case, you can specify a relative location using the path parameter, e.g.
 
   ```yaml
   dependencies:
@@ -142,8 +142,159 @@ Pub（https://pub.dev/ ）是Google官方的**Dart Packages仓库**.
         path: packages/package1
   ```
 
-上面介绍的这些依赖方式是Flutter开发中常用的，但还有一些其它依赖方式，完整的内容读者可以自行查看：https://www.dartlang.org/tools/pub/dependencies 。
+These dependencies described above are commonly used in Flutter development, but there are some other dependencies, the complete content of which the reader can see for himself: <https://www.dartlang.org/tools/pub/dependencies> .
 
-## 总结
+## Summary
 
-本节介绍了Flutter中包管理、引用、下载的整体流程，我们将在后面的章节中介绍如何开发并发布我们自己的包。
+This section describes the overall process of package management, referencing, and downloading in Flutter, and we will cover how to develop and distribute our own packages in later chapters.
+***Translated with www.DeepL.com/Translator (free version)***
+
+# Package Management
+
+YAML is an intuitive, highly readable and human-readable file format, it's syntax is simple and very easy to parse compared to xml or Json, so YAML is often used for configuration files, Flutter also uses yaml files as its configuration files. the default configuration file for Flutter projects is `pubspec.yaml`, let's look at a simple example.
+
+```yaml
+name: flutter_in_action
+description: First Flutter application.
+
+version: 1.0.0+1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+```
+
+- `name`: the name of the application or package.
+- ``description``: description, introduction of the application or package.
+- `version`: version number of the application or package.
+- ``dependencies``: other packages or plugins that the application or package depends on.
+- `dev_dependencies`: the toolkits that the development environment depends on (not the packages that the flutter application itself depends on).
+- `flutter`: flutter-related configuration options.
+
+If our Flutter application itself depends on a package, we need to add the dependent package under `dependencies`, next we will demonstrate how to add, download and use third-party packages with an example.
+
+## Pub repository
+
+Pub (<https://pub.dev/> ) is the official Google repository for **Dart Packages**.
+
+## Example
+
+Next, we implement a widget that displays random strings. there is an open source package called "english_words" that contains thousands of common English words and some useful functions. We first find the package "english_words" on pub (shown in Figure 2-5), determine its latest version number and whether it supports Flutter.
+
+! [Figure 2-5](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/2-5.png)
+
+We see that the latest version of the "english_words" package is 3.1.3, and it supports flutter.
+
+1. add "english_words" (version 3.1.3) to the list of dependencies, as follows.
+
+   ```yaml
+   dependencies:
+     flutter:
+       sdk: flutter
+   
+     cupertino_icons: ^0.1.0
+     # New dependencies added
+     : ^3.1.3
+   ```
+
+2. Download the package. When viewing pubspec.yaml in the editor view of Android Studio (Figure 2-6), click **Packages get** in the upper right corner.
+
+   ! [Figure 2-6](https://pcdn.flutterchina.club/imgs/2-6.png)
+
+   This will install the dependency packages to your project. We can see the following in the console.
+
+   ```shell
+   flutter packages get
+   Running "flutter packages get" in flutter_in_action...
+   Process finished with exit code 0
+   ```
+
+   We can also download the dependencies from the console by locating the current project directory and running the `flutter packages get` command manually. Also, note the difference between `dependencies` and `dev_dependencies`, the former dependencies will be compiled as part of the source code of the app to generate the final installer. The latter dependencies are only used as some toolkits in the development stage, mainly to help us improve the development and testing efficiency, such as flutter's automation test package, etc.
+
+3. introduce the `english_words` package.
+
+   ```dart
+   import 'package:english_words/english_words.dart';
+   ```
+
+   On import, Android Studio will automatically provide suggested options for library import. The line of code will be grayed out after importing, indicating that the imported library is not used yet. 4.
+
+4. Use `english_words` package to generate random strings.
+
+   ```dart
+   class RandomWordsWidget extends StatelessWidget {
+     @override
+     Widget build(BuildContext context) {
+      // Generate random strings
+       final wordPair = new WordPair.random();
+       return Padding(
+         padding: const EdgeInsets.all(8.0),
+         child: new Text(wordPair.toString()),
+       );
+     }
+   }
+   ```
+
+   We add `RandomWordsWidget` to the child widget of `Column` of `_MyHomePageState.build`.
+
+   ```dart
+   Column(
+     mainAxisAlignment: MainAxisAlignment.center,
+     children: <Widget>[
+       RandomWordsWidget(),
+     ],
+   )
+   ```
+
+5. If the application is running, use the Hot Reload button (⚡️ icon) to update the running application. Each time you click Hot Reload or Save Item, a different word pair is randomly selected in the running application. This is because the word pairs are generated inside the `build` method. The `build` method is executed each time a hot update is performed, and runs as shown in Figure 2-7.
+
+   ! [Figure 2-7](https://pcdn.flutterchina.club/imgs/2-7.png)
+
+## Other dependency methods
+
+The dependency methods described above rely on Pub repositories. However, we can also rely on local packages and git repositories.
+
+- Reliance on local packages
+
+  If we are developing a package locally, named pkg1, we can depend on it by doing the following.
+
+  ```yaml
+  dependencies:
+      pkg1:
+          path: ... /... /code/pkg1
+  ```
+
+  Paths can be either relative or absolute.
+
+- Dependency on Git: You can also depend on packages stored in a Git repository. If the package is located in the root of the repository, use the following syntax
+
+  ```yaml
+  dependencies:
+    pkg1:
+      git:
+        url: git://github.com/xxx/pkg1.git
+  ```
+
+  The above assumes that the package is located in the root directory of the Git repository. If this is not the case, you can specify a relative location using the path parameter, e.g.
+
+  ```yaml
+  dependencies:
+    package1:
+      git:
+        url: git://github.com/flutter/packages.git
+        path: packages/package1
+  ```
+
+These dependencies described above are commonly used in Flutter development, but there are some other dependencies, the complete content of which the reader can see for himself: <https://www.dartlang.org/tools/pub/dependencies> .
+
+## Summary
+
+This section describes the overall process of package management, referencing, and downloading in Flutter, and we will cover how to develop and distribute our own packages in later chapters.
