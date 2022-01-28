@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.CSAPP": {
+    "message": "CSAPP",
+    "description": "The label for category CSAPP in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.I": {
+    "message": "I",
+    "description": "The label for category I in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Flutter": {
+    "message": "Flutter",
+    "description": "The label for category Flutter in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Leetcodestudy": {
+    "message": "Leetcodestudy",
+    "description": "The label for category Leetcodestudy in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Medical_image": {
+    "message": "Medical_image",
+    "description": "The label for category Medical_image in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Skill": {
+    "message": "Skill",
+    "description": "The label for category Skill in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Leetcode": {
+    "message": "Leetcode",
+    "description": "The label for category Leetcode in sidebar tutorialSidebar"
+  }
+}

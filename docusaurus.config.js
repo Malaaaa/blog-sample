@@ -53,6 +53,10 @@ const config = {
             position: 'right',
             className: 'header-github-link',
           },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
         ],
       },
       footer: {
@@ -64,7 +68,11 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-
+    i18n: {
+      defaultLocale: 'en',
+      locales: ['en', 'fr', 'zh-CN'],
+      
+    },
 
 };
 module.exports = config;
