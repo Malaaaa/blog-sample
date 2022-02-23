@@ -2,21 +2,22 @@ import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate, { translate } from '@docusaurus/Translate';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title"><Translate>Welcome to my website</Translate></h1>
+        <p className="hero__subtitle"><Translate>'Think Big，Think Long'</Translate></p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Too see a fun and real <q>developer soul</q>
+              <Translate>
+              How I Lived My Life in the Year 2021
+              </Translate>
           </Link>
         </div>
       </div>
@@ -25,12 +26,13 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-    </Layout>
+    <main>
+      <Layout
+        title={`Hello Stranger`}
+        description="This is a resume and blog for my program">
+        <HomepageHeader />
+      </Layout>
+    </main>
   );
 }

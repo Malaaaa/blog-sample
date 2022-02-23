@@ -194,5 +194,14 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "Welcome to my website": {
+    "message": "Welcome to my website"
+  },
+  "'Think Big，Think Long'": {
+    "message": "'Think Big，Think Long'"
+  },
+  "How I Lived My Life in the Year 2021": {
+    "message": "How I Lived My Life in the Year 2021"
   }
 }

@@ -4,8 +4,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My blog',
-  tagline: 'Think Big，Think Long',
+  title: 'My resume',
+  tagline: 'resume,front-end',
   url: 'https://malaaa.mljlls.tech/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -22,9 +22,9 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/Malaaaa/blog-sample/main',
+          editUrl: 'https://github.com/Malaaaa/blog-sample/tree/main',
         },
-       
+
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -36,7 +36,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'My resume',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -46,7 +46,7 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'My Treasures',
+            label: 'My notes',
           },
           {
             href: 'https://github.com/Malaaaa',
@@ -71,7 +71,7 @@ const config = {
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'fr', 'zh-CN'],
-      
+
     },
 
 };
