@@ -21,3 +21,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.warp {
+  padding: 2rem;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.left,
+.right,
+.middle {
+  font-size: x-large;
+  text-align: center;
+    height: auto;
+}
+
+.discrpition{
+  font-size: x-large;
+  text-align: center;
+    height: auto;
+}
