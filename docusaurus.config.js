@@ -71,7 +71,12 @@ const config = {
     i18n: {
       defaultLocale: 'en',
       locales: ['en', 'fr', 'zh-CN'],
+      localeConfigs: {
+        en: {
+          htmlLang: 'en-GB',
+        },
 
+      },
     },
 
 };

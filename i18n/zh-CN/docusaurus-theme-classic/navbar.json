@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "My Site",
-    "description": "The title in the navbar"
+    "message": "我的网站",
+    "description": "导航栏的标题"
   },
   "item.label.My notes": {
-    "message": "My notes",
-    "description": "Navbar item with label My notes"
+    "message": "我的笔记",
+    "description": "带标签的导航栏项目 我的笔记"
   }
 }
