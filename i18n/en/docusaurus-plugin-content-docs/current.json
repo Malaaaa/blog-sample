@@ -15,16 +15,16 @@
     "message": "Flutter",
     "description": "The label for category Flutter in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Leetcode": {
-    "message": "Leetcode",
-    "description": "The label for category Leetcode in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.React": {
+    "message": "React",
+    "description": "The label for category React in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Skill": {
     "message": "Skill",
     "description": "The label for category Skill in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.React": {
-    "message": "React",
-    "description": "The label for category React in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Leetcode": {
+    "message": "Leetcode",
+    "description": "The label for category Leetcode in sidebar tutorialSidebar"
   }
 }
