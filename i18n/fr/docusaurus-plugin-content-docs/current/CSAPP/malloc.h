@@ -1,6 +1,6 @@
  
-#define malloc(size) mymalloc(size)
+#define malloc(taille) mymalloc(taille)
 #define free(ptr) myfree(ptr)
 
-void *mymalloc(size_t size);
+void *mymalloc(taille_t taille);
 void myfree(void *ptr);

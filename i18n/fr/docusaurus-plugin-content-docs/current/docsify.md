@@ -1,9 +1,9 @@
-# docsify
-I used this at beginning.
-## Overview
-[docsify](https://github.com/docsifyjs/) Great Tutorial
+# documenter
+J'ai utilisé ça au début.
+## Aperçu
+[docsifier](https://github.com/docsifyjs/) super tutoriel
 
-Very detailed and has various interfaces to use. In my opinion, it's just rendering the markdown file I wrote into a website using his CSS and JS scripts One md file per page.There are also some special function configuration files written in markdown syntax. It's very simple and doesn't require a high level of coding.
-## lack
+Très détaillé et a diverses interfaces à utiliser. À mon avis, il s'agit simplement de rendre le fichier de démarquage que j'ai écrit sur un site Web à l'aide de ses scripts CSS et JS. Un fichier md par page. Il existe également des fichiers de configuration de fonctions spéciales écrits dans la syntaxe de démarquage. C'est très simple et ne nécessite pas un haut niveau de codage.
+## manque
 
-There are some interfaces can not be used, such as custom cover page images can not be adaptive and so on. In fact, the main do a document management site does not require personalized words have been very good, beautiful atmosphere.
+Certaines interfaces ne peuvent pas être utilisées, telles que les images de page de garde personnalisées ne peuvent pas être adaptatives, etc. En fait, le principal faire un site de gestion de documents ne nécessite pas de mots personnalisés ont été très bons, belle ambiance.

@@ -1,28 +1,28 @@
-#  HomeChain
+# HomeChain
 
-## Background 
+## Contexte
 
--  **(IoT) Current Status**
-- Question **secure and efficient remote user authentication solution.**
-- existing solutions **a single-server architecture**
-- critical challenges **providing regulation of behaviors and privacy protection of access policy)**
-- In this article **novel secure mutual authentication system** integrates blockchain
+-  **(IdO) État actuel**
+- Question **solution d'authentification d'utilisateur à distance sécurisée et efficace.**
+- solutions existantes **une architecture mono-serveur**
+- défis critiques **assurer la réglementation des comportements et la protection de la vie privée de la politique d'accès)**
+- Dans cet article **nouveau système sécurisé d'authentification mutuelle** intègre la blockchain
 
-## Introduction
+## introduction
 
-- home gateway **provides network access between local area network (LAN) hosts to a wide area network (WAN) (like the Internet) via a modem.** IP port
-- remotely communicate can be targeted and subject to exploitation.
-- The information from any single device may not be deemed sensitive
-- remote authentication approaches.
-  - password-based authentication. (limitations)
-    1. Lack of Privacy and Anonymity
-    2. Lack of Completeness and Confidentiality
-  - One-time password (OTP) authentication 
+- La passerelle domestique **fournit un accès réseau entre les hôtes du réseau local (LAN) à un réseau étendu (WAN) (comme Internet) via un modem.** port IP
+- communiquer à distance peut être ciblé et sujet à exploitation.
+- Les informations provenant d'un seul appareil ne peuvent pas être considérées comme sensibles
+- approches d'authentification à distance.
+  - authentification par mot de passe. (limites)
+    1. Manque de confidentialité et d'anonymat
+    2. Manque d'exhaustivité et de confidentialité
+  - Authentification par mot de passe à usage unique (OTP)
 
-- Remote user authentication schemes based on smart cards [11] have also been widely used in applications involving remote user login, Web access, and other online services, due to their efficiency, convenience, and low computational cost.
-- blockchain-based authentications **a more secure, reliable and convenient IoT systems ** 
-  - limitation : the user behaviors cannot be effectively regulated .
-  - all the request transactions or access policy are in plaintext, which can be  collected to statistically analyze user daily life, and thus, compromising user privacy.
-  - Contributions: To further provide traceability and privacy protection of access policy, we integrate both blockchain and group signature
-  - Organization: organize the reminder of this article as follows. Section II reviews the current blockchain-based smart home systems.
+- Les schémas d'authentification d'utilisateur à distance basés sur des cartes à puce [11] ont également été largement utilisés dans des applications impliquant une connexion d'utilisateur à distance, un accès Web et d'autres services en ligne, en raison de leur efficacité, de leur commodité et de leur faible coût de calcul.
+- authentifications basées sur la blockchain ** un système IoT plus sûr, fiable et pratique **
+  - limitation : les comportements des utilisateurs ne peuvent pas être régulés efficacement.
+  - toutes les transactions de demande ou la politique d'accès sont en clair, qui peuvent être collectées pour analyser statistiquement la vie quotidienne de l'utilisateur, et ainsi compromettre la confidentialité de l'utilisateur.
+  - Contributions : pour fournir davantage de traçabilité et de protection de la confidentialité de la politique d'accès, nous intégrons à la fois la blockchain et la signature de groupe
+  - Organisation : organisez le rappel de cet article comme suit. La section II passe en revue les systèmes actuels de maison intelligente basés sur la blockchain.
 

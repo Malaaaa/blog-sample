@@ -1,5 +1,2 @@
-select all   **Vscode** Ctrl + Alt + L
-            **Idea**   Ctrl + Alt + Shift +J
-New   **Vscode** Shift + A            
-          **Idea**  Alt + Insert
-View md **Vscode** Ctrl + Shift + v
+sélectionner tout   **Vscode** Ctrl + Alt + L **Idée**   Ctrl + Alt + Maj + J Nouveau   **Vscode** Maj + A            
+**Idée**  Alt + Insérer Afficher md **Vscode** Ctrl + Maj + v

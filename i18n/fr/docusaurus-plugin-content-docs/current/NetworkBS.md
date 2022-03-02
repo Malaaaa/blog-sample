@@ -1,165 +1,101 @@
-# Computer Network Basic
+# Réseau informatique de base
 
-## Network hierarchy
+## Hiérarchie du réseau
 
-### Seven-layer model
+### Modèle à sept couches
 
-Application layer: protocol APP for application layer
-Representation layer: converting computer-recognized binary into human-recognized data
-Session layer: analyze the communication status of the data
-Transport layer: process and inter-process communication (port information)
-Network layer: host-to-host pass (IP address)
-Data link layer: complete frame data sent and received (transmitted independently on the network) mac address (device address)
-Physical layer: not the physical device, but the type of interface on the physical device, the strength of the current
+Couche application : protocole APP pour la couche application Couche représentation : conversion du binaire reconnu par ordinateur en données reconnues par l'homme Couche session : analyse de l'état de communication des données Couche transport : processus et communication inter-processus (informations de port) Couche réseau : passe hôte à hôte (adresse IP) Couche de liaison de données : données de trame complètes envoyées et reçues (transmises indépendamment sur le réseau) adresse MAC (adresse de l'appareil) Couche physique : pas l'appareil physique, mais le type d'interface sur l'appareil physique, la force du courant
 
-### 4 Layers Protocol: TCP/IP protocol layer
+### Protocole à 4 couches : couche de protocole TCP/IP
 
-Application layer: protocols for the application layer is FTP、Telnet、HTTP
-Transport layer (transport layer): process and inter-process communication (port information) TCP, UDP
-Network layer: host-to-host pass (IP address) IP, ICMP
-Link layer: complete frame data sent and received (transmitted independently on the network) mac address (device address) ARP RARP
+Couche application : les protocoles pour la couche application sont FTP、Telnet、HTTP Couche transport (couche transport) : processus et communication inter-processus (informations de port) TCP, UDP Couche réseau : passe hôte à hôte (adresse IP) IP , ICMP Couche liaison : trame complète des données envoyées et reçues (transmises indépendamment sur le réseau) adresse mac (adresse de l'appareil) ARP RARP
 
 ![image-20210107235436362](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210107235436362.png)
 
 ![image-20210108131350452](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108131350452.png)
 
-- **IP Protocol Inter-networking Protocol (Network Layer)**
+- **Protocole IP Protocole inter-réseaux (Couche réseau)**
 
-The transmission of packets**(Internet packets)** from **source address to destination on an interconnected network system provides the necessary functionality**
-**capable protocol**
-Try to send data from the source address to the destination
-Features.
-**Unreliable**: it does not guarantee that an IP packet will successfully reach its destination and provides only best-effort transmission
-**Connectionless**: IP does not maintain any information about the status of subsequent packets. Each packet is processed independently of each other.
-IP packets can be received out of order of delivery
-**IP packets contain the IP address of the host sending it (source address) and the IP address of the host receiving it (destination address)**
+La transmission de paquets**(paquets Internet)** de l'adresse source **à la destination sur un système de réseau interconnecté fournit les fonctionnalités nécessaires** **protocole capable** Essayer d'envoyer des données de l'adresse source à la destination Caractéristiques. **Non fiable**: il ne garantit pas qu'un paquet IP atteindra sa destination avec succès et ne fournit qu'une transmission au mieux **Sans connexion**: IP ne conserve aucune information sur l'état des paquets suivants. Chaque paquet est traité indépendamment les uns des autres. Les paquets IP peuvent être reçus dans le désordre **Les paquets IP contiennent l'adresse IP de l'hôte qui les envoie (adresse source) et l'adresse IP de l'hôte qui les reçoit (adresse de destination)**
 
-- **TCP is a connection-oriented, reliable transport layer communication protocol**.
+- **TCP est un protocole de communication de couche transport fiable et orienté connexion**.
 
-**Functions**.
-Provides communication between **processes on different hosts**
-**Features**.
+**Fonctions**. Assure la communication entre **processus sur différents hôtes** **Caractéristiques**.
 
-1. establish link->use link->release link (virtual circuit)
-2. TCP packets contain serial numbers and acknowledgement serial numbers
-3. packets are sorted and error checked, while corrupted packets can be retransmitted
+1. établir le lien->utiliser le lien->libérer le lien (circuit virtuel)
+2. Les paquets TCP contiennent des numéros de série et des numéros de série d'accusé de réception
+3. les paquets sont triés et les erreurs vérifiées, tandis que les paquets corrompus peuvent être retransmis
 
-**Service object** UDP protocol User Datagram Protocol (transport layer)
+**Objet de service** Protocole UDP User Datagram Protocol (couche transport)
 
-Services that require high reliability and are connection-oriented
-such as HTTP, FTP, SMTP, etc.
-**Summary**: TCP **Link Oriented** Reliable Sorting Error checking Failure retransmission No broadcast support
+Services nécessitant grande</strong> et** ** tels que HTTP,**, SMTP, etc.</p>
 
-- **UDP Protocol User Datagram Protocol (Transport Layer)**
+- **Protocole UDP Protocole de datagramme utilisateur (couche transport)**
 
-UDP is a **connectionless** oriented transport layer communication protocol
+UDP est un protocole de communication de couche de transport orienté **sans connexion**
 
-**Functionality**.
-Provides **inter-process communication** on different hosts
-Features
+**Fonctionnalité**. Fournit **communication inter-processus** sur différents hôtes Caractéristiques
 
-1. no link needs to be established before sending data
-2. no checking of packet order
-3. no error detection and retransmission mechanism
+1. aucun lien n'a besoin d'être établi avant l'envoi des données
+2. pas de vérification de l'ordre des paquets
+3. aucun mécanisme de détection et de retransmission des erreurs
 
-Service Object
-   Mainly used for "query-answer" services
-   Such as: NFS, NTP, DNS, etc.
-   Summary: UDP **no connection** no sequencing, no error checking, no retransmission, fast, broadcast support
+Objet de service Principalement utilisé pour les services "requête-réponse" Tels que : NFS, NTP, DNS, etc. Résumé : UDP **pas de connexion** pas de séquençage, pas de vérification d'erreur, pas de retransmission, rapide, prise en charge de la diffusion
 
-## Address Introduction
+## Présentation de l'adresse
 
-- **mac address (link layer) Device and device communication**
+- **adresse mac (couche de liaison) Appareil et communication d'appareil**
 
-MAC address, used to identify network devices, similar to an ID number, and theoretically unique worldwide.
-Composition: MAC address within Ethernet is a 48bit value
+Adresse MAC, utilisée pour identifier les périphériques réseau, similaire à un numéro d'identification, et théoriquement unique au monde. Composition : l'adresse MAC dans Ethernet est une valeur de 48 bits
 
 ![image-20210108195656267](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png")
 
-- **IP address IPv4 (network layer) host and host 32bit**
+- **Adresse IP IPv4 (couche réseau) hôte et hôte 32 bits**
 
-IP address composition: use 32bit, composed of two parts {network ID, host ID}
-Subnet ID: the consecutive bits of the IP address covered by 1 in the subnet mask
-Host ID: the consecutive bits of the IP address covered by 0 in the subnet mask
+Composition de l'adresse IP : utilisez 32 bits, composé de deux parties {network ID, host ID} ID de sous-réseau : les bits consécutifs de l'adresse IP couverts par 1 dans le masque de sous-réseau ID d'hôte : les bits consécutifs de l'adresse IP couverts par 0 dans le masque de sous-réseau
 
 ![image-20210108143050377](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108143050377.png)
 
-IP and subnet mask used together.
+IP et masque de sous-réseau utilisés ensemble.
 
-192.168.0.111/255.255.255.0 == 192.168.0.111/24
-192.168.0.111/255.255.0.0 == 192.168.0.111/16
-192.168.0.111/255.0.0.0 == 192.168.0.111/8
+192.168.0.111/255.255.255.0 == 192.168.0.111/24 192.168.0.111/255.255.0.0 == 192.168.0.111/16 192.168.0.111/255.0.0.0 == 192.1
 
-**ip address characteristics**:different network segments can not communicate directly
+**caractéristiques de l'adresse IP** : les différents segments du réseau ne peuvent pas communiquer directement
 
-Networks with different subnet IDs cannot communicate directly, if they want to communicate, they need to be forwarded by the router
-IP addresses with all 0 host IDs represent network segment addresses.
-The IP address with host ID of 1 indicates the broadcast address of the network segment.
+Les réseaux avec différents ID de sous-réseau ne peuvent pas communiquer directement, s'ils veulent communiquer, ils doivent être transférés par le routeur adresses IP avec tous les 0 ID d'hôte représentent les adresses de segment de réseau. L'adresse IP avec l'ID d'hôte de 1 indique l'adresse de diffusion du segment de réseau.
 
-Example: 192.168.0.111/255.255.255.0 Ask the current IP address of the segment __192.168.0.0__ and the broadcast address __192.168.0.0__.
-address __192.168.0.255__
+Exemple : 192.168.0.111/255.255.255.0 Demander l'adresse IP actuelle du segment __192.168.0.0__ et l'adresse de diffusion __192.168.0.0__. adresse __192.168.0.255__
 
-Note: Neither the segment address nor the broadcast address in any of the segments can be assigned to a host
-192.168.0.1~192.168.0.254 == the number of available IPs is only 254
-Case: 192.168.0.111/255.255.0.0 Ask the segment address _192.168.0.0_ and the broadcast address _192.168.255.0.0_ of the current IP
-address_192.168.255.255_ available hosts 1~65534 == number of available IPs only 65534
+Remarque : Ni l'adresse de segment ni l'adresse de diffusion dans l'un des segments ne peuvent être attribuées à un hôte 192.168.0.1~192.168.0.254 == le nombre d'adresses IP disponibles n'est que de 254 Cas : 192.168.0.111/255.255.0.0 Demander l'adresse de segment _192.168.0.0_ et l'adresse de diffusion _192.168.255.0.0_ de l'adresse IP actuelle_192.168.255.255_ hôtes disponibles 1~65534 == nombre d'IP disponibles uniquement 65534
 
-- **IP address classification (more reasonable use of IP addresses)**
+- **Classification des adresses IP (utilisation plus raisonnable des adresses IP)**
 
-Class A address: default 8bit subnet ID, the first one is 0 WAN (country - country, big city - big city)
-0xxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.0.0.0
-Class B address: default 16bit subnet ID,the first two digits are 10 MAN (city-city)
-10xx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.0.0
-Class C address: default 24bit subnet ID,the first three digits are 110
-110x xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.255.0 LAN
-Class D address: the first four bits are 1110, multicast address
-Class E address: the first five bits are 11110, reserved for future use
+Adresse de classe A : ID de sous-réseau 8 bits par défaut, le premier est 0 WAN (pays - pays, grande ville - grande ville) 0xxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.0.0.0 Adresse de classe B : ID de sous-réseau 16 bits par défaut, les deux premiers chiffres sont 10 MAN (ville-ville) 10xx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.0.0 Adresse de classe C : ID de sous-réseau 24 bits par défaut, les trois premiers chiffres sont 110 110x xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.255.0 LAN Adresse de classe D : les quatre premiers bits sont 1110, adresse de multidiffusion Adresse de classe E : les cinq premiers bits sont 11110, réservés pour une utilisation future
 
-Class A,B,C addresses are the most commonly used
+Les adresses de classe A, B, C sont les plus couramment utilisées
 
-Public IP (can be directly connected to the Internet)
-IP unified by InterNIC
-Private IP (not directly connected to the Internet)
-Mainly used for host connection planning in local area network
+IP publique (peut être directement connectée à Internet) IP unifiée par InterNIC IP privée (non directement connectée à Internet) Principalement utilisée pour la planification de la connexion hôte dans le réseau local
 
 ![image-20210108202556176](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108202556176.png)
 
-**Loopback address**
-![image-20210108203054234](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png)
+**Adresse de bouclage** ![image-20210108203054234](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png)
 
-Function
-The main purpose is to test the network configuration of this machine, being able to ping through 127.0.0.1 means
-This means that there is no problem with the installation of NIC and IP protocol on this machine.
-Note
-Any address in 127.0.0.1~127.255.255.254 will be looped back to the local host
-does not belong to any of the classed address categories, it represents the local virtual interface of the device
-Set the Linux IP sudo ifconfig eth0 192.168.0.222 netmask 255.255.255.0
+Fonction L'objectif principal est de tester la configuration réseau de cette machine, pouvoir envoyer un ping via 127.0.0.1 signifie Cela signifie qu'il n'y a aucun problème avec l'installation de la carte réseau et du protocole IP sur cette machine. Remarque Toute adresse dans 127.0.0.1~127.255.255.254 sera bouclée vers l'hôte local n'appartient à aucune des catégories d'adresses classées, elle représente l'interface virtuelle locale du périphérique Définissez l'IP Linux sudo ifconfig eth0 192.168 .0.222 masque réseau 255.255.255.0
 
-**subnet mask** (also called network mask, address mask) is a 32-bit value consisting of 1 and 0, and 1
-and 0 are consecutive.
-Features:
+**masque de sous-réseau** (également appelé masque de réseau, masque d'adresse) est une valeur de 32 bits composée de 1 et 0, et 1 et 0 sont consécutifs. Caractéristiques:
 
-- Must be used in conjunction with IP address, cannot exist alone
-- The consecutive bits in the IP address covered by 1 in the subnet mask are the subnet ID, and the rest are the host ID.
+- Doit être utilisé conjointement avec l'adresse IP, ne peut pas exister seul
+- Les bits consécutifs de l'adresse IP couverts par 1 dans le masque de sous-réseau sont l'ID de sous-réseau et les autres sont l'ID d'hôte.
 
-**port number**: similar to a pid to identify a process; in a network program, the port number is used to identify a running network program
+**numéro de port**: similaire à un pid pour identifier un processus ; dans un programme réseau, le numéro de port est utilisé pour identifier un programme réseau en cours d'exécution
 
-![image-20210108203342082](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203342082.png)
-**Features**
+![image-20210108203342082](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203342082.png) **Caractéristiques**
 
-1. The port number is an unsigned short integer type
-2. Each port has a port number
-3. TCP, UDP maintain their own independent port number
-4. Network applications must occupy at least one port number, but can also occupy multiple port numbers
+1. Le numéro de port est un type entier court non signé
+2. Chaque port a un numéro de port
+3. TCP, UDP conservent leur propre numéro de port indépendant
+4. Les applications réseau doivent occuper au moins un numéro de port, mais peuvent également occuper plusieurs numéros de port
 
-- Classification of ports
+- Classement des ports
 
-**Well-known ports** (1~1023)
-Uniformly assigned by the Internet Assigned Numbers Authority (IANA) according to user needs
-For example: FTP-21, HTTP-80, etc.
-The range normally used by servers; if forced to use, root privilege must be added
-**Dynamic port** (1024~65535)
-The range normally used by applications
-Note
-Port number is similar to process number, only one process can be marked at the same time
-Can be used repeatedly
+**Ports bien connus** (1~1023) Attribués uniformément par l'IANA (Internet Assigned Numbers Authority) en fonction des besoins de l'utilisateur Par exemple : FTP-21, HTTP-80, etc. La plage normalement utilisée par les serveurs ; si l'utilisation est forcée, le privilège root doit être ajouté **Port dynamique** (1024~65535) La plage normalement utilisée par les applications Remarque Le numéro de port est similaire au numéro de processus, un seul processus peut être marqué à la fois Peut être utilisé à plusieurs reprises

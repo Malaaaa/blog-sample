@@ -1,165 +1,101 @@
-# Computer Network Basic
+# 计算机网络基础
 
-## Network hierarchy
+## 网络层次结构
 
-### Seven-layer model
+### 七层模型
 
-Application layer: protocol APP for application layer
-Representation layer: converting computer-recognized binary into human-recognized data
-Session layer: analyze the communication status of the data
-Transport layer: process and inter-process communication (port information)
-Network layer: host-to-host pass (IP address)
-Data link layer: complete frame data sent and received (transmitted independently on the network) mac address (device address)
-Physical layer: not the physical device, but the type of interface on the physical device, the strength of the current
+应用程序图层：用于应用程序图层的协议 APP 表示图层：将计算机识别的二进制转换为人类识别的数据 会话图层：分析数据的通信状态 传输图层：进程和进程间通信(端口信息) 网络图层：主机到主机密码 (IP 地址) 数据链接图层：发送和接收的完整帧数据(在网络上独立传送) mac 地址 (设备地址) 物理图层：非物理设备， 但物理设备上的接口类型，当前的强度
 
-### 4 Layers Protocol: TCP/IP protocol layer
+### 4层协议：TCP/IP 协议图层
 
-Application layer: protocols for the application layer is FTP、Telnet、HTTP
-Transport layer (transport layer): process and inter-process communication (port information) TCP, UDP
-Network layer: host-to-host pass (IP address) IP, ICMP
-Link layer: complete frame data sent and received (transmitted independently on the network) mac address (device address) ARP RARP
+应用程序层：应用程序图层的协议是 FTPfaciles, TelnetP Transport layer (transport layer): process and interprocess communication (端口信息) TCP, UDP 网络图层：主机到主机密码 (IP 地址) IP， ICMP 链接层：发送和接收完整的框架数据 (在网络上独立传输) mac 地址 (设备地址) ARP RARP
 
 ![image-20210107235436362](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210107235436362.png)
 
-![image-20210108131350452](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108131350452.png)
+![image-202101081350452](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108131350452.png)
 
-- **IP Protocol Inter-networking Protocol (Network Layer)**
+- **IP 协议网络间协议(网络层)**
 
-The transmission of packets**(Internet packets)** from **source address to destination on an interconnected network system provides the necessary functionality**
-**capable protocol**
-Try to send data from the source address to the destination
-Features.
-**Unreliable**: it does not guarantee that an IP packet will successfully reach its destination and provides only best-effort transmission
-**Connectionless**: IP does not maintain any information about the status of subsequent packets. Each packet is processed independently of each other.
-IP packets can be received out of order of delivery
-**IP packets contain the IP address of the host sending it (source address) and the IP address of the host receiving it (destination address)**
+将数据包**(Internet packets)** 从 **源地址传送到互联网络系统中的目的地提供了必要的功能** **有能力的协议** 尝试将数据从源地址发送到目标 特性 **不可靠的**: 它不能保证一个 IP 包成功到达其目的地，并且只提供了最佳的传输 **无连接**: IP 不保留任何关于其后数据包状态的信息。 每个数据包都是独立处理的。 IP数据包可以不按送货顺序接收 **IP数据包包含发送它的主机IP地址(源地址) 和接收它的主机IP地址(目的地址)**
 
-- **TCP is a connection-oriented, reliable transport layer communication protocol**.
+- **TCP是一个面向连接、可靠的传输层通信协议**。
 
-**Functions**.
-Provides communication between **processes on different hosts**
-**Features**.
+**函数**。 提供 **进程之间在不同主机** **功能** 之间的通信。
 
-1. establish link->use link->release link (virtual circuit)
-2. TCP packets contain serial numbers and acknowledgement serial numbers
-3. packets are sorted and error checked, while corrupted packets can be retransmitted
+1. 建立链接 ->使用链接 ->发行链接 (虚拟电路)
+2. TCP 数据包包含序列号和确认序列号
+3. 数据包排序和检查错误，而损坏的数据包可以重新发送
 
-**Service object** UDP protocol User Datagram Protocol (transport layer)
+**服务对象** UDP协议用户数据图协议(传输图层)
 
-Services that require high reliability and are connection-oriented
-such as HTTP, FTP, SMTP, etc.
-**Summary**: TCP **Link Oriented** Reliable Sorting Error checking Failure retransmission No broadcast support
+需要高度可靠和面向连接的 的服务，例如HTTP、FTP、SMTP等。 **摘要**: TCP **链接方向** 可靠的排序错误检查失败的转播没有广播支持
 
-- **UDP Protocol User Datagram Protocol (Transport Layer)**
+- **UDP 协议用户数据协议(传输层)**
 
-UDP is a **connectionless** oriented transport layer communication protocol
+UDP是面向 **无连接** 的传输层通信协议
 
-**Functionality**.
-Provides **inter-process communication** on different hosts
-Features
+**函数**. 在不同主机上提供 **互相处理的通信** 功能
 
-1. no link needs to be established before sending data
-2. no checking of packet order
-3. no error detection and retransmission mechanism
+1. 发送数据前无需建立链接
+2. 不检查数据包订单
+3. 无错误检测和再传输机制
 
-Service Object
-   Mainly used for "query-answer" services
-   Such as: NFS, NTP, DNS, etc.
-   Summary: UDP **no connection** no sequencing, no error checking, no retransmission, fast, broadcast support
+服务对象 主要用于"查询答案"服务 例如：NFS、NTP、DNS等。 摘要：UDP **没有连接** 没有序列，没有错误检查，没有再传输，快速，广播支持
 
-## Address Introduction
+## 地址简介
 
-- **mac address (link layer) Device and device communication**
+- **mac 地址 (链接图层) 设备和设备通信**
 
-MAC address, used to identify network devices, similar to an ID number, and theoretically unique worldwide.
-Composition: MAC address within Ethernet is a 48bit value
+用于识别网络设备的MAC地址，类似于ID号码，理论上是全世界独特的。 合成： 以太网内的MAC地址为48位
 
-![image-20210108195656267](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png")
+![image-20210108195662667](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108195656267.png")
 
-- **IP address IPv4 (network layer) host and host 32bit**
+- **IP 地址 IPv4 (网络图层) 主机和主机 32位**
 
-IP address composition: use 32bit, composed of two parts {network ID, host ID}
-Subnet ID: the consecutive bits of the IP address covered by 1 in the subnet mask
-Host ID: the consecutive bits of the IP address covered by 0 in the subnet mask
+IP地址组成：使用32bit，由两部分组成 {network ID, host ID} Subnet ID：子网掩码中被1覆盖的IP地址的连续位 Host ID：子网掩码中被0覆盖的IP地址的连续位
 
 ![image-20210108143050377](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108143050377.png)
 
-IP and subnet mask used together.
+IP和子网掩码一起使用。
 
-192.168.0.111/255.255.255.0 == 192.168.0.111/24
-192.168.0.111/255.255.0.0 == 192.168.0.111/16
-192.168.0.111/255.0.0.0 == 192.168.0.111/8
+192.168.0.111/255.255.255.0 == 192.168.0.111/24 192.168.0.111/255.255.0.0 == 192.168.0.111/16 192.168.0.111/255.0.0 == 192.168.0.111/8
 
-**ip address characteristics**:different network segments can not communicate directly
+**ip 地址属性**:different 网络段不能直接通信
 
-Networks with different subnet IDs cannot communicate directly, if they want to communicate, they need to be forwarded by the router
-IP addresses with all 0 host IDs represent network segment addresses.
-The IP address with host ID of 1 indicates the broadcast address of the network segment.
+具有不同子网ID的网络无法直接沟通，如果它们想要沟通， 他们需要由路由器 IP地址传送，所有0个主机ID代表网络段地址。 主机ID为1的IP地址表示网络部分的广播地址。
 
-Example: 192.168.0.111/255.255.255.0 Ask the current IP address of the segment __192.168.0.0__ and the broadcast address __192.168.0.0__.
-address __192.168.0.255__
+例如：192.168.0.111/255.255.255.0 询问当前IP地址 __192.168.0.0__ 和广播地址 __192.168.0.0__ 地址 __192.168.0.255__
 
-Note: Neither the segment address nor the broadcast address in any of the segments can be assigned to a host
-192.168.0.1~192.168.0.254 == the number of available IPs is only 254
-Case: 192.168.0.111/255.255.0.0 Ask the segment address _192.168.0.0_ and the broadcast address _192.168.255.0.0_ of the current IP
-address_192.168.255.255_ available hosts 1~65534 == number of available IPs only 65534
+注意：任何区段地址或任何区段的广播地址都不能分配给主机 192。 68.0.1~192.168.0.254 == 可用的 IP 数量仅为254 案例：192.168.0.111/255.255.0。 询问片段地址 _192.168.0.0_ 和广播地址 _192.168.255.0。_ 当前IP address_192.168.255.255_ 可用主机 1~65534 = 只有65534 个可用IP数量
 
-- **IP address classification (more reasonable use of IP addresses)**
+- **IP地址分类(更合理地使用IP地址)**
 
-Class A address: default 8bit subnet ID, the first one is 0 WAN (country - country, big city - big city)
-0xxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.0.0.0
-Class B address: default 16bit subnet ID,the first two digits are 10 MAN (city-city)
-10xx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.0.0
-Class C address: default 24bit subnet ID,the first three digits are 110
-110x xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.255.0 LAN
-Class D address: the first four bits are 1110, multicast address
-Class E address: the first five bits are 11110, reserved for future use
+A类地址：默认8bit子网ID，第一个是0 WAN（国家-国家，大城市-大城市） 0xxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.0.0.0 B类地址：默认16bit子网ID，前两位数字为 10 MAN (city-city) 10xx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.0.0 C 类地址：默认 24 位子网 ID，前三位数字为 110 110x xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx/255.255.255.0 LAN D类地址：前四位为1110，组播地址 E类地址：前五位为11110，留作以后使用
 
-Class A,B,C addresses are the most commonly used
+A类，B，C类地址是最常用的
 
-Public IP (can be directly connected to the Internet)
-IP unified by InterNIC
-Private IP (not directly connected to the Internet)
-Mainly used for host connection planning in local area network
+公共IP(可以直接连接到互联网) IP，由互联网NIC 私有IP(没有直接连接到互联网) 主要用于本地区域网络的主机连接规划
 
 ![image-20210108202556176](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108202556176.png)
 
-**Loopback address**
-![image-20210108203054234](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png)
+**循环地址** ![image-202108203054234](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203054234.png)
 
-Function
-The main purpose is to test the network configuration of this machine, being able to ping through 127.0.0.1 means
-This means that there is no problem with the installation of NIC and IP protocol on this machine.
-Note
-Any address in 127.0.0.1~127.255.255.254 will be looped back to the local host
-does not belong to any of the classed address categories, it represents the local virtual interface of the device
-Set the Linux IP sudo ifconfig eth0 192.168.0.222 netmask 255.255.255.0
+函数 主要目的是测试这台机器的网络配置，能够穿透127。 0.0.1 意味着 这意味着在机器上安装NIC和IP协议没有问题。 注意 127.0.0.1~127.255.255中的任何地址。 54 将被循环回到本地主机 不属于任何类别的地址类别。 它代表设备的本地虚拟接口 设置 Linux IP sudo ifconfig eth0 192。 68.0.222 netmask 255.255.255.0
 
-**subnet mask** (also called network mask, address mask) is a 32-bit value consisting of 1 and 0, and 1
-and 0 are consecutive.
-Features:
+**子网掩码** (也称为网络掩码, 地址掩码是一个32位值，由1个和0组成，1个 和 0 是连续的。 功能：
 
-- Must be used in conjunction with IP address, cannot exist alone
-- The consecutive bits in the IP address covered by 1 in the subnet mask are the subnet ID, and the rest are the host ID.
+- 必须与 IP 地址结合使用，仅不能存在
+- 子网掩码中由1所覆盖的 IP 地址的连续位为子网ID，其余为主机ID。
 
-**port number**: similar to a pid to identify a process; in a network program, the port number is used to identify a running network program
+**端口号**: 类似于用于识别过程的 pid ; 在网络程序中，端口号用于识别运行中的网络程序
 
-![image-20210108203342082](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203342082.png)
-**Features**
+![image-20210108203342082](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/image-20210108203342082.png) **功能**
 
-1. The port number is an unsigned short integer type
-2. Each port has a port number
-3. TCP, UDP maintain their own independent port number
-4. Network applications must occupy at least one port number, but can also occupy multiple port numbers
+1. 端口号是一个无符号短整数类型
+2. 每个端口都有一个端口号
+3. TCP, UDP维持自己的独立端口号
+4. 网络应用程序必须至少占用一个端口号，但也可以占用多个端口号
 
-- Classification of ports
+- 港口分类
 
-**Well-known ports** (1~1023)
-Uniformly assigned by the Internet Assigned Numbers Authority (IANA) according to user needs
-For example: FTP-21, HTTP-80, etc.
-The range normally used by servers; if forced to use, root privilege must be added
-**Dynamic port** (1024~65535)
-The range normally used by applications
-Note
-Port number is similar to process number, only one process can be marked at the same time
-Can be used repeatedly
+**有名的端口** (1~1023) 由互联网分配号码管理局根据用户需要进行统一分配 例如：FTP-21, HTTP-80等。 服务器通常使用的范围； 如果被迫使用 必须添加 **动态端口** (1024~65535) 应用程序通常使用的范围 笔记 端口号类似于流程编号 只有一个进程可以同时标记 可以重复使用

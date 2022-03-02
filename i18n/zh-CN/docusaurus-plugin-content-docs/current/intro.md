@@ -2,18 +2,18 @@
 sidebar_position: 1
 ---
 
-# Intro
+# 简介
 
-## whats in here?
+## 在这里？
 
-- Some study notes.
-- Some reading notes.
-- Plus some little skill.
+- 一些研究说明。
+- 一些阅读笔记。
+- 再加上一些小的技能。
 
-Output is important, which can push me get more information and reorganize what I have leant.
+输出是重要的，可以让我获得更多的信息并重新整理我原来想要的东西。
 
-## What if some mistake happens?
+## 如果出现错误，怎么办？
 
-If an article on this site violates your rights, please send an email to [Mail Me](mailto:15703476199ma@gmail.com) for feedback and removal.
+如果此站点上的文章侵犯了您的权利，请发送一封邮件给 [邮件给我](mailto:15703476199ma@gmail.com) 以获取反馈和移除。
 
-I apologize for any inconvenience caused to you.
+我对给你造成的任何不便表示歉意。

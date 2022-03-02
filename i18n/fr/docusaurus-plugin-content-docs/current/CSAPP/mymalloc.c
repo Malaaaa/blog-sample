@@ -1,91 +1,91 @@
 #ifdef COMPILETIME
-#include <stdio.h>
-#include <malloc.h>
+#inclure <stdio.h>
+#inclure <malloc.h>
 
-/* malloc wrapper function */
+/* fonction wrapper malloc */
 void *mymalloc(size_t size)
 {
-    void *ptr = malloc(size);
+    void *ptr = malloc(taille);
     printf("malloc(%d)=%p\n",
-           (int)size, ptr);
-    return ptr;
+           (int)taille, ptr);
+    retour ptr ;
 }
 
-/* free wrapper function */
-void myfree(void *ptr)
+/* fonction wrapper gratuite */
+annuler myfree(annuler *ptr)
 {
-    free(ptr);
-    printf("free(%p)\n", ptr);
-       printf("COMPILETIME");
+    gratuit(ptr);
+    printf("libre(%p)\n", ptr);
+       printf("TEMPS DE COMPILATION");
 }
-#endif
+#fin si
 
 
 
 #ifdef LINKTIME
-#include <stdio.h>
+#inclure <stdio.h>
 
 void *__real_malloc(size_t size);
 void __real_free(void *ptr);
 
-/* malloc wrapper function */
+/* fonction wrapper malloc */
 void *__wrap_malloc(size_t size)
 {
-    void *ptr = __real_malloc(size); /* Call libc malloc */
-    printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    vide *ptr = __real_malloc(taille); /* Appelle libc malloc */
+    printf("malloc(%d) = %p\n", (int)taille, ptr);
+    retour ptr ;
 }
 
-/* free wrapper function */
+/* fonction wrapper gratuite */
 void __wrap_free(void *ptr)
 {
-    __real_free(ptr); /* Call libc free */
-    printf("free(%p)\n", ptr);
-    printf("LINKTIME");
+    __real_free(ptr); /* Appeler libc gratuitement */
+    printf("libre(%p)\n", ptr);
+    printf("HEURE DU LIEN");
 
 }
-#endif
+#fin si
 
 
 
-#ifdef RUNTIME
+#ifdef DURÉE D'EXÉCUTION
 #define _GNU_SOURCE
-#include <stdio.h>
-#include <stdlib.h>
-#include <dlfcn.h>
+#inclure <stdio.h>
+#inclure <stdlib.h>
+#inclure <dlfcn.h>
 
-/* malloc wrapper function */
+/* fonction wrapper malloc */
 void *malloc(size_t size)
 {
-    void *(*mallocp)(size_t size);
-    char *error;
+    void *(*mallocp)(taille_t taille);
+    caractère *erreur ;
 
-    mallocp = dlsym(RTLD_NEXT, "malloc"); /* Get address of libc   malloc */
+    mallocp = dlsym(RTLD_NEXT, "malloc"); /* Obtenir l'adresse de libc malloc */
     if ((error = dlerror()) != NULL) {
-        fputs(error, stderr);
-        exit(1);
+        fputs (erreur, stderr);
+        sortie(1);
     }
-    char *ptr = mallocp(size); /* Call libc malloc */
-//    printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    char *ptr = mallocp(taille); /* Appelle libc malloc */
+// printf("malloc(%d) = %p\n", (int)taille, ptr);
+    retour ptr ;
 }
 
-/* free wrapper function */
-void free(void *ptr)
+/* fonction wrapper gratuite */
+annuler gratuitement (annuler *ptr)
 {
-    void (*freep)(void *) = NULL;
-    char *error;
+    void (*freep)(void *) = NULL ;
+    caractère *erreur ;
 
-    if (!ptr)
-    return;
+    si (!ptr)
+    retourner;
 
-    freep = dlsym(RTLD_NEXT, "free"); /* Get address of libc free */
+    freep = dlsym(RTLD_NEXT, "libre"); /* Récupère l'adresse de la libc gratuitement */
     if ((error = dlerror()) != NULL) {
-        fputs(error, stderr);
-        exit(1);
+        fputs (erreur, stderr);
+        sortie(1);
     }
-    freep(ptr); /* Call libc free */
-    printf("free(%p)\n", ptr);
+    librep(ptr); /* Appeler libc gratuitement */
+    printf("libre(%p)\n", ptr);
     printf("RUNTIME\n");
 }
-#endif
+#fin si

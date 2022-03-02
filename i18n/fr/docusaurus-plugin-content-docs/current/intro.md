@@ -2,18 +2,18 @@
 sidebar_position: 1
 ---
 
-# Intro
+# Introduction
 
-## whats in here?
+## qu'y a-t-il ici?
 
-- Some study notes.
-- Some reading notes.
-- Plus some little skill.
+- Quelques notes d'études.
+- Quelques notes de lecture.
+- Plus un peu de savoir-faire.
 
-Output is important, which can push me get more information and reorganize what I have leant.
+Le rendement est important, ce qui peut me pousser à obtenir plus d'informations et à réorganiser ce que j'ai appris.
 
-## What if some mistake happens?
+## Et si une erreur se produisait ?
 
-If an article on this site violates your rights, please send an email to [Mail Me](mailto:15703476199ma@gmail.com) for feedback and removal.
+Si un article sur ce site viole vos droits, veuillez envoyer un e-mail à [Mail Me](mailto:15703476199ma@gmail.com) pour commentaires et suppression.
 
-I apologize for any inconvenience caused to you.
+Je m'excuse pour tout inconvénient causé à vous.

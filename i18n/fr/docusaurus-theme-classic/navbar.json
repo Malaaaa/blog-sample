@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "My resume",
+    "message": "Mon CV",
     "description": "The title in the navbar"
   },
   "item.label.My notes": {
-    "message": "My notes",
+    "message": "Mes notes",
     "description": "Navbar item with label My notes"
   }
 }

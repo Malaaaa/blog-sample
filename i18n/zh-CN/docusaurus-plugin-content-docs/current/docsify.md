@@ -1,9 +1,9 @@
-# docsify
-I used this at beginning.
-## Overview
-[docsify](https://github.com/docsifyjs/) Great Tutorial
+# 对齐化
+我一开始就使用了这种方法。
+## 概览
+[将](https://github.com/docsifyjs/) 大教程
 
-Very detailed and has various interfaces to use. In my opinion, it's just rendering the markdown file I wrote into a website using his CSS and JS scripts One md file per page.There are also some special function configuration files written in markdown syntax. It's very simple and doesn't require a high level of coding.
-## lack
+非常详细，可以使用不同的接口。 我认为，只是将Markdown 文件转换成一个网站，使用他的 CSS 脚本和JS 脚本每页一个 md 文件。 这里还有一些特殊的函数配置文件以 markdown 语法写成。 它非常简单，不需要高水平的编码。
+## 不足
 
-There are some interfaces can not be used, such as custom cover page images can not be adaptive and so on. In fact, the main do a document management site does not require personalized words have been very good, beautiful atmosphere.
+有些接口不能使用，例如自定义封面图像不能自适应等等。 事实上，文件管理网站的主力不需要个性化的文字，是非常良好、美丽的氛围。

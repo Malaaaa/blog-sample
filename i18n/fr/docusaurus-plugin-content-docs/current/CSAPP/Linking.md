@@ -1,58 +1,39 @@
-### Translates the example program from an ASCII source file into an executable object file.
+### Traduit le programme d'exemple d'un fichier source ASCII en un fichier objet exécutable.
 ![img_6.png](img_6.png)
-1. C preprocessor: cpp [other arguments] hello.c /tmp/main.i
-2. C compiler: cc1 /tmp/hello.i -Og [other arguments] -o /tmp/hello.s
-3. assembler: as [other arguments] -o /tmp/hello.o /tmp/hello.s
-4. linker program: ld -o hello [system object files and args] /tmp/hello.o /libc.a/printf.o
-5. executable prog: linux> ./hello
+1. Préprocesseur C : cpp [autres arguments] hello.c /tmp/main.i
+2. Compilateur C : cc1 /tmp/hello.i -Og [autres arguments] -o /tmp/hello.s
+3. assembleur : as [autres arguments] -o /tmp/hello.o /tmp/hello.s
+4. programme de liaison : ld -o hello [fichiers d'objet système et arguments] /tmp/hello.o /libc.a/printf.o
+5. programme exécutable : linux> ./hello
 
 
-### Object Files
-Executable and Linkable Format(ELF).
-![img_3.png](img_3.png)
-- .text The machine code of the compiled program.
-- .rodata **Read-only** data such as the format strings in printf statements, and
-  jump tables for switch statements.
-- .data Initialized global and static C variables. Local C variables are maintained
-  at run time on the stack and do not appear in either the .data or .bss
-  sections.
-- .bss Uninitialized global and static C variables, along with any global or static
-  variables that are initialized to zero. No space have same addresses with .comment.
-- .symtab A symbol table with information about functions and global variables
-  that are defined and referenced in the program.
-- .rel Relocation information
-- .line A mapping line numbers
-- .strtab A string table
+### Fichiers objet
+Format exécutable et connectable (ELF). ![img_3.png](img_3.png)
+- .text Le code machine du programme compilé.
+- .rodata **Données en lecture seule** telles que les chaînes de format dans les instructions printf et tables de sauts pour les instructions switch.
+- .data Variables C globales et statiques initialisées. Les variables C locales sont maintenues à au moment de l'exécution sur la pile et n'apparaissent ni dans les sections .data ni .bss .
+- .bss Variables C globales et statiques non initialisées, ainsi que toutes les variables globales ou statiques initialisées à zéro. Aucun espace n'a les mêmes adresses avec .comment.
+- .symtab Une table de symboles avec des informations sur les fonctions et les variables globales qui sont définies et référencées dans le programme.
+- .rel Informations de relocalisation
+- .line Un mappage des numéros de ligne
+- .strtab Une table de chaînes
 
-- Relocatable object file. Contains binary code and data in a form that can be combined with other relocatable object files at compile time to create an executable object file.
+- Fichier objet déplaçable. Contient du code binaire et des données sous une forme qui peut être combinée avec d'autres fichiers objets réadressables au moment de la compilation pour créer un fichier objet exécutable.
 
-- Executable object file. Contains binary code and data in a form that can be copied directly into memory and executed.
-  ![img_2.png](img_2.png)
-- Shared object file. A special type of relocatable object file that can be loaded into memory and linked dynamically, at either load time or run time.
-#### Symbols
-- Global symbols defined by module m and that can be referenced by
-  other modules. OR referenced by module m but defined by some other
-  module.
-- Local symbols that are defined and referenced exclusively by module m.
-######  How Linkers Resolve Duplicate Symbol Names
-strong symbols: int i = 1;
-weak symbols: int i; int main(i =1); int __attribute__((weak)) power2(int x);int power2(int x) __attribute__((weak));extern int __attribute__((weak)) global_var;
-Rule 1. Multiple strong symbols with the same name are not allowed.
-Rule 2. Given a strong symbol and multiple weak symbols with the same name,
-choose the strong symbol.
-Rule 3. Given multiple weak symbols with the same name, choose any of the
-weak symbols.
+- Fichier objet exécutable. Contient du code binaire et des données sous une forme qui peut être copiée directement dans la mémoire et exécutée. ![img_2.png](img_2.png)
+- Fichier objet partagé. Un type spécial de fichier objet relocalisable qui peut être chargé en mémoire et lié dynamiquement, au moment du chargement ou de l'exécution.
+#### Symboles
+- Symboles globaux définis par le module m et pouvant être référencés par autres modules. OU référencé par le module m mais défini par un autre module .
+- Symboles locaux définis et référencés exclusivement par le module m.
+###### Comment les éditeurs de liens résolvent les noms de symboles en double
+symboles forts : int i = 1 ; symboles faibles : int i ; int principal(i =1); int __attribut__((faible)) power2(int x);int power2(int x) __attribut__((faible));extern int __attribut__((faible)) global_var; Règle 1. Plusieurs symboles forts portant le même nom ne sont pas autorisés. Règle 2. Étant donné un symbole fort et plusieurs symboles faibles portant le même nom, choisit le symbole fort. Règle 3. Étant donné plusieurs symboles faibles portant le même nom, choisissez l'un des symboles faibles.
 
-#### Relocation
-1. Relocating sections and symbol definitions. In this step, the linker merges all
-   sections of the same type into a new aggregate section of the same type.
+#### Déménagement
+1. Déplacement des sections et des définitions de symboles. Dans cette étape, l'éditeur de liens fusionne toutes les sections du même type dans une nouvelle section agrégée du même type.
 
-2. Relocating symbol references within sections. In this step, the linker modifies
-   every symbol reference in the bodies of the code and data sections so that
-   they point to the correct run-time addresses.
+2. Déplacement des références de symboles dans les sections. Dans cette étape, l'éditeur de liens modifie chaque référence de symbole dans les corps des sections de code et de données afin qu'ils vers les adresses d'exécution correctes.
 
-Relocation entries for code are placed in .rel.text. Relocation entries for data
-are placed in .rel.data.
+Les entrées de relocalisation pour le code sont placées dans .rel.text. Les entrées de relocalisation pour les données sont placées dans .rel.data.
 
 ```
 /*main.c*/
@@ -60,353 +41,293 @@ void swap();
 int buf[2] = {1, 2};
 int main() {
     swap();
-    return 0;
+    retour 0 ;
 }
 /*swap.c*/
 extern int buf [] ;
 int *bufp0 = &buf[0] ;
-int *bufp1;
+entier *bufp1 ;
 void swap() {
     int temp;
     bufp1 = &buf[1];
     temp =*bufp0;
-    *bufp0 = *bufp1;
+    *bufp0 = *bufp1 ;
     *bufp1 = temp;
 }
 ```
 
 ```
-malaaa@malaaa-N8xxEP6> gcc -c swap.c -o swap.o//Relocatable object file
-malaaa@malaaa-N8xxEP6> gcc -c main.c -o main.o//Relocatable object file
-malaaa@malaaa-N8xxEP6> gcc -g swap.o main.o -o run//Executable object file
+malaaa@malaaa-N8xxEP6> gcc -c swap.c -o swap.o//Fichier objet réadressable
+malaaa@malaaa-N8xxEP6> gcc -c main.c -o main.o//Fichier objet réadressable
+malaaa@malaaa- N8xxEP6> gcc -g swap.o main.o -o run//Fichier objet exécutable
 malaaa@malaaa-N8xxEP6> readelf -s swap.o
 malaaa@malaaa-N8xxEP6> readelf -s main.o
 ```
-Result
+Résultat
 ```
 swap.o
-Symbol table '.symtab' contains 14 entries:
-   Num:    Value          Size Type    Bind   Vis      Ndx Name
-     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
-     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS swap.c
-     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1 
-     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3 
-     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4 
-     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    5 
-     6: 0000000000000000     0 SECTION LOCAL  DEFAULT    8 
-     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    9 
-     8: 0000000000000000     0 SECTION LOCAL  DEFAULT   10 
-     9: 0000000000000000     0 SECTION LOCAL  DEFAULT    7 
-    10: 0000000000000000     8 OBJECT  GLOBAL DEFAULT    5 bufp0
-    11: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND buf
-    12: 0000000000000000     8 OBJECT  GLOBAL DEFAULT    4 bufp1
-    13: 0000000000000000    67 FUNC    GLOBAL DEFAULT    1 swap
+La table de symboles '.symtab' contient 14 entrées :
+   Num : Valeur Taille Type Bind Vis Ndx Name
+     0 : 0000000000000000 0 NOTYPE LOCAL DEFAULT UND 
+     1 : 0000000000000000 0 FILE LOCAL DEFAULT ABS swap.c
+     2 : 0000000000000000 0000000 0000000000000000 Section locale 1 
+     3: 0000000000000000 0 Section Local 3 
+     4: 0000000000000000 0 Section Local local 4 
+     5: 0000000000000000 0 section locale 5 
+     6: 0000000000000000 0 Section Local local 8 
+     7: 0000000000000000 0 Section Local local 9 
+     8: 000000000000000000 0 section locale 10 
+     9: 0000000000000000 0 Section Local Par défaut 7 
+    10: 0000000000000000 0 VOCAL GLOBAL 5 BUFP0
+    11: 0000000000000000 0 NOTYPE GLOBAL DEFAULT UND BUF
+    12: 0000000000000000 8 Objet Global Par défaut 4 BUFP1
+    13: 0000000000000000 67 FUNC GLOBAL DEFAULT 1 échange
 ```
-buf，是swap.o.symTable的条目，extern类型的符号，**在main.o模块中定义！**，我们看到一个关于全局符号 buf 定义的条目，它是从 .data 中偏移为 0 处开始的一个 8 字节的已初始化目标. \
-bufp0：是swap.o.symTable的条目，global类型符号，在swap.o中定义，我们看到一个关于全局符号 bufpO 定义的条目，它是从 .data 中偏移为 0 处开始的一个 8 字节的已初始化目标 \ bufp1：是swap.o.symTabl的条目，global类型的符号，在swap.o中定义，它是一个未初始化的 8 字节数据目标（要求 8 字节对齐），最终当 这个模块被链接时它将作为一个 .bss 目标分配 \
-swap：是swap.o.symTable的条目，func类型的符号，在swap.o中定义，它是一个位于 .text 中偏移为零处的 67 字节的函数。 \
-temp：不属于swap.o.symTable条目，int类型的符号，在swap.o中定义，局部变量位于栈中管理。
+buf, 是 swap.o.symtable 的 条 目, extern 的 符号,**在 Main.O 中 定义!**, 们们 看到 一个 关于 全局 是 从 的 条 目, 它 从 .Data 中 偏移 为 0 处开始的一个 8 字节的已初始化目标. \ bufp0：是 swap.o.symtable 的 条 目, global 类型 符号, 在 Swap.o 中 定义, 们 看到 一个 关于关于 们 Bufpo 的 条条 它 是 从 .Data 中 偏移 为 0 处 的 一个8 的 已 初 始化 目标 目标 bufp1：是 swap.o.symtabl 的 条 目, global 的 符号, 在 Swap.o 中 定义, 它 的 8 字节 数据 目标 初 的 8 字节 数据 目标 初 的 8 字节 数据 (要求 8 字节),最终当这个模块被链接时它将作为一个.bss目标分配\ échange：是swap.o.symTable的条目, func类型的符号,在中定义swap.o,它是一个位于.text中偏移为零处的 67 字节的函数。 \ temp：不属于swap.o.symTable条目，int类型的符号，在swap.o中定义，局部变量位与栈位于栈位与栈
 ```
 main.o
-Symbol table '.symtab' contains 13 entries:
-Num:    Value          Size Type    Bind   Vis      Ndx Name
-0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
-1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
-2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1
-3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3
-4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4
-5: 0000000000000000     0 SECTION LOCAL  DEFAULT    6
-6: 0000000000000000     0 SECTION LOCAL  DEFAULT    7
-7: 0000000000000000     0 SECTION LOCAL  DEFAULT    8
-8: 0000000000000000     0 SECTION LOCAL  DEFAULT    5
-9: 0000000000000000     8 OBJECT  GLOBAL DEFAULT    3 buf
-10: 0000000000000000    25 FUNC    GLOBAL DEFAULT    1 main
-11: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND _GLOBAL_OFFSET_TABLE_
-12: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND swap
+La table des symboles '.symtab' contient 13 entrées :
+Num : Valeur Taille Type Bind Vis Ndx Nom
+0 : 0000000000000000 0 NOTYPE LOCAL DEFAULT UND
+1 : 0000000000000000 0 FILE LOCAL DEFAULT ABS main.c
+2 : 0000000000000000 0 Section Local Local Par défaut 1
+3: 0000000000000000 0 Section Local local
+
+4: 0000000000000000 0 Section Local Local Par défaut 6
+6: 0000000000000000 0 Section Local local 7
+7: 0000000000000000 0 Section Local Local 8
+8: 0000000000000000 0 section locale 5
+9: 0000000000000000 8 Global d'objet Par défaut 3 buf
+10: 0000000000000000 25 FUNC GLOBAL 1 MAIN
+11: 0000000000000000 0 NOTYPEL GLOBAL DEFAULT UND _GLOBAL_OFFSET_TABLE_
+12: 00000000000000 0 NOTYPE GLOBAL DEFAULT UND SWAP
 
 ```
-buf 是已经初始化的全局变量，一个位于.data节中偏移位0的8字节目标。 \
-main 位于.text节中偏移为0的25字节函数
-###### objdump relocation entries
-`objdump -D -r swap.o` -d just .text
-Result
+buf 是已经初始化的全局变量，一个位于.data节中偏移位0的8字节目标。 \ main 位于.text节中偏移为0的25字字
+###### entrées de relocalisation d'objdump
+`objdump -D -r swap.o` -d just .text Résultat
 ```
-swap.o:     file format elf64-x86-64
+swap.o: format de fichier elf64-x86-64
 
 
-Disassembly of section .text:
+Désassemblage de la section .text:
 
-0000000000000000 <swap>:
-   0:	f3 0f 1e fa          	endbr64 
-   4:	55                   	push   %rbp
-   5:	48 89 e5             	mov    %rsp,%rbp
-   8:	48 8d 05 00 00 00 00 	lea    0x0(%rip),%rax        # f <swap+0xf>
-			b: R_X86_64_PC32	buf
-   f:	48 89 05 00 00 00 00 	mov    %rax,0x0(%rip)        # 16 <swap+0x16>
-			12: R_X86_64_PC32	bufp1-0x4
-  16:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 1d <swap+0x1d>
-			19: R_X86_64_PC32	bufp0-0x4
-  1d:	8b 00                	mov    (%rax),%eax
-  1f:	89 45 fc             	mov    %eax,-0x4(%rbp)
-  22:	48 8b 15 00 00 00 00 	mov    0x0(%rip),%rdx        # 29 <swap+0x29>
-			25: R_X86_64_PC32	bufp1-0x4
-  29:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 30 <swap+0x30>
-			2c: R_X86_64_PC32	bufp0-0x4
-  30:	8b 12                	mov    (%rdx),%edx
-  32:	89 10                	mov    %edx,(%rax)
-  34:	48 8b 05 00 00 00 00 	mov    0x0(%rip),%rax        # 3b <swap+0x3b>
-			37: R_X86_64_PC32	bufp1-0x4
-  3b:	8b 55 fc             	mov    -0x4(%rbp),%edx
-  3e:	89 10                	mov    %edx,(%rax)
-  40:	90                   	nop
-  41:	5d                   	pop    %rbp
-  42:	c3                   	retq   
+0000000000000000 <swap> :
+   0: f3 0f 1e fa endbr64 
+   4: 55 push %rbp
+   5: 48 89 e5 mov %rsp,%rbp
+   8: 48 8d 05 00 00 00 00 lea 0x0(%rip),%rax # f <swap+0xf>
+            b: R_X86_64_PC32 buf
+   f: 48 89 05 00 00 00 00 mov %rax,0x0(%rip) # 16 <swap+0x16>
+            12 : R_X86_64_PC32 bufp1-0x4
+  16: 48 8b 05 00 00 00 00 mov 0x0(%rip),%rax # 1d <swap+0x1d>
+            19: R_X86_64_PC32 bufp0-0x4
+  1d: 8b 00 mov (%rax),%eax
+  1f: 89 45 fc mov    %eax,-0x4(%rbp)
+  22: 48 8b 15 00 00 00 00 mov 0x0(%rip),%rdx # 29 <swap+0x29>
+            25: R_X86_64_PC32 bufp1-0x4
+  29: 48 8b 05 00 00 00 00 mov 0x0(%rip),%rax # 30 <swap+0x30>
+            2c: R_X86_64_PC32 bufp0-0x4
+  30: 8b 12 mov (%rdx),%edx
+  32: 89 10 mov    %edx,(%rax)
+  34: 48 8b 05 00 00 00 00 mov 0x0(%rip),%rax # 3b <swap+0x3b>
+            37: R_X86_64_PC32 bufp1-0x4
+  3b: 8b 55 fc mov -0x4(%rbp),%edx
+  3e: 89 10 mov    %edx ,(%rax)
+  40 : 90 nop
+  41 : 5d pop %rbp
+  42 : c3 retq   
 
-Disassembly of section .bss:
+Démontage de la section .bss :
 
-0000000000000000 <bufp1>:
-	...
+0000000000000000 <bufp1> :
+...
 
-Disassembly of section .data.rel:
+Démontage de la section .data.rel :
 
-0000000000000000 <bufp0>:
-	...
-			0: R_X86_64_64	buf
+0000000000000000 <bufp0> :
+...
+            0 : R_X86_64_64 buf
 
-Disassembly of section .comment:
+Démontage de section .comment :
 
-0000000000000000 <.comment>:
-   0:	00 47 43             	add    %al,0x43(%rdi)
-   3:	43 3a 20             	rex.XB cmp (%r8),%spl
-   6:	28 55 62             	sub    %dl,0x62(%rbp)
-   9:	75 6e                	jne    79 <swap+0x79>
-   b:	74 75                	je     82 <swap+0x82>
-   d:	20 31                	and    %dh,(%rcx)
-   f:	30 2e                	xor    %ch,(%rsi)
-  11:	32 2e                	xor    (%rsi),%ch
-  13:	30 2d 31 33 75 62    	xor    %ch,0x62753331(%rip)        # 6275334a <swap+0x6275334a>
-  19:	75 6e                	jne    89 <swap+0x89>
-  1b:	74 75                	je     92 <swap+0x92>
-  1d:	31 29                	xor    %ebp,(%rcx)
-  1f:	20 31                	and    %dh,(%rcx)
-  21:	30 2e                	xor    %ch,(%rsi)
-  23:	32 2e                	xor    (%rsi),%ch
-  25:	30 00                	xor    %al,(%rax)
+0000000000000000 <.comment> :
+   0 : 00 47 43 add    %al,0x43(%rdi)
+   3 : 43 3a 20 rex.XB cmp (%r8),%spl
+   6 : 28 55 62 sub    %dl,0x62(%rbp)
+   9 : 75 6e jne 79 <swap+0x79>
+   b : 74 75 je 82 <swap+0x82>
+   d : 20 31 et    %dh,(%rcx)
+   f : 30 2e xor    %ch,(%rsi)
+  11 : 32 2e xor (%rsi),%ch
+  13 : 30 2d 31 33 75 62 xor    %ch,0x62753331(%rip) # 6275334a <swap+0x6275334a>
+  19 : 75 6e jne 89 <swap+0x89>
+  1b : 74 75 je 92 <swap+0x92>
+  1d : 31 29 xor    %ebp,(%rcx)
+  1f : 20 31 et    %dh,(%rcx)
+  21 : 30 2e xor    %ch,(%rsi)
+  23 : 32 2e xor (%rsi),%ch
+  25 : 30
+   >%al,(%
 
-Disassembly of section .note.gnu.property:
+)
 
-0000000000000000 <.note.gnu.property>:
-   0:	04 00                	add    $0x0,%al
-   2:	00 00                	add    %al,(%rax)
-   4:	10 00                	adc    %al,(%rax)
-   6:	00 00                	add    %al,(%rax)
-   8:	05 00 00 00 47       	add    $0x47000000,%eax
-   d:	4e 55                	rex.WRX push %rbp
-   f:	00 02                	add    %al,(%rdx)
-  11:	00 00                	add    %al,(%rax)
-  13:	c0 04 00 00          	rolb   $0x0,(%rax,%rax,1)
-  17:	00 03                	add    %al,(%rbx)
-  19:	00 00                	add    %al,(%rax)
-  1b:	00 00                	add    %al,(%rax)
-  1d:	00 00                	add    %al,(%rax)
-	...
+ <de la section $0x0,%al
+   2 : 00 00 ajouter    %al,(%rax)
+   4 : 10 00 adc    %al,(%rax)
+   6 : 00 00 ajouter    %al,(%rax)
+   8 : 05 00 00 00 47 ajouter $0x47000000,%eax
+   d : 4e 55 rex.WRX push %rbp
+   f : 00 02 ajouter    %al,(%rdx)
+  11 : 00 00 ajouter    %al,(%rax)
+  13 : c0 04 00 00 rolb $0x0,(%rax,%rax,1)
+  17: 00 03 ajouter    %al,(%rbx)
+  19: 00 00 ajouter    %al,(%rax)
+  1b : 00 00 ajouter    %al,(%rax)
+  1d : 00 00 ajouter    %al,(%rax)
+...
 
-Disassembly of section .eh_frame:
+Démontage de la section .eh_frame :
 
-0000000000000000 <.eh_frame>:
-   0:	14 00                	adc    $0x0,%al
-   2:	00 00                	add    %al,(%rax)
-   4:	00 00                	add    %al,(%rax)
-   6:	00 00                	add    %al,(%rax)
-   8:	01 7a 52             	add    %edi,0x52(%rdx)
-   b:	00 01                	add    %al,(%rcx)
-   d:	78 10                	js     1f <.eh_frame+0x1f>
-   f:	01 1b                	add    %ebx,(%rbx)
-  11:	0c 07                	or     $0x7,%al
-  13:	08 90 01 00 00 1c    	or     %dl,0x1c000001(%rax)
-  19:	00 00                	add    %al,(%rax)
-  1b:	00 1c 00             	add    %bl,(%rax,%rax,1)
-  1e:	00 00                	add    %al,(%rax)
-  20:	00 00                	add    %al,(%rax)
-			20: R_X86_64_PC32	.text
-  22:	00 00                	add    %al,(%rax)
-  24:	43 00 00             	rex.XB add %al,(%r8)
-  27:	00 00                	add    %al,(%rax)
-  29:	45 0e                	rex.RB (bad) 
-  2b:	10 86 02 43 0d 06    	adc    %al,0x60d4302(%rsi)
-  31:	7a 0c                	jp     3f <swap+0x3f>
-  33:	07                   	(bad)  
-  34:	08 00                	or     %al,(%rax)
-	...
+0000000000000000 <.eh_frame> :
+   0 : 14 00 adc $0x0,%al
+   2 : 00 00 add    %al,(%rax)
+   4 : 00 00 add    %al,(%rax)
+   6 : 00 00 ajouter    %al,(%rax)
+   8 : 01 7a 52 ajouter    %edi,0x52(%rdx)
+   b : 00 01 ajouter    %al,(%rcx)
+   d : 78 10 js 1f <. eh_frame+0x1f>
+   f : 01 1b ajouter    %ebx,(%rbx)
+  11 : 0c 07 ou $0x7,%al
+  13 : 08 90 01 00 00 1c ou     %dl,0x1c000001(%rax)
+  19 : 00 00 ajouter    %al,(%rax)
+  1b : 00 1c 00 ajouter    %bl,(%rax,%rax,1)
+  1e : 00 00 ajouter    %al,(%rax)
+  20 : 00 00 ajouter    %al, (%rax)
+            20 : R_X86_64_PC32 .text
+  22 : 00 00 ajouter    %al,(%rax)
+  24 : 43 00 00 rex.XB ajouter %al,(%r8)
+  27 : 00 00 ajouter    %al,( %rax)
+  29 : 45 0e rex.RB (mauvais) 
+  2b : 10 86 02 43 0d 06 adc    %al,0x60d4302(%rsi)
+  31 : 7a 0c jp 3f <swap+0x3f>
+  33 : 07 (mauvais)  
+  34 : 08 00 ou     %al,(%rax)
+...
 ```
-#### Executable Object Files
-![img_4.png](img_4.png)
-Program header table **Read only**
-#### Loading Executable Object Files
-The **loader** copies the code and data in the executable object file from disk into memory and then runs the program by jumping to its first instruction, or
-entry point. \
-the code segment starts at address 0x400000, 对于Linux而言，0X400000以下的空间默认不映射，从而起到保护程序安全的作用。对于windows而言，程序安全交由操作系统保证，因此最大限度利用资源，地址可以低到0X400000以下。  \
-the data segment.\
-the heap.\
-the reserved for shared modules.\
-the user stack. below the largest legal user address (2 48 − 1) and grows down, toward smaller memory addresses.\
-the kernel.memory-resident part of the operating system.
+#### Fichiers objet exécutables
+![img_4.png](img_4.png) Table d'en-tête de programme **Lecture seule**
+#### Chargement de fichiers d'objets exécutables
+Le chargeur **** copie le code et les données du fichier objet exécutable du disque dans la mémoire, puis exécute le programme en sautant à sa première instruction, ou point d'entrée. \ Le segment de code commence à l'adresse 0x400000, 对于 Linux 而, 0x400000 的 空间 默认 程序 的 作用. 起到 保护 程序 的 作用. 起到 保护 程序 安全 程序 程序 安全 操作 系统 保证 因此 大 限度 利用\ le segment de données.\ le tas.\ le réservé aux modules partagés.\ la pile utilisateur. en dessous de la plus grande adresse utilisateur légale (2 48 − 1) et croît vers le bas, vers des adresses mémoire plus petites.\ la partie kernel.memory-resident du système d'exploitation.
 
 
 
 ![img_5.png](img_5.png)
-#### Static Linking
-- Symbol resolution.symbol: a function, a global variable, or a static variable (model 'main(int i = 0)' is instruction)
-- Relocation.Compilers and assemblers generate code and data sections
-  that start at address 0.
+#### Liaison statique
+- Symbol resolution.symbol : une fonction, une variable globale ou une variable statique (le modèle 'main(int i = 0)' est une instruction)
+- Relocation.Les compilateurs et les assembleurs génèrent des sections de code et de données qui commencent à l'adresse 0.
 
-#### Dynamic Linking
-A _shared library_ is an object module that, at either run time or load
-time, can be loaded at an arbitrary memory address and linked with a program in
-memory. \
-Linux's systems are indicated by the .so suffix. Microsoft operating systems make heavy use of shared libraries, which they refer to as DLLs
+#### Liaison dynamique
+Une bibliothèque partagée __ est un module objet qui, au moment de l'exécution ou du chargement , peut être chargé à une adresse mémoire arbitraire et lié à un programme en mémoire . \ Les systèmes Linux sont indiqués par le suffixe .so. Les systèmes d'exploitation Microsoft font un usage intensif des bibliothèques partagées, qu'ils appellent DLL.
 
-Shared libraries are “shared” in two different ways.
-1. exactly one .so file for a particular library. The code and data are shared by all executable object files that reference the library,
-2. .text section in memory can be shared by different running processes.
-![img_7.png](img_7.png)
+Les bibliothèques partagées sont « partagées » de deux manières différentes.
+1. exactement un fichier .so pour une bibliothèque particulière. Le code et les données sont partagés par tous les fichiers objets exécutables qui référencent la bibliothèque,
+2. La section .text en mémoire peut être partagée par différents processus en cours d'exécution. ![img_7.png](img_7.png)
 
-##### The dynamic linker then finishes the linking task by performing the following relocations:
-- Relocating the text and data of libc.so into some memory segment
-- Relocating the text and data of libvector.so into another memory segment
-- Relocating any references in prog2l to symbols defined by libc.so and libvector.so
+##### L'éditeur de liens dynamique termine ensuite la tâche de liaison en effectuant les déplacements suivants :
+- Déplacer le texte et les données de libc.so dans un segment de mémoire
+- Déplacer le texte et les données de libvector.so dans un autre segment de mémoire
+- Déplacer toutes les références dans prog2l vers les symboles définis par libc.so et libvector.so
 
-##### Dynamic linking is a powerful and useful technique:
-- Distributing software. use shared libraries to distribute software updates.
-- Building high-performance Web servers. generate dynamic
-  content using a more efficient and sophisticated approach based on dynamic
-  linking. subsequent requests can be handled at the cost of a simple function call.xisting
-  functions can be updated and new functions can be added at run time, without
-  stopping the server.
+##### Le Dynamic Linking est une technique puissante et utile :
+- Distribution de logiciels. utiliser des bibliothèques partagées pour distribuer les mises à jour logicielles.
+- Construire des serveurs Web performants. générer du contenu dynamique en utilisant une approche plus efficace et sophistiquée basée sur la liaison dynamique . les requêtes ultérieures peuvent être traitées au prix d'un simple appel de fonction. fonctions existantes peuvent être mises à jour et de nouvelles fonctions peuvent être ajoutées au moment de l'exécution, sans arrêter le serveur.
 
-#### Position-Independent Code (PIC)
+#### Code indépendant de la position (PIC)
 
-Code that can be loaded without needing any relocations is known as position-
-independent code (PIC). Users direct GNU compilation systems to generate PIC
-code with the -fpic option to gcc. Shared libraries must always be compiled with
-this option.
+Le code qui peut être chargé sans nécessiter de déplacement est appelé code indépendant de la position (PIC). Les utilisateurs dirigent les systèmes de compilation GNU pour générer du code PIC avec l'option -fpic de gcc. Les bibliothèques partagées doivent toujours être compilées avec cette option.
 
-链接器在可执行目标文件中的数据段新建了一个数据节.got
-Global Offset Table, The GOT contains an 8-byte entry for each global data object that is referenced by the object module.The compiler also generates a relocation record for each entry in the GOT.
-![img_8.png](img_8.png)
-由于链接器无法修改编译器产生的汇编代码，所以无法修改调用共享库的函数的call指令，所以链接器在可执行目标文件的代码段新建一个.plt节对所有引用了共享库中的函数都在该数据节中创建一个新函数xxx@plt，然后将代码中调用地址替换成call xxx@plt，所以就能通过函数xxx@plt来完成对.got的更新，以及指向正确的地址。
-the procedure linkage table (PLT).If an object module calls any functions that are defined in shared libraries, then it has its own GOT and PLT. The GOT is part of the data segment. The PLT is part of the code segment.
-`Because addcnt is defined by the libvector.so module, the compiler can use the constant distance between the code segment and the data segment to generate a direct PC relative reference to addcnt, and add a relocation to let the linker construct this shared module Parse it. However, if addcnt is defined by another shared module, then indirect access via GOT is required. Here, the compiler chooses the most general solution, using GOT for all references.`\
-`objdump -dx prog`
+Le génère également une relocalisation. record pour chaque entrée dans le GOT. ![img_8.png](img_8.png) 由于器 无法 的 的 的 的 的 的 的 的 的都 在 数据 节节 中 创建 一 函数函数 xxx @ plt, 然后 将 中调用 地址 替 换 代码 中调用 地址 替 所以 所以 通过 xxx @ xxx @ Plot 的 更更, 以及 指向 的 更. la table de liaison de procédure (PLT). Si un module objet appelle des fonctions définies dans des bibliothèques partagées, il possède alors ses propres GOT et PLT. Le GOT fait partie du segment de données. Le PLT fait partie du segment de code. `Étant donné que addcnt est défini par le module libvector.so, le compilateur peut utiliser la distance constante entre le segment de code et le segment de données pour générer une référence relative PC directe à addcnt, et ajouter une relocalisation pour permettre à l'éditeur de liens de construire ce module partagé Parse ce. Cependant, si addcnt est défini par un autre module partagé, un accès indirect via GOT est requis. Ici, le compilateur choisit la solution la plus générale, en utilisant GOT pour toutes les références.`\ `objdump -dx prog`
 ```
-000000000000077a <main>:
- 77a:	48 83 ec 08          	sub    $0x8,%rsp
- 77e:	b9 02 00 00 00       	mov    $0x2,%ecx
- 783:	48 8d 15 9e 08 20 00 	lea    0x20089e(%rip),%rdx        # 201028 <z>
- 78a:	48 8d 35 7f 08 20 00 	lea    0x20087f(%rip),%rsi        # 201010 <y>
- 791:	48 8d 3d 80 08 20 00 	lea    0x200880(%rip),%rdi        # 201018 <x>
- 798:	e8 a3 fe ff ff       	callq  640 <addvec@plt>
- 79d:	8b 0d 89 08 20 00    	mov    0x200889(%rip),%ecx        # 20102c <z+0x4>
- 7a3:	8b 15 7f 08 20 00    	mov    0x20087f(%rip),%edx        # 201028 <z>
- 7a9:	48 8d 35 a4 00 00 00 	lea    0xa4(%rip),%rsi        # 854 <_IO_stdin_used+0x4>
- 7b0:	bf 01 00 00 00       	mov    $0x1,%edi
- 7b5:	b8 00 00 00 00       	mov    $0x0,%eax
- 7ba:	e8 91 fe ff ff       	callq  650 <__printf_chk@plt>
- 7bf:	b8 00 00 00 00       	mov    $0x0,%eax
- 7c4:	48 83 c4 08          	add    $0x8,%rsp
- 7c8:	c3                   	retq   
- 7c9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+ <main>
+
+%e201028 <z>
+ 78a : 48 8d 35 7f 08 20 00 lea 0x20087f(%rip),%rsi # 201010 <y>
+ 791 : 48 8d 3d 80 08 20 00 lea 0x200880(%rip),%rdi # 201018 <x>
+ 898 a3 fe ff ff callq 640 <addvec@plt>
+ 79d : 8b 0d 89 08 20 00 mov 0x200889(%rip),%ecx # 20102c <z+0x4>
+ 7a3 : 8b 15 7f 08 20 00 mov
+ (%rip),%edx # <z>7a9 : 48 8d 35 a4 00 00 00 lea 0xa4(%rip),%rsi # 854 <_IO_stdin_used+0x4>
+ 7b0 : bf 01 00 00 00 mov $0x1,%edi
+ 7b5 : b8 00 00 00 00 mov $0x0 ,%eax
+ 7ba : e8 91 fe ff ff callq 650 <__printf_chk@plt>
+ 7bf : b8 00 00 00 00 mov $0x0,%eax
+ 7c4 : 48 83 c4 08 add $0x8,%rsp
+ 7c8 : c3 retq   
+ 7c9 : 0f 1f 80 00 00 00 00 nopl 0x0(%rax)
  ```
-对addvec函数和对prinrf函数的调用转化为了对addvec@plt和对__printf_chk@plt函数的调用，这两个函数就是在.plt节中定义的，而.plt节中的内容如下所示
+对 Addvevec 函数 和 和 和 PRINRF 函数 的 调用 转化 对 ADDVEC @ plt 和 __ __printf_chk @ plt 函数 的 调用, 这 两 函数 函数 是 在 .Plt 中 的, 而 .Plt 中 的 内容 如下 所
 ```
-Disassembly of section .plt:
+Démontage de la section .plt :
 
-0000000000000630 <.plt>:
- 630:	ff 35 82 09 20 00    	pushq  0x200982(%rip)        # 200fb8 <_GLOBAL_OFFSET_TABLE_+0x8>
- 636:	ff 25 84 09 20 00    	jmpq   *0x200984(%rip)        # 200fc0 <_GLOBAL_OFFSET_TABLE_+0x10>
- 63c:	0f 1f 40 00          	nopl   0x0(%rax)
+0000000000000630 <.plt> :
+ 630 : ff 35 82 09 20 00 pushq 0x200982(%rip) # 200fb8 <_GLOBAL_OFFSET_TABLE_+0x8>
+ 636 : ff 25 84 09 20 ) # 200fc0 <_global_offset_table_ + 0x10>
+ 63c: 0f 1f 40 00 NOPL 0x0 (% Rax)
 
 0000000000000640 <addvec@plt>:
- 640:	ff 25 82 09 20 00    	jmpq   *0x200982(%rip)        # 200fc8 <addvec>
- 646:	68 00 00 00 00       	pushq  $0x0
- 64b:	e9 e0 ff ff ff       	jmpq   630 <.plt>
+ 640: FF 25 82 09 20 00 JMPQ * 0x200982 (% RIP) # 200fc8 <addvec>
+ 646: 68 00 00 00 00 pushq 0 $ 0x0
+ 64B: E9 E0 FF FF FF JMPQ 630 <.PLT>
 
-0000000000000650 <__printf_chk@plt>:
- 650:	ff 25 7a 09 20 00    	jmpq   *0x20097a(%rip)        # 200fd0 <__printf_chk@GLIBC_2.3.4>
- 656:	68 01 00 00 00       	pushq  $0x1
- 65b:	e9 d0 ff ff ff       	jmpq   630 <.plt>
+000000000000650 <__PRINF_CHK @ PLT>:
+ 650: FF 25 7A 09 20 00 JMPQ * 0x20097A (% RIP) # 200fd0 <__printf_chk @ glibc_2. 3.4>
+ 656 : 68 01 00 00 00 pushq $0x1
+ 65b : e9 d0 ff ff ff jmpq 630 <.plt>
 ```
-由于我们无论在内存什么位置加载该目标模块（包括共享目标模块），数据段与代码段的距离总是保持不变的。所以我们可以让处于代码段的plt函数通过距离常量来访问处于数据段中对应的got中保存的地址。
-比如上面我们调用addvec@plt函数时，会执行0x640处的jmpq *0x200982(%rip)指令， 这里的0x200982就是上面所说的距离常量，用来指向特定的got项，这里可以得到访问的got项的地址为0x200982+0x646=0x200fc8，而该地址对应的got内容如下所示
-`0x00200fc0 00000000 00000000 46060000 00000000 ........F.......`
-根据小端法可以只为0x664，即跳转回到下一条指令，然后调用.plt函数
+们 们 目标 的 的. 们 的 的. 们 的 的 的.中 对应 的 obtenez 中 保存 的 地址. 比如面 们们 调用 addvevec @ plt 函数 时 会 会行 0x640 的 JMPQ * 0x200982 (% RIP) 指令, 的 0x200982 就 是面 的 距离 常量, 用来 的 距离距离GOT 项, 这里 得到 访问 的 got 的 地址 为 0x200982 + 0x646 = 0x200fc8, 而 该 的 got 内容 所 `0x00200fc0 00000000 0000000000000000000000000000000000000000000000000000 0000000000 .....
+`
 ```
-0000000000000630 <.plt>:
- 630:	ff 35 82 09 20 00    	pushq  0x200982(%rip)        # 200fb8 <_GLOBAL_OFFSET_TABLE_+0x8>
- 636:	ff 25 84 09 20 00    	jmpq   *0x200984(%rip)        # 200fc0 <_GLOBAL_OFFSET_TABLE_+0x10>
- 63c:	0f 1f 40 00          	nopl   0x0(%rax)
+000000000000000630
+ <>FF 35 82 09 20 00 Poussette 0x200982 (% RIP) # 200fb8 <_global_offset_table_ + 0x8>
+ 636: FF 25 84 09 20 00 JMPQ * 0x200984 (% RIP) # 200fc0 <_global_offset_table_ + 0x10>
+ 63c : 0f 1f 40 00 nopl 0x0(%rax)
 ```
-其中第一条指令是将地址0x200982+0x636=0x200fb8作为参数压入栈中，而第二条指令是跳转到0x200984+0x63c=0x200fc0处保存的地址，我们通过上面可以看到，在未运行可执行目标文件时，该地址的值为0，而当运行了可执行目标文件时，该地址的值会修改到动态链接器中的_dl_runtime_resolve函数，来进行地址解析，查看共享库的addvec被加载到什么内存地址。那该函数是如何知道要获得哪个函数的地址，以及要将函数地址保存到哪个got项呢？
+中 一 条条 是 将 地址 0x200982 + 0x636 = 0x200fb8 作为 参数 压入栈 转 转 0x200984 + 0x63c = 0x200fc0 处 们 们 们 们 们 们 们 们 们执 目标 的 值 可 的 的 值会 可 的 的 值会 可可 该 的 值会 修改 该 的 值会值会 到 该 的 值会 修改 该 的 的 值会值会值会到什么内存地址。那该函数是如何知道要获得哪个函数的地址，以及要将函数地址保存到哪个got顽保存到哪个got顽
 
 我们观察可执行目标文件中以下共享库的函数
 
 ```
 0000000000000640 <addvec@plt>:
- 640:	ff 25 82 09 20 00    	jmpq   *0x200982(%rip)        # 200fc8 <addvec>
- 646:	68 00 00 00 00       	pushq  $0x0
- 64b:	e9 e0 ff ff ff       	jmpq   630 <.plt>
+ 640: FF 25 82 09 20 00 JMPQ * 0x200982 (% RIP) # 200FC8 <addvec>
+ 646: 68 00 00 00 00 Poussette 0x0
+ 64B: E9 E0 FF FF FF JMPQ 630 <.PLT>
 
-0000000000000650 <__printf_chk@plt>:
- 650:	ff 25 7a 09 20 00    	jmpq   *0x20097a(%rip)        # 200fd0 <__printf_chk@GLIBC_2.3.4>
- 656:	68 01 00 00 00       	pushq  $0x1
- 65b:	e9 d0 ff ff ff       	jmpq   630 <.plt>
+000000000000000650 <__printf_chk@plt> :
+  650 : ff 25 7a 09 20>jmpq *
+ (%rip) #
+ <630 <.plt>
  ```
-可以发现每个函数的第一条指令是跳转到对应的got项，而对应的got项被初始化为下一条指令的地址，当got项没有被修改时，就自动跳转到下一条指令。而第二条指令在不同函数中是不同的，其实对应的是.rela.plt的索引
+现 现 的 第一条 指令 的 的 的 obtient 的 的 下 一 条 的 地址, 当 当 当 一 一 一 一 一 条 到 下 一Rela.plt的索引
 ```
-Relocation section '.rela.plt' at offset 0x5e8 contains 2 entries:
-  Offset          Info           Type           Sym. Value    Sym. Name + Addend
-000000200fc8  000300000007 R_X86_64_JUMP_SLO 0000000000000000 addvec + 0
-000000200fd0  000500000007 R_X86_64_JUMP_SLO 0000000000000000 __printf_chk@GLIBC_2.3.4 + 0
+La section de relocalisation '.rela.plt' à l'offset 0x5e8 contient 2 entrées :
+  Offset Info Type Sym. Valeur Sym. Nom + Addend
+000000200fc8 000300000007 R_X86_64_JUMP_SLO 000000000000000 addvec + 0
+000000200fd0 000500000007 R_X86_64_JUMP_SLO 000000000 __print@printfC40 __0 300000
 ```
-其中，offset表示对应的got项的地址，Sym.Name就是函数的名字。所以动态链接器通过索引值和.rela.plt数据组就能确定要定位哪个动态库函数，以及将其内存地址保存到哪个got项。
+其中, offset 的 地址, sym.name 就 函数 的 名字. 所以 动态链接 索 引值 数据组 以及 以及 其 定位 动态库函数 以及 以及 其 地址 保存哪个got项。
 
-当动态链接后的addvec函数的内存地址保存到对应的got项时，下次再调用addvec函数时，就能直接通过该got项直接获得addvec函数的内存地址。
+的 的 Addvevec 函数 的 内存 地址 保存 下 次 调用 调用 调用 调用 就 就 该 该 该 该 该 能 的 的 的 的 的 的 的 的 内存内存.
 
-我们可以发现，第一次调用共享库的函数时，对应的xxx@plt函数并不会跳转到正确的函数地址，而是调用动态链接器来获得函数的地址，然后将其保存到got项中，下一次再运行时，才会跳转到正确的函数地址，该方法称为延迟绑定（Lazy Binding），只有共享库的函数要用时，才会重定位它的地址，否则不会，由此防止可执行目标文件加载时需要对大量的共享库的地址进行重定位。
+们 现 的 xxx @ 的 xxx @ 的 函数 的 的 的 的 的 的 的中 一 的 的 函数 会 的 的 函数 会 该 的 函数 该 该 的 的 的 函数 方法 方法 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 地址, 否则 否则 的 的 地址, 否则 否则由此防止可执行目标文件加载时需要对大量的共享库的地址进行重定位。
 
-综上所述：当函数要访问共享库中的函数时，实现执行call xxx@plt，访问该函数的封装函数，然后该plt函数会访问对应的got项，如果got项被赋值为对应的xxx函数的地址，则会调用该函数，否则会调用.plt[0]中的动态链接器，来定位xxx函数的内存地址，然后将其保存到对应的got项中。
-因为 addcnt 是由 libvector.so 模块定义的，编译器可以利用代码段和数据段之间不变的距离，产生对 addcnt 的直接 PC 相对引用，并增加一个重定位，让链接器在构造这个共享模块时解析它。不过，如果 addcnt 是由另一个共享模块定义的，那么就需要通过 GOT 进行间接访问。在这里，编译器选择采用最通用的解决方案，为所有的引用使用 GOT。
-![img_9.png](img_9.png)
-Step 1. Instead of directly calling addvec, the program calls into PLT[2], which
-is the PLT entry for addvec. \
-Step 2. The first PLT instruction does an indirect jump through GOT[4]. Since
-each GOT entry initially points to the second instruction in its correspond-
-ing PLT entry, the indirect jump simply transfers control back to the next
-instruction in PLT[2]. \
-Step 3. After pushing an ID for addvec (0x1) onto the stack, PLT[2] jumps to
-PLT[0]. \
-Step 4. PLT[0] pushes an argument for the dynamic linker indirectly through
-GOT[1] and then jumps into the dynamic linker indirectly through GOT[2].
-The dynamic linker uses the two stack entries to determine the run-
-time location of addvec, overwrites GOT[4] with this address, and passes
-control to addvec.
-![img_10.png](img_10.png)
-Step 1. Control passes to PLT[2] as before.\
-Step 2. However, this time the indirect jump through GOT[4] transfers control
-directly to addvec.
+所 所 述 要 中 中 中 中 中 的 函数 时 执 行 Call XXX @ PLT, 访问 的 封装：, 然后 的 函数 的 的 的 项, 如果 Vous avez 项 赋值 的 xxx的 的 地址, 会 会 该 该 该 会 调用 调用[0] 调用 调用 定位 xxx定义 的, 编译 器 可以 利用 代码 段 和 数据 段 之间 不变 的 距离, 产生 对 addcnt 的 直接 PC 相对 引用, 并 增加 一个 重 定位, 让 链接 器 在 构造 这个 共享 模块 时 解析 它. 不过, 如果 addcnt是由另一个共享模块定义的,那么就需要通过GOT进行间接访问.在这里,编译器选择采用最通用的解决方案,为所有的引用使用GOT. ![img_9.png](img_9.png) Étape 1. Au lieu d'appeler directement addvec, le programme appelle PLT[2], dont est l'entrée PLT pour addvec. \ Étape 2. La première instruction PLT fait un saut indirect à travers GOT[4]. Puisque chaque entrée GOT pointe initialement vers la deuxième instruction dans son entrée PLT correspondante, le saut indirect retransfère simplement le contrôle à l'instruction suivante dans[2] \ Étape 3. Après avoir poussé un ID pour addvec (0x1) sur la pile, PLT[2] saute à PLT[0]. \ Étape 4. PLT[0] pousse un argument pour l'éditeur de liens dynamique indirectement via GOT[1] , puis saute dans l'éditeur de liens dynamique indirectement via GOT[2]. L'éditeur de liens dynamique utilise les deux entrées de la pile pour déterminer l'emplacement d'exécution d'addvec, écrase GOT[4] avec cette adresse et passe le contrôle à addvec. ![img_10.png](img_10.png) Étape 1. Le contrôle passe à PLT[2] comme précédemment.\ Étape 2. Cependant, cette fois, le saut indirect via GOT[4] transfère le contrôle directement à addvec.
 
-#### Library Interpositioning
-library interpositioning,allows you to intercept calls to shared library functions and execute your own code instead.\
-**basic idea:** Given some target function to be interposed on, you
-create a wrapper function whose prototype is identical to the target function. Using
-some particular interpositioning mechanism, you then trick the system into calling
-the wrapper function instead of the target function. The wrapper function typically
-executes its own logic, then calls the target function and passes its return value
-back to the caller.
+#### Interposition de bibliothèque
+l'interposition de bibliothèque, vous permet d'intercepter les appels aux fonctions de la bibliothèque partagée et d'exécuter votre propre code à la place.\ **idée de base :** étant donné une fonction cible sur laquelle interposer, vous créez une fonction wrapper dont le prototype est identique à la fonction cible. En utilisant un mécanisme d'interposition particulier, vous incitez ensuite le système à appeler la fonction wrapper au lieu de la fonction cible. La fonction enveloppe généralement exécute sa propre logique, puis appelle la fonction cible et renvoie sa valeur de retour à l'appelant.
 
-Interpositioning can occur at compile time, link time, or run time as the
-program is being loaded and executed.
-Example program int.c
+L'interposition peut se produire au moment de la compilation, de la liaison ou de l'exécution lorsque le programme est chargé et exécuté. Exemple de programme int.c
 ```code/link/interpose/int.c
 #include <stdio.h>
 #include <malloc.h>
@@ -414,52 +335,48 @@ Example program int.c
 int main()
 {
     int *p = malloc(32);
-    free(p);
-    return(0);
+    libre(p);
+    retour(0);
 }
 ```
-##### 1. Compile-Time Interpositioning
+##### 1. Interposition au moment de la compilation
 
-首先，我们可以定义一个本地的头文件malloc.h，如下所示
-Local malloc.h file
+Fichier local de malloc.h
 ```code/link/interpose/malloc.h
-#define malloc(size) mymalloc(size)
+#define malloc(taille) mymalloc(taille)
 #define free(ptr) myfree(ptr)
 ```
-然后在编译int.c时，使用-I.编译选项，使得预处理器首先从本地查找malloc.h文件，由此就能将共享库的malloc和free函数替换成我们自己的mymalloc混合myfree函数。
-而我们需要自己实现mymalloc和myfree函数，其中需要调用原始的malloc.h，由于malloc.h使用了#define指令，我们后面需要malloc的地方都会被mymalloc替代。
-而mymalloc.c代码如下：
-Wrapper functions in mymalloc.c
+然后 编译 编译.C 时, 使用 -I 编译 选项 预处理 使得 预处理 预处理 的 的 Malloc.h 的 MALLALLOC 混合 MYMALLALC 混合 MYMADRE 函数. 们 们 们 自己 实现 myMALLOC 和 MYMALLOC 函数, 其中 需要 调用 的 Malloc.h, 由于 Malloc.h 使用 #define 指令, 们们 后面 需要 Malloc 的 地方 被 MyMALLOC 替代. 而 mymalloc.c 代码： Fonctions wrapper dans mymalloc.c
 ```mymalloc.c
 #ifdef COMPILETIME //编译选项是COMPILETIME ，这段代码才会编译进去
 #include <stdio.h>
 #include <malloc.h>
 
-/* malloc wrapper function */
+/* fonction wrapper malloc */
 void *mymalloc(size_t size)
 {
-    void *ptr = malloc(size);
+    void *ptr = malloc( Taille);
     printf("malloc(%d)=%p\n",
-           (int)size, ptr);
-    return ptr;
+           (int)taille, ptr);
+    points de retour ;
 }
 
-/* free wrapper function */
+/* fonction wrapper gratuite */
 void myfree(void *ptr)
 {
     free(ptr);
-    printf("free(%p)\n", ptr);
+    printf("libre(%p)\n", ptr);
     printf("COMPILETIME\n");
 }
 #endif
 ```
-所以我们可以通过以下代码得到该函数的可重定位目标文件mymalloc.o 
+所以我们可以通过以下代码得到该函数的可重定位目标文件mymalloc.o
 ```shell
 gcc -DCOMPILETIME -c mymalloc.c
 ```
 然后在本地的malloc.h中给出包装函数的函数原型，即
 ```code/link/interpose/malloc.h
-#define malloc(size) mymalloc(size)
+#define malloc(taille) mymalloc(taille)
 #define free(ptr) myfree(ptr)
 
 void *mymalloc(size_t size);
@@ -469,21 +386,20 @@ void myfree(void *ptr);
 ```shell
 gcc -I. -o intc int.c mymalloc.o
 ```
-此时，由于-I.编译选项，对于int.c中的malloc.h，预处理器会首先从本地搜索malloc.h文件，而在本地malloc.h文件中，对malloc和free函数重新包装成mymalloc和myfree函数，而这两个函数在之前编译好的mymalloc.o可重定位目标文件中，此时就完成了编译时打桩。
+此时, 由于 -i. 编译 选项, 对于 Int.c 中 的 Malloc.h, 预处理 会 从 搜索 Malloc.h 文件, 而 本地 Malloc.h 文件 中, Malloc 和 gratuit 重函数 成mymalloc和myfree函数，而这两个函数在之前编译好的mymalloc.o可重定位目标文件中，此时就完成了编译时打桩。
 ```shell
 malloc(32)=0x558ca12fc2a0
-free(0x558ca12fc2a0)
+libre(0x558ca12fc2a0)
 COMPILETIME
 ```
 使用malloc的地方，都被替换成了mymalloc。
 ```int.i
-void *mymalloc(size_t size);
+void *mymalloc(taille_t taille);
 void myfree(void *ptr);
 ```
-##### 2. Link-Time Interpositioning
+##### 2. Interposition de temps de liaison
 
-Linux静态链接器也支持使用--wrap f标志进行链接时打桩，此时会将符号f解析为__wrap_f，而将对__real_f符号的引用解析为f， 意味着原始对函数f的调用，还会替换成对__wrap_f函数的调用，而通过__real_f函数来调用原始函数f。
-我们定义以下函数
+Linux 静态 链接器 也 使用 进 链接 为 __ __ __ __ __ 的 __ __ 的 的 __ __ 的 __ 的 的 引用 的 的 的 引用引用会替换成对__wrap_f函数的调用，而通过__real_f函数来调用原始函数f。 我们定义以下函数
 ```mymalloc.c
 #ifdef LINKTIME
 #include <stdio.h>
@@ -491,18 +407,18 @@ Linux静态链接器也支持使用--wrap f标志进行链接时打桩，此时�
 void *__real_malloc(size_t size);
 void __real_free(void *ptr);
 
-/* malloc wrapper function */
+/* fonction wrapper malloc */
 void *__wrap_malloc(size_t size)
 {
-    void *ptr = __real_malloc(size); /* Call libc malloc */
+    void *ptr = __real_malloc(size); /* Appel libc malloc */
     printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    points de retour ;
 }
 
-/* free wrapper function */
+/* fonction wrapper libre */
 void __wrap_free(void *ptr)
 {
-    __real_free(ptr); /* Call libc free */
+    __real_free(ptr); /* Appel libc free */
     printf("free(%p)\n", ptr);
     printf("LINKTIME\n");
 }
@@ -519,20 +435,19 @@ gcc -DLINKTIME -c mymalloc.c
 gcc -c int.c
 gcc -Wl,--wrap,malloc -Wl,--wrap,free -o intl int.o mymalloc.o
 ```
--Wl,option 把标志 option 传递给链接器。option中的每个逗号都要替换为一个空格。所以 -Wl,--wrap,malloc 就把 --wrap malloc 传递给链接器，以类似的方式传递 -Wl,--wrap,free。 
+-WL, option 把 标志 标志 给器 .OPtion 中 的 每每个-Wl,--wrap,gratuit。
 ```shell
 malloc(32)=0x558ca12fc2a0
-free(0x558ca12fc2a0)
+libre(0x558ca12fc2a0)
 LINKTIME
 ```
-由此，利用链接器的打桩机制, int.c中对malloc和free函数的调用，会变成对__wrap_malloc和__wrap_free函数的调用。而__real_malloc将会被解析成真正的malloc。
+由, 利用器 的 打桩 机制, int.c 中 对 Malloc gratuit 函数 的 调用, 会 变成 __wrap_malloc 和 __wrap_free 的 调用. __ __real_malloc 将 被 解析 的 Malloc.
 
 综上所述：想要在链接时打桩，意味着在对可重定位目标文件的符号进行解析时，进行替换。
 
-##### 3. Run-Time Interpositioning
+##### 3. Interposition d'exécution
 
-运行时进行打桩，意味着是对共享库的函数进行打桩，这里使用动态链接器提供的LD_PRELOAD环境变量，通过该变量设置共享库路径列表，执行可执行目标文件时，动态链接器就会先搜索LD_PRELOAD共享库。
-定义以下函数
+运 的 的 ld_preload 的 函数 的 ld_preload 环境 件 的LD_PRELOAD est à  ;
 ```mymalloc.c
 #ifdef RUNTIME
 #define _GNU_SOURCE
@@ -540,38 +455,38 @@ LINKTIME
 #include <stdlib.h>
 #include <dlfcn.h>
 
-/* malloc wrapper function */而__real_malloc将会被解析成真正的malloc。
+/* fonction wrapper malloc */而__real_malloc将会被解析成真正的malloc。
 
 void *malloc(size_t size)
 {
-    void *(*mallocp)(size_t size);
-    char *error;
+    void *(*mallocp)(taille_t taille);
+    caractères *erreur ;
 
-    mallocp = dlsym(RTLD_NEXT, "malloc"); /* Get address of libc   malloc */ 
+    mallocp = dlsym(RTLD_NEXT, "malloc"); /* Récupère l'adresse de libc malloc */ 
     if ((error = dlerror()) != NULL) { 
         fputs(error, stderr);
-        exit(1);
+        sortie(1);
     }
-    char *ptr = mallocp(size); /* Call libc malloc */
-//  printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    car *ptr = mallocp(taille); /* Appel libc malloc */
+// printf("malloc(%d) = %p\n", (int)size, ptr);
+    points de retour ;
 }
 
-/* free wrapper function */
+/* fonction wrapper libre */
 void free(void *ptr)
 {
     void (*freep)(void *) = NULL;
-    char *error;
+    caractères *erreur ;
 
-    if (!ptr)
-    return;
+    si (!ptr)
+    retour ;
 
-    freep = dlsym(RTLD_NEXT, "free"); /* Get address of libc free */
+    librep = dlsym(RTLD_NEXT, "libre"); /* Récupère l'adresse de libc free */
     if ((error = dlerror()) != NULL) {
         fputs(error, stderr);
-        exit(1);
+        sortie(1);
     }
-    freep(ptr); /* Call libc free */
+    librep(ptr); /* Appel libc free */
     printf("free(%p)\n", ptr);
     printf("RUNTIME\n");
 }
@@ -586,20 +501,11 @@ gcc -DRUNTIME -shared -fpic -o mymalloc.so mymalloc.c -ldl
 gcc -o intr int.c
 LD_PRELOAD="./mymalloc.so" ./intr 
 ```
-此时运行到malloc和free函数时，就会调用动态链接器搜索该符号的定义，此时会先搜索LD_PRELOAD指定的共享库，而mymalloc.so中定义了这两个符号，所以就替换了这两个函数的具体实现。注意：如果想要调用原始的定义，就需要用运行动态链接的方式，通过指定dlsym的参数为RTLD_NEXT，来在后续的共享库中获得malloc的定义。 
+此时行 到 Malloc 和 gratuit 函数 调用 调用 调用 调用 调用 调用 调用 的 的 的 定义, 而 的 共 享库, 而 myMALLOC.SO 中 定义 这 两 个 符号 个 个个 的 的 的 的 的 方式 的 的 的 方式 的 的 的 方式 的 方式 的 方式为 的 的 的 的为 中 获得 的 共 享库 中 获得：的 享库共 中 获得
 ```shell
 "./mymalloc.so" ./intr 
-free(0x55a98bc572a0)
-RUNTIME
+libre(0x55a98bc572a0)
+DURÉE D'EXÉCUTION
 
 ```
-GNU binutils 包尤其有帮助，而且可以运行在每个 Linux 平台上。
-AR：创建静态库，插入、删除、列出和提取成员。
-STRINGS：列出一个目标文件中所有可打印的字符串。
-STRIP：从目标文件中删除符号表信息。
-NM：列出一个目标文件的符号表中定义的符号。
-SIZE：列出目标文件中节的名字和大小。
-READELF：显示一个目标文件的完整结构，包括 ELF 头中编码的所有信息。包含 SIZE 和 NM 的功能。
-OBJDUMP：所有二进制工具之母。能够显示一个目标文件中所有的信息。它最大的作用是反汇编 .text 节中的二进制指令。
-Linux 系统为操作共享库还提供了 LDD 程序：
-LDD：列出一个可执行文件在运行时所需要的共享库。
+Gnu binutils 包 有 有 可以 可以 可以 可以 在 在 在 在 在 在 在 在 在 在 在 在个 平台. ar：创建 静态库, 删除, 列出 和 提取. cordes：一个 目标 的 字符串. bande：目标 目标 文件 中 删除 符号 信息. nm：列出 一个 目标 的 符号 中 的 符号. Taille：列出 目标 文件 中节 的 名字名字 大小. LOOTAGE：显示 一个 目标 文件 的完整, 包括 elf 中 的 所有 信息. 包含 Taille 和 nm 的 功能. objdump：二进制有 二进制有 二进制有 二进制 工件 件 件 大 的 作用 目标 它 大 的 作用 信息 .text 节中 的.二进制指令。 Linux 系统为操作共享库还提供了 LDD 程序： LDD 程出一个：文件在运行时所需时所需

@@ -2,214 +2,210 @@
 sidebar_position: 1
 ---
 
-# Flutter Learning
+# Apprentissage flottant
 
-## Overview Overview
+## Aperçu Aperçu
 
-- is Google's mobile UI framework for quickly building high-quality native user interfaces on iOS and Android. It can also be used for web and other multi-end utilities.
-- [flutter hands-on](https://book.flutterchina.club/) The subsequent operations are also based on this book
-- DOM tree and control tree are similar
-  - DOM tree (html)! [DOM tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/pic_htmltree.gif)
-  - Widget tree (flutter) ! [Widget tree](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/OIP.Bw-atr2JI-0ypRc2E9JcZgHaGa)
+- est le cadre d'interface utilisateur mobile de Google permettant de créer rapidement des interfaces utilisateur natives de haute qualité sur iOS et Android. Il peut également être utilisé pour le Web et d'autres utilitaires multi-fins.
+- [flottement pratique](https://book.flutterchina.club/) Les opérations suivantes sont également basées sur ce livre
+- L'arbre DOM et l'arbre de contrôle sont similaires
+  - Arbre DOM (html) ! [arbre DOM](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/pic_htmltree.gif)
+  - Arbre de widgets (scintillement) ! [Arbre des widgets](https://raw.githubusercontent.com/Malaaaa/cloudimage/master/OIP.Bw-atr2JI-0ypRc2E9JcZgHaGa)
 
-> Hierarchical relationships like Unity
+> Relations hiérarchiques comme Unity
 
-- Flutter uses its own high performance rendering engine to draw widgets.
-- Flutter's high performance is mainly ensured by two things, firstly, Flutter APP is developed in Dart language, which is basically the same speed as JavaScript in JIT (Just-In-Time) mode. However, Dart supports AOT, and when running in AOT (compile before run) mode, JavaScript is far behind. The speed increase is useful for calculating view data at high frame rates. Secondly, Flutter uses its own rendering engine to draw UI, and layout data etc. is directly controlled by Dart language, so there is no need to communicate between JavaScript and Native during the layout process like RN, which is a clear advantage in some sliding and dragging scenarios.
-  
-- Flutter framework structure
+- Flutter utilise son propre moteur de rendu hautes performances pour dessiner des widgets.
+- La haute performance de Flutter est principalement assurée par deux choses, premièrement, Flutter APP est développé en langage Dart, qui est fondamentalement à la même vitesse que JavaScript en mode JIT (Just-In-Time). Cependant, Dart prend en charge AOT, et lors de l'exécution en mode AOT (compilation avant exécution), JavaScript est loin derrière. L'augmentation de la vitesse est utile pour calculer les données de vue à des fréquences d'images élevées. Deuxièmement, Flutter utilise son propre moteur de rendu pour dessiner l'interface utilisateur, et les données de mise en page, etc. sont directement contrôlées par le langage Dart, il n'est donc pas nécessaire de communiquer entre JavaScript et Native pendant le processus de mise en page comme RN, ce qui est un net avantage dans certains glissements. et faire glisser des scénarios.
 
-  > ! [Framework Structure](https://pcdn.flutterchina.club/imgs/1-1.png)
-  
-- "Hot Reload" only rebuilds the entire widget tree)
+- Structure du cadre flottant
 
-## Dart Language Fundamentals
+  > ! [Structure du cadre](https://pcdn.flutterchina.club/imgs/1-1.png)
 
-### Variable Declarations
+- "Hot Reload" ne reconstruit que l'intégralité de l'arborescence des widgets)
+
+## Fondamentaux du langage Dart
+
+### Déclarations de variables
 
 1. **var**
 
-   Similar to `var` in JavaScript, it can receive variables of any type, but the biggest difference is that once a var variable is assigned a value in Dart, the type is determined and then the type cannot be changed, e.g.
+   Semblable à `var` en JavaScript, il peut recevoir des variables de n'importe quel type, mais la plus grande différence est qu'une fois qu'une variable var se voit attribuer une valeur dans Dart, le type est déterminé et le type ne peut pas être modifié, par exemple
 
    ```dart
    var t;
-   t = "hi world";
-   // The following code will report an error in dart, because the type of variable t has been determined as String.
-   // Once the type is determined, it cannot be changed again.
-   t = 1000;
+   t = "salut monde" ;
+   // Le code suivant signalera une erreur dans dart, car le type de variable t a été déterminé comme String.
+   // Une fois le type déterminé, il ne peut plus être modifié.
+   t = 1000 ;
    ```
 
-   Dart is a strongly typed language, any variable has a definite type. In Dart, when a variable is declared with `var`, Dart will infer its type according to the type of the first assignment, and its type will be determined after compilation.
+   Dart est un langage fortement typé, toute variable a un type défini. Dans Dart, lorsqu'une variable est déclarée avec `var`, Dart déduira son type en fonction du type de la première affectation, et son type sera déterminé après compilation.
 
-2. **dynamic** and **Object**
+2. **dynamique** et **Objet**
 
-    `Object` is the root class of all Dart objects, that is, all types are subclasses of `Object` (including Function and Null), so any type of data can be assigned to an object declared by `Object`.
-    `dynamic` is the same keyword as `var`, and the declared variables can be assigned to any object.
-    And `dynamic` is the same as `Object` in that the variables they declare can change the type of assignment at a later stage.
+    `Object` est la classe racine de tous les objets Dart, c'est-à-dire que tous les types sont des sous-classes de `Object` (y compris Function et Null), de sorte que tout type de données peut être affecté à un objet déclaré par `Object`. `dynamique` est le même mot clé que `var`, et les variables déclarées peuvent être affectées à n'importe quel objet. Et `dynamique` est identique à `Objet` en ce sens que les variables qu'ils déclarent peuvent changer le type d'affectation à un stade ultérieur.
 
     ```dart
-    dynamic t;
-    Object x;
-    t = "hi world";
-    x = 'Hello Object';
-    // The following code is fine
+    t dynamique ;
+    Objet x ;
+    t = "salut monde" ;
+    x = 'Bonjour Objet' ;
+    // Le code suivant est bon
     t = 1000;
-    x = 1000;
+    = 1000 ;
     ```
 
-   The difference between `dynamic` and `Object` is that the compiler will provide all possible combinations of objects declared by `dynamic`,
-   The object declared by `Object` can only use the properties and methods of Object, otherwise the compiler will report an error. For example:
+   La différence entre `dynamique` et `Objet` est que le compilateur fournira toutes les combinaisons possibles d'objets déclarés par `dynamiques`, L'objet déclaré par `Objet` ne peut utiliser que les propriétés et les méthodes de Objet, sinon le compilateur signalera une erreur. Par exemple:
 
    ```dart
-    dynamic a;
-    Object b;
-    main() {
-        a = "";
-        b = "";
+    dynamique a;
+    Objet b ;
+    principale() {
+        une = "" ;
+        = "" ;
         printLengths();
     }   
 
     printLengths() {
-        // no warning
+        // pas d'avertissement
         print(a.length);
-        // warning:
-        // The getter 'length' is not defined for the class 'Object'
+        // avertissement :
+        // Le getter 'length' n'est pas défini pour la classe 'Object'
         print(b.length);
-    }
+}
    ```
 
-   Variable a will not report an error, variable b will be reported by the compiler
+   La variable a ne signalera pas d'erreur, la variable b sera signalée par le compilateur
 
-   This feature of `dynamic` is similar to the role of `id` in `Objective-C`.
-   This feature of `dynamic` makes us need to be careful when using it, as it can easily introduce a runtime error.
+   Cette caractéristique de `dynamique` est similaire au rôle de `id` dans `Objective-C`. Cette fonctionnalité de `dynamique` nous oblige à être prudent lors de son utilisation, car elle peut facilement introduire une erreur d'exécution.
 
-3. **final** and **const**
+3. **final** et **const**
 
-   If you never intend to change a variable, then use `final` or `const`, not `var`, and not a type. A `final` variable can only be set once, the difference being that a `const` variable is a compile-time constant and a `final` variable is initialized the first time it is used. Variables modified by `final` or `const` have variable types that can be omitted, e.g.
+   Si vous n'avez jamais l'intention de modifier une variable, utilisez `final` ou `const`, et non `var`et non un type. Une variable `final` ne peut être définie qu'une seule fois, la différence étant qu'une variable `const` est une constante de compilation et qu'une variable `final` est initialisée la première fois qu'elle est utilisée. Les variables modifiées par `final` ou `const` ont des types de variables qui peuvent être omis, par exemple
 
    ```dart
-   // The type declaration String can be omitted
+   // La déclaration de type String peut être omise
    final str = "hi world";
-   //final String str = "hi world"; 
-   const str1 = "hi world";
-   //const String str1 = "hi world";
+   //chaîne finale str = "salut le monde" ; 
+   const str1 = "salut monde" ;
+   //const String str1 = "salut monde" ;
    ```
 
-### Functions
+### Les fonctions
 
-Dart is a true object-oriented language, so even functions are objects and have a type **Function**. This means that functions can be assigned to variables or passed as arguments to other functions, which is typical of functional programming.
+Dart est un véritable langage orienté objet, donc même les fonctions sont des objets et ont un type **Function**. Cela signifie que les fonctions peuvent être affectées à des variables ou transmises en tant qu'arguments à d'autres fonctions, ce qui est typique de la programmation fonctionnelle.
 
-1. Function declaration
+1. Déclaration de fonction
 
    ```dart
    bool isNoble(int atomicNumber) {
-     return _nobleGases[atomicNumber] ! = null;
-   }
+     return _nobleGases[atomicNumber]! = nul ;
+}
    ```
 
-   Dart function declarations that do not explicitly declare the return value type are treated as ``dynamic`` by default, note that there is no type inference for the function return value.
+   Les déclarations de fonction Dart qui ne déclarent pas explicitement le type de valeur de retour sont traitées comme `dynamique` par défaut, notez qu'il n'y a pas d'inférence de type pour la valeur de retour de la fonction.
 
    ```dart
-   typedef bool CALLBACK();
-   
-   //do not specify the return type, the default is dynamic, not bool
+   typedef bool RAPPEL();
+
+   //ne spécifiez pas le type de retour, la valeur par défaut est dynamique, pas bool
    isNoble(int atomicNumber) {
-     return _nobleGases[atomicNumber] ! = null;
+     return _nobleGases[atomicNumber]! = nul ;
    }
-   
+
    void test(CALLBACK cb){
       print(cb()); 
    }
-   // error, isNoble is not a bool type
+   // erreur, isNoble n'est pas un bool type
    test(isNoble);
    ```
 
-2. For functions that contain only one expression, you can use the abbreviated syntax
+2. Pour les fonctions qui ne contiennent qu'une seule expression, vous pouvez utiliser la syntaxe abrégée
 
    ```dart
-   bool isNoble (int atomicNumber) => _nobleGases [ atomicNumber ] ! = null ;   
+   bool isNoble (int atomicNumber) => _nobleGases [ atomicNumber ] ! = nul ;   
    ```
 
-3. Functions as variables
+3. Fonctions comme variables
 
    ```dart
    var say = (str){
      print(str);
-   };
-   say("hi world");
+   } ;
+   say("salut le monde");
    ```
 
-4. Functions passed as arguments
+4. Fonctions passées en arguments
 
    ```dart
    void execute(var callback) {
        callback();
    }
-   execute(() => print("xxx"))
+   exécuter(() => imprimer("xxx"))
    ```
 
-5. Optional positional arguments
+5. Arguments positionnels facultatifs
 
-   Wrap a set of function arguments, mark them as optional positional arguments with [], and place them at the end of the argument list.
+   Enveloppez un ensemble d'arguments de fonction, marquez-les comme arguments positionnels facultatifs avec [] et placez-les à la fin de la liste d'arguments.
 
    ```dart
    String say(String from, String msg, [String device]) {
-     var result = '$from says $msg';
-     if (device ! = null) {
+     var résultat = '$from dit $msg';
+     si (appareil ! = null) {
        result = '$result with a $device';
      }
-     return result;
-   }
+     renvoie le résultat ;
+}
    ```
 
-   Here is an example of calling this function without optional arguments.
+   Voici un exemple d'appel de cette fonction sans arguments optionnels.
 
    ```dart
-   say('Bob', 'Howdy'); // the result is: Bob says Howdy
+   say('Bob', 'Bonjour'); // le résultat est : Bob dit bonjour
    ```
 
-   The following is an example of calling this function with the third argument.
+   Voici un exemple d'appel de cette fonction avec le troisième argument.
 
    ```dart
-   say('Bob', 'Howdy', 'smoke signal'); // the result is: Bob says Howdy with a smoke signal
+   say('Bob', 'Howdy', 'smoke signal'); // le résultat est : Bob dit bonjour avec un signal de fumée
    ```
 
-6. Optional named parameters
+6. Paramètres nommés facultatifs
 
-   When defining a function, use {param1, param2, ...}, placed at the end of the parameter list, to specify named parameters. For example.
+   Lors de la définition d'une fonction, utilisez {param1, param2, ...}, placé à la fin de la liste des paramètres, pour spécifier les paramètres nommés. Par exemple.
 
    ```dart
-   // Set the [bold] and [hidden] flags
+   // Définir les drapeaux [bold] et [hidden]
    void enableFlags({bool bold, bool hidden}) {
        // ... 
-   }
+}
    ```
 
-   When calling a function, you can use the specified named parameter. For example: ``paramName: value``
+   Lors de l'appel d'une fonction, vous pouvez utiliser le paramètre nommé spécifié. Par exemple : `paramName : valeur`
 
    ```dart
-   enableFlags(bold: true, hidden: false);
+   enableFlags(gras : vrai, masqué : faux) ;
    ```
 
-   Optional named parameters are very much used in Flutter.
+   Les paramètres nommés optionnels sont très utilisés dans Flutter.
 
-   **Note that you cannot use both optional position parameters and optional named parameters**
+   **Notez que vous ne pouvez pas utiliser à la fois des paramètres de position facultatifs et des paramètres nommés facultatifs**
 
-### Asynchronous support
+### Prise en charge asynchrone
 
-The Dart class library has a very large number of functions that return `Future` or `Stream` objects. These functions are called **Asynchronous functions**: they only return after some time-consuming operation has been set up, like an IO operation. Instead of waiting until the operation is complete.
+La bibliothèque de classes Dart possède un très grand nombre de fonctions qui retournent `objets Future` ou `Stream`. Ces fonctions sont appelées **Fonctions asynchrones**: elles ne reviennent qu'après la mise en place d'une opération chronophage, comme une opération IO. Au lieu d'attendre que l'opération soit terminée.
 
-The `async` and `await` keywords support asynchronous programming, allowing you to write asynchronous code much like synchronous code.
+Les mots-clés `async` et `attendent` prennent en charge la programmation asynchrone, ce qui vous permet d'écrire du code asynchrone un peu comme du code synchrone.
 
-#### Future
+#### Avenir
 
-`Future` is very similar to `Promise` in JavaScript and represents the final completion (or failure) of an asynchronous operation and the representation of its result value. In short, it is used to handle asynchronous operations. If the asynchronous processing succeeds, the successful operation is executed, and if the asynchronous processing fails, an error is caught or the subsequent operation is stopped. A Future will only correspond to one result, either success or failure.
+`Future` est très similaire à `Promise` en JavaScript et représente l'achèvement final (ou l'échec) d'une opération asynchrone et la représentation de sa valeur de résultat. En bref, il est utilisé pour gérer les opérations asynchrones. Si le traitement asynchrone réussit, l'opération réussie est exécutée et si le traitement asynchrone échoue, une erreur est détectée ou l'opération suivante est arrêtée. Un Futur ne correspondra qu'à un seul résultat, succès ou échec.
 
-Since it has a lot of functions, we will only introduce its common API and features here. Also, remember that the return value of all `Future` APIs is still a `Future` object, so it is easy to chain calls.
+Puisqu'il a beaucoup de fonctions, nous ne présenterons ici que son API et ses fonctionnalités communes. N'oubliez pas non plus que la valeur de retour de toutes les API `Future` est toujours un objet `Future` , il est donc facile d'enchaîner les appels.
 
-##### Future.then
+##### Futur.alors
 
-For the sake of example, in this case we use `Future.delayed` to create a delayed task (the actual scenario would be a real time-consuming task, like a network request) that returns the result string "hi world!" after 2 seconds, and then we receive the asynchronous result in `then` and print the result with the following code.
+Par exemple, dans ce cas, nous utilisons `Future.delayed` pour créer une tâche retardée (le scénario réel serait une tâche chronophage, comme une requête réseau) qui renvoie la chaîne de résultat "hi world!" au bout de 2 secondes, puis on reçoit le résultat asynchrone en `puis` et on imprime le résultat avec le code suivant.
 
 ```dart
 Future.delayed(new Duration(seconds: 2), (){
@@ -221,218 +217,217 @@ Future.delayed(new Duration(seconds: 2), (){
 
 ### Future.catchError
 
-If an error occurs in an asynchronous task, we can catch the error in ``catchError``, and we change the above example to
+Si une erreur se produit dans une tâche asynchrone, nous pouvons intercepter l'erreur dans `catchError`, et nous changeons l'exemple ci-dessus en
 
 ```dart
 Future.delayed(new Duration(seconds: 2),(){
    //return "hi world!";
    throw AssertionError("Error");  
 }).then((data){
-   //execute successfully will go here  
+   //exécuter avec succès allez ici  
    print("success");
 }).catchError((e){
-   //execution failure goes here  
+   //échec d'exécution va ici  
    print(e);
 });
 ```
 
-In this example, we have thrown an exception in an asynchronous task and the `then` callback function will not be executed, instead the `catchError` callback function will be called; however, the `catchError` callback is not the only one that catches errors, the `then` method has an optional parameter `onError` that we can also use to catch the exception.
+Dans cet exemple, nous avons levé une exception dans une tâche asynchrone et la fonction de rappel `puis` ne sera pas exécutée, à la place la fonction de rappel `catchError` sera appelée ; cependant, le rappel `catchError` n'est pas le seul à intercepter les erreurs, la méthode `then` a un paramètre optionnel `onError` que nous pouvons également utiliser pour intercepter l'exception.
 
 ```dart
 Future.delayed(new Duration(seconds: 2), () {
     //return "hi world!";
     throw AssertionError("Error");
 }).then((data) {
-    print("success");
-}, onError: (e) {
+    print("success" );
+}, onError : (e) {
     print(e);
 });
 ```
 
-##### Future.whenComplete
+##### Future.whenComplet
 
-There are times when we encounter scenarios where we need to do something regardless of the success or failure of the asynchronous task execution, such as popping up the load dialog before the network request and closing it after the request is finished. The first one is to close the dialog in `then` or `catch` respectively, and the second one is to use `whenComplete` callback of `Future`, we will change the above example as follows
+Il y a des moments où nous rencontrons des scénarios où nous devons faire quelque chose indépendamment du succès ou de l'échec de l'exécution de la tâche asynchrone, comme faire apparaître la boîte de dialogue de chargement avant la demande réseau et la fermer une fois la demande terminée. Le premier est de fermer la boîte de dialogue en `puis` ou `catch` respectivement, et le second est d'utiliser `whenComplete` callback of `Future`, nous allons changer l'exemple ci-dessus comme suit
 
 ```dart
 Future.delayed(new Duration(seconds: 2),(){
    //return "hi world!";
    throw AssertionError("Error");
 }).then((data){
-   // execution success will go here 
+   // le succès de l'exécution sera allez ici 
    print(data);
 }).catchError((e){
-   //Failed execution goes here   
+   //Échec de l'exécution va ici   
    print(e);
 }).whenComplete((){
-   //will go here whether it succeeds or fails
+   //ira ici s'il réussit ou échoue
 });
 ```
 
 ##### Future.wait
 
-There are times when we need to wait for multiple asynchronous tasks to finish executing before performing some operations, for example, we have an interface that needs to fetch data from two web interfaces separately first, and after the successful fetching, we need to perform specific processing on the two interface data before displaying it on the UI interface, how should we do that? The answer is `Future.wait`, which accepts an array of `Future` parameters, only after all `Future` in the array are executed successfully, the success callback of `then` will be triggered, as long as there is a `Future` execution failure, the error callback will be triggered. In the following, we simulate two asynchronous tasks of data fetching by simulating ``Future.delayed``, and when both asynchronous tasks are executed successfully, the results of the two asynchronous tasks are stitched together and printed out, with the following code.
+Il y a des moments où nous devons attendre la fin de l'exécution de plusieurs tâches asynchrones avant d'effectuer certaines opérations, par exemple, nous avons une interface qui doit d'abord récupérer les données de deux interfaces Web séparément, et après la récupération réussie, nous devons effectuer des opérations spécifiques traitement sur les deux données d'interface avant de les afficher sur l'interface utilisateur, comment devrions-nous faire cela ? La réponse est `Future.wait`, qui accepte un tableau de `paramètres Future` , seulement après que les `Future` du tableau sont exécutés avec succès, le rappel de succès de `puis` sera déclenché, tant qu'il y a un `Échec d'exécution du futur` , le rappel d'erreur sera déclenché. Dans ce qui suit, nous simulons deux tâches asynchrones de récupération de données en simulant `Future.delayed`, et lorsque les deux tâches asynchrones sont exécutées avec succès, les résultats des deux tâches asynchrones sont assemblés et imprimés, avec le code suivant.
 
 ```dart
 Future.wait([
-  // return the result after 2 seconds  
+  // renvoie le résultat après 2 secondes  
   Future.delayed(new Duration(seconds: 2), () {
     return "hello";
   }),
-  // return the result after 4 seconds  
+  // renvoie le résultat après 4 secondes  
   Future.delayed(new Duration(seconds: 4), () {
     return " world";
   })
 ]).then((results){
   print(results[0]+results[1]);
-}).catchError((e){
+}).catchError( (e){
   print(e);
 });
 ```
 
-Execute the above code and you will see "hello world" in the console after 4 seconds.
+Exécutez le code ci-dessus et vous verrez "hello world" dans la console après 4 secondes.
 
-#### Async/await
+#### Asynchrone/attendre
 
-The function and usage of `async/await` in Dart and `async/await` in JavaScript are exactly the same, so if you already know the usage of `async/await` in JavaScript, you can just skip this section.
+La fonction et l'utilisation de `async/wait` dans Dart et `async/wait` dans JavaScript sont exactement les mêmes, donc si vous connaissez déjà l'utilisation de `async/wait` dans JavaScript, vous pouvez simplement ignorer cette section.
 
-##### Callback Hell
+##### L'enfer des rappels
 
-If there is a lot of asynchronous logic in the code, and if there are a lot of asynchronous tasks that depend on the results of other asynchronous tasks, there is bound to be a callback situation in the `Future.then` callback. For example, let's say there is a requirement scenario where the user logs in first, and then gets the user ID after successful login, and then requests the user's personal information through the user ID, and after getting the user's personal information, we need to cache it in the local file system for ease of use, with the following code.
+S'il y a beaucoup de logique asynchrone dans le code, et s'il y a beaucoup de tâches asynchrones qui dépendent des résultats d'autres tâches asynchrones, il y a forcément une situation de rappel dans le rappel `Future.then`. Par exemple, supposons qu'il existe un scénario d'exigence où l'utilisateur se connecte d'abord, puis obtient l'ID utilisateur après une connexion réussie, puis demande les informations personnelles de l'utilisateur via l'ID utilisateur, et après avoir obtenu les informations personnelles de l'utilisateur, nous devons cachez-le dans le système de fichiers local pour en faciliter l'utilisation, avec le code suivant.
 
 ```dart
-// First define each asynchronous task separately
+// Définissez d'abord chaque tâche asynchrone séparément
 Future<String> login(String userName, String pwd){
-    ...
-    //user login
-};
-Future<String> getUserInfo(String id){
-    ...
-    //get user information 
-};
+...
+    //connexion utilisateur
+} ;
+Futur<String> getUserInfo(String id){
+...
+    //obtenir les informations utilisateur 
+} ;
 Future saveUserInfo(String userInfo){
-    ...
-    // Save user information 
-}; 
+...
+    // Enregistrer les informations utilisateur 
+} ; 
 ```
 
-Next, execute the entire task flow.
+Ensuite, exécutez l'intégralité du flux de tâches.
 
 ```dart
 login("alice", "******").then((id){
- //get user information by, id after successful login    
+ //obtenir les informations de l'utilisateur par, id après une connexion réussie    
  getUserInfo(id).then((userInfo){
-    //Get the user information and save it 
+    //Obtenir les informations de l'utilisateur et enregistrez-les 
     saveUserInfo(userInfo).then((){
-       //Save the user information and perform other operations next
-        ...
+       //Enregistrer les informations de l'utilisateur et effectuer d'autres opérations next
+...
     });
   });
 })
 ```
 
-If there are a lot of asynchronous dependencies in the business logic, there will be a callback inside the callback, too much nesting will lead to a decrease in readability and error rate, and it is very difficult to maintain, this problem is imaginatively called **Callback Hell**. The callback hell problem was very prominent in JavaScript before, and was the most trolled point of JavaScript, but with the release of the ECMAScript6 and ECMAScript7 standards, this problem has been very well solved, and the two magic tools to solve the callback hell are the introduction of `Promise` in ECMAScript6, and the introduction of `Promise` in ECMAScript7. and the introduction of `async/await` in ECMAScript7. In Dart, the two are almost completely panned in JavaScript: `Future` is equivalent to `Promise`, and `async/await` doesn't even change its name. Next, let's see how we can eliminate the nesting problem in the above example by using `Future` and `async/await`.
+S'il y a beaucoup de dépendances asynchrones dans la logique métier, il y aura un rappel à l'intérieur du rappel, trop d'imbrication entraînera une diminution de la lisibilité et du taux d'erreur, et il est très difficile à maintenir, ce problème est appelé imaginativement **Callback Hell**. Le problème de l'enfer du rappel était très important dans JavaScript auparavant, et était le point le plus contrôlé de JavaScript, mais avec la publication des normes ECMAScript6 et ECMAScript7, ce problème a été très bien résolu, et les deux outils magiques pour résoudre l'enfer du rappel sont l'introduction de `Promise` dans ECMAScript6 et l'introduction de `Promise` dans ECMAScript7. et l'introduction de `async/wait` dans ECMAScript7. Dans Dart, les deux sont presque complètement paniqués en JavaScript : `Future` équivaut à `Promise`, et `async/wait` ne change même pas de nom. Voyons ensuite comment nous pouvons éliminer le problème d'imbrication dans l'exemple ci-dessus en utilisant `Future` et `async/wait`.
 
-##### Eliminating Callback Hell with Future
+##### Éliminer l'enfer des rappels avec Future
 
 ```dart
 login("alice", "******").then((id){
    return getUserInfo(id);
 }).then((userInfo){
     return saveUserInfo(userInfo);
-}).then((e){
-   //execute the next action 
+}). then((e){
+   //exécute l'action suivante 
 }).catchError((e){
-  // error handling  
+  // gestion des erreurs  
   print(e);
 });
 ```
 
-As mentioned above, *"the return value of all the APIs of `Future` is still a `Future` object, so it's easy to chain calls "* , if a `Future` is returned in then, the `future` will execute, and the end of execution will trigger the The `then` callback will be triggered after the execution, so that the nesting of layers is avoided by sequentially going down.
+Comme mentionné ci-dessus, *"la valeur de retour de toutes les API de `Future` est toujours un objet `Future` , il est donc facile d'enchaîner les appels "* , si un `Future` est renvoyé dans alors, le `futur` s'exécutera , et la fin de l'exécution déclenchera le Le callback `puis` sera déclenché après l'exécution, de sorte que l'imbrication des couches est évitée en descendant séquentiellement.
 
-#### Eliminate callback hell with async/await
+#### Éliminer l'enfer des rappels avec async/wait
 
-Is there a way to execute asynchronous tasks as we write synchronous code without using callbacks? The answer is yes, this is to use `async/await`, the following we look directly at the code first, and then explain, the code is as follows.
+Existe-t-il un moyen d'exécuter des tâches asynchrones pendant que nous écrivons du code synchrone sans utiliser de rappels ? La réponse est oui, il s'agit d'utiliser `async/wait`, ce qui suit nous regardons directement le code d'abord, puis expliquons, le code est le suivant.
 
 ```dart
-task() async {
-   try{
-    String id = await login("alice", "******");
-    String userInfo = await getUserInfo(id);
-    await saveUserInfo(userInfo);
-    //execute the next action   
+tâche() asynchrone {
+   essayer{
+    ID de chaîne = attendre login("alice", "******");
+    Chaîne userInfo = attendre getUserInfo(id);
+    attendre saveUserInfo(userInfo);
+    //exécute l'action suivante   
    } catch(e){
-    // error handling   
+    // gestion des erreurs   
     print(e);   
    }  
 }
 ```
 
-- `async` is used to indicate that the function is asynchronous, and the defined function returns a `Future` object, which can be used to add a callback function using the then method.
-- `await` is followed by a `Future`, which indicates that it waits for that asynchronous task to complete, and will only go down when the asynchrony is complete; `await` must appear inside the `async` function.
+- `async` est utilisé pour indiquer que la fonction est asynchrone, et la fonction définie renvoie un objet `Future` , qui peut être utilisé pour ajouter une fonction de rappel à l'aide de la méthode then.
+- `await` est suivi d'un `Future`, qui indique qu'il attend que cette tâche asynchrone se termine et ne s'arrêtera que lorsque l'asynchronie sera terminée ; `wait` doit apparaître dans la fonction `async`.
 
-As you can see, we have represented an asynchronous stream in synchronous code by `async/await`.
+Comme vous pouvez le voir, nous avons représenté un flux asynchrone en code synchrone par `async/wait`.
 
-> In fact, in both JavaScript and Dart, `async/await` is just syntactic sugar that the compiler or interpreter will eventually translate into a chain of calls to a Promise (Future).
+> En fait, dans JavaScript et Dart, `async/wait` n'est qu'un sucre syntaxique que le compilateur ou l'interpréteur traduira éventuellement en une chaîne d'appels à une Promise (Future).
 
-### Stream
+### Flux
 
-`Stream` is also used to receive asynchronous event data, unlike `Future`, it can receive the result of multiple asynchronous operations (success or failure). That is, when executing an asynchronous task, the result data or error exceptions can be passed by triggering the success or failure event multiple times. `Stream` is often used in asynchronous task scenarios where data is read multiple times, such as downloading network content, reading and writing files, etc. As an example.
+`Stream` est également utilisé pour recevoir des données d'événements asynchrones, contrairement à `Future`, il peut recevoir le résultat de plusieurs opérations asynchrones (succès ou échec). Autrement dit, lors de l'exécution d'une tâche asynchrone, les données de résultat ou les exceptions d'erreur peuvent être transmises en déclenchant plusieurs fois l'événement de réussite ou d'échec. `Le flux` est souvent utilisé dans des scénarios de tâches asynchrones où les données sont lues plusieurs fois, telles que le téléchargement de contenu réseau, la lecture et l'écriture de fichiers, etc. Par exemple.
 
 ```dart
 Stream.fromFutures([
-  // return the result after 1 second
+  // retourne le résultat après 1 seconde
   Future.delayed(new Duration(seconds: 1), () {
     return "hello 1";
   }),
-  // Throw an exception
-  Future.delayed(new Duration(seconds: 2), () {
+  // Lance une exception
+  Future. delay(new Duration(seconds: 2), () {
     throw AssertionError("Error");
   }),
-  // return result after 3 seconds
+  // renvoie le résultat après 3 secondes
   Future.delayed(new Duration(seconds: 3), () {
-    return "hello 3";
+    return "hello 3" ;
   })
 ]).listen((data){
    print(data);
-}, onError: (e){
+}, onError : (e){
    print(e.message);
-},onDone: (){
+},onDone : () {
 
 });
 ```
 
-The above code will output in turn.
+Le code ci-dessus sortira à son tour.
 
 ```dart
-I/flutter (17666): hello 1
-I/flutter (17666): Error
-I/flutter (17666): hello 3
+I/flottement (17666) : bonjour 1
+I/flottement (17666) : erreur
+I/flottement (17666) : bonjour 3
 ```
 
-### Inheritance (extends)
+### Héritage (étend)
 
-The inheritance rules in dart.
+Les règles d'héritage dans Dart.
 
-- Subclasses use the extends keyword to inherit from the parent class
-- Subclasses inherit the properties and methods visible in the parent class, but not the constructor.
-- subclasses can override the parent's methods getter and setter
-- subclasses override superclass methods with @override
-- subclasses call superclass methods with super
-- Subclasses can inherit non-private variables from the parent class
+- Les sous-classes utilisent le mot clé extend pour hériter de la classe parent
+- Les sous-classes héritent des propriétés et des méthodes visibles dans la classe parent, mais pas du constructeur.
+- les sous-classes peuvent remplacer les méthodes getter et setter du parent
+- les sous-classes remplacent les méthodes de la superclasse avec @override
+- les sous-classes appellent des méthodes de superclasse avec super
+- Les sous-classes peuvent hériter des variables non privées de la classe parent
 
-### mixins (with)
+### mélanges (avec)
 
-The Chinese word for mixins means to mix in, which means to mix in other functions in the class. In Dart, mixins can be used to achieve similar functionality as multiple inheritance because the conditions for using mixins have been changing with the Dart version, here are the conditions for using mixins in Dart 2.x.
+Le mot chinois pour mixins signifie mélanger, ce qui signifie mélanger d'autres fonctions de la classe. Dans Dart, les mixins peuvent être utilisés pour obtenir des fonctionnalités similaires à l'héritage multiple car les conditions d'utilisation des mixins ont changé avec la version Dart, voici les conditions d'utilisation des mixins dans Dart 2.x.
 
-- (1) as mixins class can only inherit from Object, can not inherit from other classes
-- (2) the class as mixins can not have a constructor
-- (3) a class can mixins more than one mixins class
-- (4) mixins is never inheritance, nor is it an interface, but is a completely new feature Look at the specific code.
+- (1) comme la classe mixins ne peut hériter que de l'objet, ne peut pas hériter des autres classes
+- (2) la classe en tant que mixins ne peut pas avoir de constructeur
+- (3) une classe peut mélanger plus d'une classe de mixins
+- (4) mixins n'est jamais un héritage, ni une interface, mais une toute nouvelle fonctionnalité Regardez le code spécifique.
 
-### interface implementation(implementations)
+### implémentation d'interface(implémentations)
 
-  Flutter does not have interfaces, but each class in Flutter is an implicit interface that contains all the member variables and defined methods of the class. If you have a class A, and you want class B to have the API of A, but you don't want to have the implementation of A, then you should treat A as an interface, and class B implements class A.
-  So in Flutter: class is interface
+  Flutter n'a pas d'interfaces, mais chaque classe de Flutter est une interface implicite qui contient toutes les variables membres et les méthodes définies de la classe. Si vous avez une classe A et que vous voulez que la classe B ait l'API de A, mais que vous ne voulez pas avoir l'implémentation de A, alors vous devez traiter A comme une interface, et la classe B implémente la classe A. Donc dans Flutter : la classe est l'interface
 
-- When a class is used as an interface, the methods in the class are the methods of the interface and need to be reimplemented in the subclass, with @override in the subclass implementation.
-- When a class is used as an interface, the member variables in the class also need to be reimplemented in the subclass. Add @override in front of member variables
+- Lorsqu'une classe est utilisée comme interface, les méthodes de la classe sont les méthodes de l'interface et doivent être réimplémentées dans la sous-classe, avec @override dans l'implémentation de la sous-classe.
+- Lorsqu'une classe est utilisée comme interface, les variables membres de la classe doivent également être réimplémentées dans la sous-classe. Ajouter @override devant les variables membres

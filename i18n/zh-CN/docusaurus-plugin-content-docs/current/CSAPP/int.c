@@ -1,10 +1,10 @@
 
-#include <stdio.h>
-#include <malloc.h>
+#includes <stdio.h>
+#includes <malloc.h>
 
 int main()
 {
     int *p = malloc(32);
-    free(p);
-    return(0);
+    免费(p)；
+    返回 (0)；
 }

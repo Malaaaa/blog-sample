@@ -1,84 +1,84 @@
-# Flutter Route Management
+# Gestion des itinéraires flottants
 
-Route in mobile development usually refers to a Page, which is the same as the concept of Route in web development for single page applications. The route management in Flutter is similar to the native development, both Android and iOS, the navigation management will maintain a route stack, the route into the stack (push) operation corresponds to open a new page, the route out of the stack (pop) operation corresponds to the page close operation, and the route management is mainly refers to how to manage the route stack.
+L'itinéraire dans le développement mobile fait généralement référence à une page, ce qui est identique au concept d'itinéraire dans le développement Web pour les applications à page unique. La gestion des routes dans Flutter est similaire au développement natif, à la fois Android et iOS, la gestion de la navigation maintiendra une pile de routes, l'opération de route dans la pile (push) correspond à l'ouverture d'une nouvelle page, la route hors de la pile (pop ) correspond à l'opération de fermeture de page, et la gestion des itinéraires se réfère principalement à la façon de gérer la pile d'itinéraires.
 
-New routing is the same level as homepage, and is a new stateless component
+Le nouveau routage est au même niveau que la page d'accueil et est un nouveau composant sans état
 
 ```dart
-class NewRoute extends StatelessWidget 
+class NewRoute extend StatelessWidget 
 ``` The
 
-The Botton component calls the
+Le composant Botton appelle le
 
 ```dart
          onPressed: () {
-          // Navigate to the new route   
+          // Naviguer vers la nouvelle route   
           Navigator.push( context,
            MaterialPageRoute(builder: (context) {
               return NewRoute();
-           }));
+}));
 ```
 
-## MaterialPageRoute
+## MatérielPageRoute
 
-The `MaterialPageRoute` class inherits from the `PageRoute` class. The `PageRoute` class is an abstract class that represents a modal route page that occupies the entire screen space, and it also defines the interface and properties related to route construction and transition animations when switching. `MaterialPageRoute` is a component provided by the Material component library, which can achieve the same style of routing switching animation as the platform page switching animation for different platforms.
+La classe `MaterialPageRoute` hérite de la classe `PageRoute`. La classe `PageRoute` est une classe abstraite qui représente une page de route modale qui occupe tout l'espace de l'écran, et elle définit également l'interface et les propriétés liées à la construction de la route et aux animations de transition lors du basculement. `MaterialPageRoute` est un composant fourni par la bibliothèque de composants Material, qui peut obtenir le même style d'animation de changement de routage que l'animation de changement de page de plate-forme pour différentes plates-formes.
 
-- For Android, when opening a new page, the new page will slide from the bottom to the top of the screen; when closing a page, the current page will slide from the top to the bottom of the screen and disappear, while the previous page will be displayed on the screen.
-- For iOS, when opening a page, the new page will slide consistently from the right edge of the screen to the left side of the screen until the new page is all displayed on the screen, while the previous page will disappear by sliding from the current screen to the left side of the screen; when closing a page, it is just the opposite, the current page will slide out from the right side of the screen, while the previous page will slide in from the left side of the screen.
+- Pour Android, lors de l'ouverture d'une nouvelle page, la nouvelle page glissera du bas vers le haut de l'écran ; lors de la fermeture d'une page, la page en cours glissera du haut vers le bas de l'écran et disparaîtra, tandis que la page précédente s'affichera à l'écran.
+- Pour iOS, lors de l'ouverture d'une page, la nouvelle page glissera de manière cohérente du bord droit de l'écran vers le côté gauche de l'écran jusqu'à ce que la nouvelle page soit entièrement affichée à l'écran, tandis que la page précédente disparaîtra en glissant de la page actuelle. écran sur le côté gauche de l'écran ; lors de la fermeture d'une page, c'est tout le contraire, la page actuelle glissera du côté droit de l'écran, tandis que la page précédente glissera du côté gauche de l'écran.
 
-Here we introduce the meaning of each parameter of the ``MaterialPageRoute`` constructor.
+Nous introduisons ici la signification de chaque paramètre du constructeur `MaterialPageRoute`.
 
 ```dart
   MaterialPageRoute({
-    WidgetBuilder builder,
-    RouteSettings settings,
-    bool maintainState = true,
-    bool fullscreenDialog = false,
-  })
+    Générateur WidgetBuilder,
+    Paramètres RouteSettings,
+    booléen maintenatState = vrai,
+    booléen fullscreenDialog = faux,
+})
 ```
 
-- `builder` is a callback function of type WidgetBuilder, which is used to build the specifics of the route page, the return value is a widget. we usually have to implement this callback to return an instance of the new route.
-- `settings` contains the configuration information of the route, such as the route name, whether the initial route (home page).
-- `maintainState`: by default, when a new route is stacked, the original route is still stored in memory, if you want to release all the resources occupied by the route when it is not used, you can set `maintainState` to false.
-- `fullscreenDialog` indicates whether the new routing page is a full-screen modal dialog. In iOS, if `fullscreenDialog` is `true`, the new page will slide in from the bottom of the screen (instead of horizontally).
+- `builder` est une fonction callback de type WidgetBuilder, qui sert à construire les spécificités de la page de route, la valeur de retour est un widget. nous devons généralement implémenter ce rappel pour renvoyer une instance de la nouvelle route.
+- `paramètres` contient les informations de configuration de la route, telles que le nom de la route, si la route initiale (page d'accueil).
+- `sustainState`: par défaut, lorsqu'une nouvelle route est empilée, la route d'origine est toujours stockée en mémoire, si vous souhaitez libérer toutes les ressources occupées par la route lorsqu'elle n'est pas utilisée, vous pouvez définir `sustainState` sur false.
+- `fullscreenDialog` indique si la nouvelle page de routage est une boîte de dialogue modale plein écran. Dans iOS, si `fullscreenDialog` est `true`, la nouvelle page glissera depuis le bas de l'écran (au lieu d'être horizontale).
 
-> If you want to customize the routing switch animation, you can inherit PageRoute to implement it yourself, and we will implement a custom routing component later when we introduce the animation.
+> Si vous souhaitez personnaliser l'animation du commutateur de routage, vous pouvez hériter de PageRoute pour l'implémenter vous-même, et nous implémenterons un composant de routage personnalisé plus tard lorsque nous présenterons l'animation.
 
-## Navigator
+## Navigateur
 
-`Navigator` is a route management component that provides methods to open and exit route pages. `Navigator` manages a collection of active routes through a stack. Usually the page currently displayed on the screen is the route at the top of the stack. `Navigator` provides a series of methods to manage the routing stack, here we only describe its two most commonly used methods.
+`Navigator` est un composant de gestion d'itinéraire qui fournit des méthodes pour ouvrir et quitter les pages d'itinéraire. `Navigator` gère une collection de routes actives à travers une pile. Habituellement, la page actuellement affichée à l'écran est la route en haut de la pile. `Navigator` fournit une série de méthodes pour gérer la pile de routage, nous ne décrivons ici que ses deux méthodes les plus couramment utilisées.
 
-### Future push(BuildContext context, Route route)
+### Future push (contexte BuildContext, route route)
 
-The return value is a `Future` object that receives the return data when the new route leaves the stack (i.e. is closed).
+La valeur de retour est un objet `Future` qui reçoit les données de retour lorsque la nouvelle route quitte la pile (c'est-à-dire qu'elle est fermée).
 
-### bool pop(BuildContext context, [ result ])
+### bool pop (contexte BuildContext, [ résultat ])
 
-Route the top of the stack out of the stack, `result` is the data returned to the previous page when the page is closed.
+Acheminez le haut de la pile hors de la pile, `résultat` correspond aux données renvoyées à la page précédente lorsque la page est fermée.
 
-`Navigator` has many other methods, such as `Navigator.replace`, `Navigator.popUntil`, etc. Please refer to the API documentation or SDK source code comments for details, so we will not repeat them here. Here we also need to introduce another concept related to routing, "named routes".
+`Navigator` a de nombreuses autres méthodes, telles que `Navigator.replace`, `Navigator.popUntil`, etc. Veuillez vous référer à la documentation de l'API ou aux commentaires du code source du SDK pour plus de détails, nous ne les répéterons donc pas ici. Ici, nous devons également introduire un autre concept lié au routage, les "routes nommées".
 
-### Instance methods
+### Méthodes d'instance
 
-Navigator class **static methods** with context as the first parameter correspond to a Navigator **instance method**, for example `Navigator.push(BuildContext context, Route route)` is equivalent to `Navigator.of( context).push(Route route)` , and the following named route-related methods are the same.
+Les méthodes statiques de la classe Navigator **** avec le contexte comme premier paramètre correspondent à une méthode d'instance Navigator ****, par exemple `Navigator.push(BuildContext context, Route route)` équivaut à `Navigator.of( context).push(Route route )` , et les méthodes liées aux routes nommées suivantes sont les mêmes.
 
-## Route Passing
+## Dépassement d'itinéraire
 
-Very often, we need to take some parameters when routing jumps, for example, when opening the product details page, we need to take a product id, so that the product details page to know which product information to display; another example is that we need to select the delivery address when filling an order, after opening the address selection page and selecting the address, you can return the user-selected address to the order page and so on. The following is a simple example to demonstrate how to pass the old and new routes.
+Très souvent, nous devons prendre certains paramètres lors des sauts de routage, par exemple, lors de l'ouverture de la page de détails du produit, nous devons prendre un identifiant de produit, afin que la page de détails du produit sache quelles informations sur le produit afficher; un autre exemple est que nous devons sélectionner l'adresse de livraison lors du traitement d'une commande, après avoir ouvert la page de sélection d'adresse et sélectionné l'adresse, vous pouvez renvoyer l'adresse sélectionnée par l'utilisateur sur la page de commande, etc. Ce qui suit est un exemple simple pour montrer comment passer les anciens et les nouveaux itinéraires.
 
-### Example
+### Exemple
 
-We create a `TipRoute` route, which accepts a prompt text parameter and is responsible for displaying the text passed to it on the page, in addition to the `TipRoute` we add a "Back" button, which when clicked will take a return parameter while returning to the previous route, let's look at the implementation code.
+Nous créons un itinéraire `TipRoute` , qui accepte un paramètre de texte d'invite et se charge d'afficher le texte qui lui est transmis sur la page, en plus du `TipRoute` , nous ajoutons un bouton "Retour", qui, lorsqu'il est cliqué, prendra un retour tout en revenant à la route précédente, regardons le code d'implémentation.
 
-`TipRoute` implementation code.
+`Code d'implémentation TipRoute`.
 
 ```dart
-class TipRoute extends StatelessWidget {
+class TipRoute étend StatelessWidget {
   TipRoute({
     Key key,
-    @required this.text, // receive a text parameter
+    @required this.text, // reçoit un paramètre de texte
   }) : super(key: key);
-  final String text;
+  texte de chaîne final ;
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +88,13 @@ class TipRoute extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(18),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(text),
+        child : Center(
+          enfant : Colonne(
+            enfants : <Widget>[
+              Texte(texte),
               RaisedButton(
-                onPressed: () => Navigator.pop(context, "I am the return value"),
-                child: Text("return"),
+                onPressed : () => Navigator.pop(contexte, "Je suis la valeur de retour"),
+                enfant : Texte(" retour"),
               )
             ],
           ),
@@ -105,17 +105,17 @@ class TipRoute extends StatelessWidget {
 }
 ```
 
-Here is the code to open the new routing ``TipRoute``.
+Voici le code pour ouvrir le nouveau routage `TipRoute`.
 
 ```dart
-class RouterTestRoute extends StatelessWidget {
+class RouterTestRoute extend StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: RaisedButton(
         onPressed: () async {
-          // Open `TipRoute` and wait for the return result
-          var result = await Navigator.push(
+          // Ouvrir `TipRoute` et attendre le résultat de retour
+          var result = attendre Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) {
@@ -126,7 +126,7 @@ class RouterTestRoute extends StatelessWidget {
               },
             ),
           );
-          //output `TipRoute` route return result
+          / /output `TipRoute` route return result
           print("Route return value: $result");
         },
         child: Text("Open prompt page"),
@@ -136,22 +136,22 @@ class RouterTestRoute extends StatelessWidget {
 }
 ```
 
-Run the above code and click the "Open Tip Page" button on the `RouterTestRoute` page, which will open the `TipRoute` page and run as shown in Figure 2-4 below.
+Exécutez le code ci-dessus et cliquez sur le bouton "Open Tip Page" sur la page `RouterTestRoute` , ce qui ouvrira la page `TipRoute` et s'exécutera comme illustré à la Figure 2-4 ci-dessous.
 
-! [Figure 2-4](https://pcdn.flutterchina.club/imgs/2-4.png)
+! [Illustration 2-4](https://pcdn.flutterchina.club/imgs/2-4.png)
 
-Note: 1.
+Note 1.
 
-1. the prompt text "I am prompting xxxx" is passed to the new routing page via the `text` parameter of `TipRoute`. We can wait for the `Future` returned by `Navigator.push(...)` to get the return data of the new route. 2.
+1. le texte d'invite "Je demande xxxx" est transmis à la nouvelle page de routage via le paramètre `texte` de `TipRoute`. On peut attendre le `Future` renvoyé par `Navigator.push(...)` pour obtenir les données de retour de la nouvelle route. 2.
 
-2. In the `TipRoute` page, there are two ways to go back to the previous page; the first way is to click the back arrow in the navigation bar directly, and the second way is to click the "Back" button in the page. The difference between these two return methods is that the former does not return data to the previous route, while the latter does. The following is the output of the `print` method in the `RouterTestRoute` page on the console after clicking the back button and the navigation bar return arrow respectively.
+2. Dans la page `TipRoute` , il y a deux manières de revenir à la page précédente ; la première consiste à cliquer directement sur la flèche de retour dans la barre de navigation, et la seconde consiste à cliquer sur le bouton "Retour" dans la page. La différence entre ces deux méthodes de retour est que la première ne renvoie pas de données à la route précédente, tandis que la seconde le fait. Voici la sortie de la méthode `print` dans la page `RouterTestRoute` de la console après avoir cliqué respectivement sur le bouton de retour et la flèche de retour de la barre de navigation.
 
    ```
-   I/flutter (27896): route return value: I am the return value
-   I/flutter (27896): route return value: null
+   I/flutter (27896) : valeur de retour de la route : je suis la valeur de retour
+   I/flutter (27896) : valeur de retour de la route : null
    ```
 
-The above describes the way to pass values for non-named routes. The way to pass values for named routes will be different, and we will cover it when we introduce named routes below.
+Ce qui précède décrit la manière de transmettre des valeurs pour des routes non nommées. La façon de transmettre des valeurs pour les routes nommées sera différente, et nous la couvrirons lorsque nous présenterons les routes nommées ci-dessous.
 
-## Named routes
+## Itinéraires nommés
  

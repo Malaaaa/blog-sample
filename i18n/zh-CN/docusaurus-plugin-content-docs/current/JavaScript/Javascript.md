@@ -1,11 +1,11 @@
-# Useful Javascript exmaple
+# 有用的 Javascript Exmaple
 
 ```Javascript
-export const files = [...document.querySelectorAll(".formfile")];
+导出 const 文件 = [...document.querySelectorAll(".formfile")];
 
-files.forEach((item)=>{
-item.style.display = "none";
+files.forEach(item)=>
+item.style. isplay = "none";
 });
 
-const failureItems = arr.map(item => `<li class="text-warning">${item}</li>`);  //iterator 
+const failureitems = arr.map(项目=> `<li class="text-warning">${item}</li>`); //迭代器 
 ```

@@ -1,105 +1,104 @@
-## Flutter code structure
+## 流体代码结构
 
-## Basic framework
+## 基本框架
 
-1. Import packages.
+1. 导入包。
 
    ```dart
-   import 'package:flutter/material.dart';
+   导入 'package:flutter/material.dart';
    ```
 
-   This line of code acts as an import of the Material UI component library. [Material](https://material.io/guidelines) is a standard visual design language for mobile and web, and Flutter provides a rich set of Material style UI components by default. 2.
+   这行代码可以导入材质界面组件库。 [Material](https://material.io/guidelines) 是移动和网络的标准视觉设计语言， Flutter默认提供一组丰富的材料样式界面组件。 2.
 
-2. application portal.
+2. 应用程序门户。
 
    ```dart
    void main() => runApp(MyApp());
    ```
 
-    - Similar to C/C++, Java, ``main`` function in Flutter application is the entry point of the application. The `main` function calls the `runApp` method, whose function is to start the Flutter application. `runApp` takes a `Widget` parameter, which in this case is a `MyApp` object, and `MyApp()` is the root component of the Flutter application.
-    - The `main` function uses the (`=>`) notation, which is shorthand for a one-line function or method in Dart.
+    - 类似于C/C++, Java, `Flutter 应用程序中的主` 函数是应用程序的切入点。 `主` 函数调用 `运行应用程序` 方法，其函数是启动Flutter 应用程序。 `运行App` 需要一个 `小部件` 参数，在这种情况下是一个 `MyApp` 对象， 和 `MyApp()` 是 Flutter 应用程序的根组件。
+    - `个主要的` 函数使用 (`=>`) 符号，它是一个单行函数或在 Dart 中的方法的短语。
 
-3. Application structure.
+3. 应用程序结构。
 
    ```dart
-   class MyApp extends StatelessWidget {
-     @override
-     Widget build(BuildContext context) {
+   class MyApp extensive StatelessWidget }
+     @overript
+     Widget build(BuildContext context) }
        return new MaterialApp(
          //application name  
          title: 'Flutter Demo', 
-         theme: new ThemeData(
-           //blue theme  
-           primarySwatch: Colors.blue,
+         主题: 新主题(
+           /蓝色主题  
+           主主题: 颜色 lue,
          ),
-         //application home page route  
+         //apply home page route  
          home: new MyHomePage(title: 'Flutter Demo Home Page'),
-       );
+       ;
      }
-   }
+}
    ```
 
-    - The `MyApp` class represents a Flutter application that inherits from the `StatelessWidget` class, which means that the application itself is also a widget.
+    - `MyApp` 类代表了继承 `无国籍小部件` 类的流体应用程序， 这意味着应用程序本身也是一个小部件。
 
-    - In Flutter, most things are widgets (later "components" or "widgets"), including alignment, padding, layout, etc., which are all are provided in the form of widgets.
+    - 在污染物中，大多数东西都是小部件(后来是“组件”或“小部件”)，包括对齐、填充、布局等，这些都是以小部件的形式提供的。
 
-    - Flutter calls the `build` method of a component when building a page. The main job of a widget is to provide a build() method to describe how to build the UI interface (usually by combining and assembling other base widgets).
+    - 构建页面时，Flutter调用组件的 `构建` 种方法。 小部件的主要任务是提供一个 build() 方法来描述如何构建界面(通常通过合并和组装其他基本部件)。
 
-    - `MaterialApp` is the Flutter APP framework provided in the Material library, through which you can set the name, theme, language, home page and routing list of the application. `MaterialApp` is also a widget.
+    - `MaterialApp` 是材料库中提供的 Flutter APP 框架。 您可以通过它来设置应用程序的名称、主题、语言、主页和路由列表。 `MaterialApp` 也是一个小部件。
 
-    - `home` is the home page of the Flutter app, it is also a widget.
+    - `首页` 是Flutter 应用程序的主页，它也是一个小部件。
 
-## Home page component
+## 主页组件
 
    ```dart
-   class MyHomePage extends StatefulWidget {
+   class MyHomePage extends StatefulWidget }
      MyHomePage({Key key, this.title}) : super(key: key);
-     final String title;
+     最终字符串标题；
      @override
      _MyHomePageState createState() => new _MyHomePageState();
    }
-   
-   class _MyHomePageState extends State<MyHomePage> {
+
+   class _MyHomePageState扩展状态<MyHomePage> {
    }
    ```
 
-`MyHomePage` is the home page of the Flutter application, it inherits from the `StatefulWidget` class, which means it is a **stateful widget** (a stateful component). For now, let's just briefly consider that a stateful widget is different from a stateless widget in two ways.
+`MyHomePage` 是Flutter 应用程序的主页，它继承了 `Statulfulget` 类， 这意味着它是一个 **状态小部件** (状态组件)。 现在，让我们简单地考虑一下一个有名无实的小部件在两个方面不同于一个无国籍的小部件。
 
-1. Stateful widgets can have states that are mutable during the widget lifecycle, while Stateless widgets are immutable.
+1. 状态小部件可以有在小部件生命周期内可变的状态，而无状态小部件则不可变的。
 
-2. Stateful widget consists of at least two classes.
-    - A `StatefulWidget` class.
-    - A `State` class; the `StatefulWidget` class itself is immutable, but the state held in the `State` class may change during the widget's lifecycle.
+2. 状态小部件由至少两个类组成。
+    - `StatefulWidget` 类。
+    - `状态` 类； `StatelfulWidget` 类本身是不可变的， 但是在 `状态` 类中的状态可能会在小部件生命周期中改变。
 
-   The `_MyHomePageState` class is the state class corresponding to the `MyHomePage` class. Here, the reader may have noticed: Unlike the `MyApp` class, there is no `build` method in the `MyHomePage` class, instead, the `build` method has been moved to the `_MyHomePageState` method.
+   `_MyHomePageState` 类是对应 `MyHomePage` 类的状态类。 这里的读者可能已经收到通知：与 `MyApp` 类不同， 没有 `构建` 方法在 `MyHomePage` 类 相反， `build` 方法已被移动到 `_MyHomePageState` 方法中。
 
-### State class
+### 国家类
 
-Next, let's see what is contained in `_MyHomePageState`.
+接下来，让我们看看 `_MyHomePageState` 中包含的内容。
 
-1. the state of the component. Since we only need to maintain a click counter, define a ``_counter`` state.
+1. 组件的状态。 既然我们只需要保持点击计数器，定义 `_计数器` 状态。
 
-   ``dart
-   int _counter = 0; // used to record the total number of button clicks
+   ``dart int _count = 0; // 用于记录按钮点击总数
    ```
 
-   `_counter` is the state that holds the number of button clicks with a "+" sign in the bottom right corner of the screen.
+   `_计数器`是指在屏幕右下角持有带“+”符号按钮点击次数的状态。
 
-2. Set the self-increment function for the status.
+2. 设置状态自增函数。
 
    ```dart
    void _incrementCounter() {
      setState(() {
         _counter++;
      });
-   }
+}
    ```
 
-   This function is called when the button is clicked. The function works by first self-incrementing `_counter` and then calling the `setState` method. The purpose of the `setState` method is to notify the Flutter framework that a state has changed. When the Flutter framework receives the notification, it will execute the `build` method to rebuild the interface based on the new state. so you can rebuild anything that needs to be updated without having to modify individual widgets.
+   按下按钮时调用此函数。 此函数首先通过自我递增 `_count` 然后调用 `设置状态` 方法。 `settate` 方法的目的是通知流体框架一个状态已经改变。 当Flutter框架收到通知时，它将执行 `build` 方法来重建基于新状态的接口。 这样你就可以重建任何需要更新的东西，而不必修改个别的部件。
 
-3. Build UI interface
+3. 构建界面界面
 
-   The logic for building the UI interface is in the `build` method. When `MyHomePage` is created for the first time, the `_MyHomePageState` class will be created, and when the initialization is complete, the Flutter framework will call the `build` method of the widget to build the widget tree, and finally render the widget tree to the device screen . So, let's see what is done in the `build` method of `_MyHomePageState`.
+   构建界面的逻辑在 `构建` 方法中。 当 `MyHomePage` 首次创建时 `_MyHomePageState` 类将被创建，初始化完成时， 流体框架将调用 `构建小部件的` 方法来构建小部件树， 最后将小部件树渲染到设备屏幕。 因此，让我们来看看在 `构建` 方法 `_MyHomePageState` 中做了什么。
 
    ```dart
      Widget build(BuildContext context) {
@@ -109,10 +108,10 @@ Next, let's see what is contained in `_MyHomePageState`.
          ),
          body: new Center(
            child: new Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
+             mainAxisAlignment: MainAxisAlignment.center ,
+             孩子: <Widget>[
                new Text(
-                 'You have pushed the button this many times:',
+                 '你已经多次按下按钮:',
                ),
                new Text(
                  '$_counter',
@@ -127,51 +126,51 @@ Next, let's see what is contained in `_MyHomePageState`.
            child: new Icon(Icons.add),
          ),
        );
-     }
+}
    ```
 
-    - `Scaffold` is a page scaffold provided in the Material library that provides a default navigation bar, a header, and a `body` property containing the main screen widget tree (later referred to as the "component tree" or "widget tree"). Component trees can be very complex. In the examples later in this book, routes are created via `Scaffold` by default.
-    - The component tree of `body` contains a `Center` component, and `Center` can align its child component trees to the center of the screen. In this case, the `Center` subcomponent is a `Column` component, and the role of `Column` is to align all its subcomponents vertically along the screen; in this case, the `Column` subcomponent is two `Text`s, and the first `Text` displays the fixed text "You have pushed the button this many times:", and the second `Text` displays the value of the `_counter` state.
-    - The `floatingActionButton` is the hover button with `+` in the bottom right corner of the page, its `onPressed` property accepts a callback function that represents its handler when it is clicked, in this case the `_incrementCounter` method is directly used as its handler function.
+    - `Scaffold` 是材料库中提供的一个页面scaffold ，它提供了一个默认的导航栏，一个标题， 和 `正文` 包含主屏幕小部件树的属性 (后来称为“组件树”或“小部件树”)。 组件树可能非常复杂。 在这本书稍后的示例中，默认情况下通过 `Scaffold` 创建路线。
+    - `正文的组件树` 包含一个 `中心` 组件。 和 `中心` 可以将其子组件树与屏幕中心对齐。 在这种情况下， `Center` 子组件是一个 `列` 组件. 和 `列的角色` 是沿屏幕垂直对齐其所有子组件； 在这种情况下， `列` 子组件是两个 `文本`s, 和第一个 `文本` 显示固定文本“您已经多次按下按钮：”， 和第二个 `文本` 显示 `_计数器` 状态。
+    - `浮动动动作按钮` 是页面右下角的 `+` 悬停按钮， its `onPressed` property 接受一个代表其处理程序的回调函数, 在这种情况下， `_增量计数器` 方法被直接用作处理函数。
 
-Now, let's string together the entire counter execution flow: when the `floatingActionButton` button in the bottom-right corner is clicked, the `_incrementCounter` method is called. In the `_incrementCounter` method, first the `_counter` counter (state) will be self-incremented, then `setState` will notify the Flutter framework that the state has changed, then the Flutter framework will call the `build` method to rebuild the UI with the new state and finally display it on the device screen.
+现在，让我们把整个计数器执行流程合并在一起：点击右下角的 `浮动动动作按钮` 按钮， `_增量计数器` 方法已调用。 在 `_增量计数器` 方法中，首先是 `_计数器` 计数器(state) 将是自增量的， 然后 `setState` 会通知流体框架状态已经改变。 然后Flutter框架将调用 `构建` 方法用新状态重建界面并最终在设备屏幕上显示。
 
-#### Why put the build method in State and not in StatefulWidget?
+#### 为什么要将构建方法放在国家而不是StatefulWidget？
 
-Now, let's answer the question raised earlier, why is the `build()` method placed in State (instead of `StatefulWidget`) ? This is mainly to increase the flexibility of development. If the `build()` method is placed in the `StatefulWidget` there are two problems.
+现在，让我们回答早些时候提出的问题，为什么 `build()` 方法被放置在状态 (而不是 `StatefulWidget`)？ 这主要是为了增加发展的灵活性。 如果 `build()` 方法被放置在 `StatefulWidget` 有两个问题。
 
-- Inconvenient state access
+- 不方便的状态访问
 
-  Imagine if our `StatefulWidget` has many states, and each time the state changes, we have to call the `build` method, since the state is stored in State, if the `build` method is in `StatefulWidget`, then the `build` method and the state are in two separate classes, so it will be very inconvenient to read the state when building! would be very inconvenient! Imagine if you actually put the `build` method in a StatefulWidget, since the process of building the UI depends on the State, the `build` method would have to have a `State` parameter, something like the following.
+  想象一下，如果我们的 `StatefulWidget` 有很多状态，每次状态变化，我们都要调用 `build` 方法，因为状态存储在 State 中，如果 `build` 方法在 `StatefulWidget`中，那么 `build` 方法和状态在两个独立的类中，所以在构建的时候读取状态会很不方便！ 可能很不方便！ 假如您确实将 `构建` 方法放入StatefulWidget， 因为建立UI的过程取决于国家， `构建` 方法必须有一个 `状态` 参数，类似于下文。
 
   ```dart
-    Widget build(BuildContext context, State state){
-        //state.counter
-        ...
+    小部件构建(BuildContext context, State state)}
+        //state.count
+...
     }
   ```
 
-  In this case, you can only declare all the state of the State as public, so that you can access the state outside the State class! However, by making the state public, the state will no longer be private, which means that modifications to the state will become uncontrollable. But if you put the `build()` method in the State, the build process not only has direct access to the state, but also does not need to expose the private state, which is very convenient.
+  在这种情况下，你只能宣布国家的所有状态为公开状态。 这样你就可以访问国家课外的状态！ 然而，如果国家公开，国家将不再是私人的，这意味着国家的修改将无法控制。 但如果你将 `build()` 方法放入国家，构建过程不仅可以直接访问州。 但也不需要揭露非常方便的私人状态。
 
-- Inheriting `StatefulWidget` is inconvenient
+- Inheriting `StatefulFidget` 不方便。
 
-  For example, Flutter has a base class `AnimatedWidget` for animated widgets, which inherits from the `StatefulWidget` class. An abstract method `build(BuildContext context)` is introduced in `AnimatedWidget`, and all animated widgets that inherit from `AnimatedWidget` have to implement this `build` method. Now imagine that if the `StatefulWidget` class already has a `build` method, as described above, the `build` method needs to receive a state object, which means that the `AnimatedWidget` has to pass its own State object (noted as _ animatedWidgetState) to its child class, because the child class needs to call the parent class's `build` method in its `build` method, and the code might look like this.
+  例如，Flutter 对动画小部件有一个基本类 `动画小部件` ，继承自 `StatulfulfWidget` 小类。 摘要方法 `build(BuildContext 上下文)` 被介绍在 `动画小部件`中， 和所有继承自 `动画小部件的动画小部件` 必须实现此 `构建` 方法。 现在想象如果 `Statulfulfulget` 类已经有一个 `building` 方法， 如上所述， `build` 方法需要接收一个状态对象， 这意味着 `动画小部件` 必须将自己的状态对象 (注意为 _ 动画小部件) 转到子类， 因为子类需要调用父类的 `编译` 方法在其 `编译` 方法， 和代码可能看起来是这样的。
 
   ```dart
-  class MyAnimationWidget extends AnimatedWidget{
-      @override
-      Widget build(BuildContext context, State state){
-        //since the subclass is going to use the AnimatedWidget's state object _animatedWidgetState.
-        //so the AnimatedWidget must somehow expose its state object _animatedWidgetState
-        // Expose it to its subclasses   
+  class MyAnimationWidget exts AnimatedWidget@un.org
+      @overript
+      Widget build(BuildContext context, State state)format@@
+        /，因为子类将使用 AnimatedWidgett 的状态对象 _animatedWidgetState。
+        //so 动画小部件必须以某种方式暴露其状态对象 _animatedWidgetState
+        // 将其暴露于其子类   
         super.build(context, _animatedWidgetState)
       }
-  }
+}
   ```
 
-  This obviously doesn't make sense, because
+  这显然是没有意义的，因为：
 
-    1. the state object of `AnimatedWidget` is an internal implementation detail of `AnimatedWidget` and should not be exposed to the outside.
-    2. if the parent class state is to be exposed to the child class, then there must be a passing mechanism, and it is pointless to do this set of passing mechanism, because the passing of state between parent and child classes is irrelevant to the logic of the child class itself.
+    1. `动画小部件` 的状态对象是 `动画小部件` 的内部实现细节，不应向外曝光。
+    2. 如果父类状态将暴露于子类， 那就必须有一种通过机制，这样做毫无意义， 因为父母和子女类别之间的状态与子女类别本身的逻辑无关。
 
-To sum up, it can be found that for `StatefulWidget`, putting the `build` method in State can bring a lot of flexibility to the development.
+总之，可以找到 `StatefulWidget`， 将 `建立在国家` 方法可以给发展带来很大的灵活性。

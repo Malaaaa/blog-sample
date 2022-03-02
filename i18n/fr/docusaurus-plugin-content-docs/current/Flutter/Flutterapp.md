@@ -1,105 +1,104 @@
-## Flutter code structure
+## Structure du code flottant
 
-## Basic framework
+## Cadre de base
 
-1. Import packages.
+1. Importer des packages.
 
    ```dart
-   import 'package:flutter/material.dart';
+   import 'package:flutter/matériel.dart' ;
    ```
 
-   This line of code acts as an import of the Material UI component library. [Material](https://material.io/guidelines) is a standard visual design language for mobile and web, and Flutter provides a rich set of Material style UI components by default. 2.
+   Cette ligne de code agit comme une importation de la bibliothèque de composants Material UI. [Material](https://material.io/guidelines) est un langage de conception visuel standard pour mobile et Web, et Flutter fournit par défaut un riche ensemble de composants d'interface utilisateur de style Material. 2.
 
-2. application portal.
+2. portail d'applications.
 
    ```dart
    void main() => runApp(MyApp());
    ```
 
-    - Similar to C/C++, Java, ``main`` function in Flutter application is the entry point of the application. The `main` function calls the `runApp` method, whose function is to start the Flutter application. `runApp` takes a `Widget` parameter, which in this case is a `MyApp` object, and `MyApp()` is the root component of the Flutter application.
-    - The `main` function uses the (`=>`) notation, which is shorthand for a one-line function or method in Dart.
+    - Similaire à C/C++, Java, la fonction `main` dans l'application Flutter est le point d'entrée de l'application. La fonction `main` appelle la méthode `runApp` , dont la fonction est de démarrer l'application Flutter. `runApp` prend un paramètre `Widget` , qui dans ce cas est un objet `MyApp` , et `MyApp()` est le composant racine de l'application Flutter.
+    - La fonction `main` utilise la notation (`=>`), qui est un raccourci pour une fonction ou une méthode à une ligne dans Dart.
 
-3. Application structure.
+3. Structuration des candidatures.
 
    ```dart
-   class MyApp extends StatelessWidget {
+   class MyApp étend StatelessWidget {
      @override
-     Widget build(BuildContext context) {
+     Widget build (contexte BuildContext) {
        return new MaterialApp(
-         //application name  
-         title: 'Flutter Demo', 
-         theme: new ThemeData(
-           //blue theme  
-           primarySwatch: Colors.blue,
+         //nom de l'application  
+         titre : 'Flutter Demo', 
+         thème : new ThemeData(
+           //thème bleu  
+           primarySwatch : couleurs. blue,
          ),
-         //application home page route  
+         //route de la page d'accueil de l'application  
          home: new MyHomePage(title: 'Flutter Demo Home Page'),
        );
      }
-   }
+}
    ```
 
-    - The `MyApp` class represents a Flutter application that inherits from the `StatelessWidget` class, which means that the application itself is also a widget.
+    - La classe `MyApp` représente une application Flutter qui hérite de la classe `StatelessWidget` , ce qui signifie que l'application elle-même est également un widget.
 
-    - In Flutter, most things are widgets (later "components" or "widgets"), including alignment, padding, layout, etc., which are all are provided in the form of widgets.
+    - Dans Flutter, la plupart des choses sont des widgets (plus tard "composants" ou "widgets"), y compris l'alignement, le rembourrage, la mise en page, etc., qui sont tous fournis sous la forme de widgets.
 
-    - Flutter calls the `build` method of a component when building a page. The main job of a widget is to provide a build() method to describe how to build the UI interface (usually by combining and assembling other base widgets).
+    - Flutter appelle la méthode `build` d'un composant lors de la construction d'une page. Le travail principal d'un widget est de fournir une méthode build () pour décrire comment construire l'interface utilisateur (généralement en combinant et en assemblant d'autres widgets de base).
 
-    - `MaterialApp` is the Flutter APP framework provided in the Material library, through which you can set the name, theme, language, home page and routing list of the application. `MaterialApp` is also a widget.
+    - `MaterialApp` est le framework Flutter APP fourni dans la bibliothèque de matériaux, à travers lequel vous pouvez définir le nom, le thème, la langue, la page d'accueil et la liste de routage de l'application. `MaterialApp` est également un widget.
 
-    - `home` is the home page of the Flutter app, it is also a widget.
+    - `home` est la page d'accueil de l'application Flutter, c'est aussi un widget.
 
-## Home page component
+## Composant de la page d'accueil
 
    ```dart
-   class MyHomePage extends StatefulWidget {
+   class MyHomePage extend StatefulWidget {
      MyHomePage({Key key, this.title}) : super(key: key);
-     final String title;
+     titres de String final ;
      @override
      _MyHomePageState createState() => new _MyHomePageState();
    }
-   
-   class _MyHomePageState extends State<MyHomePage> {
+
+   classe _MyHomePageState étend l'état<MyHomePage> {
    }
    ```
 
-`MyHomePage` is the home page of the Flutter application, it inherits from the `StatefulWidget` class, which means it is a **stateful widget** (a stateful component). For now, let's just briefly consider that a stateful widget is different from a stateless widget in two ways.
+`MyHomePage` est la page d'accueil de l'application Flutter, elle hérite de la classe `StatefulWidget` , ce qui signifie qu'il s'agit d'un **widget à état** (un composant à état). Pour l'instant, considérons brièvement qu'un widget avec état est différent d'un widget sans état de deux manières.
 
-1. Stateful widgets can have states that are mutable during the widget lifecycle, while Stateless widgets are immutable.
+1. Les widgets avec état peuvent avoir des états modifiables pendant le cycle de vie du widget, tandis que les widgets sans état sont immuables.
 
-2. Stateful widget consists of at least two classes.
-    - A `StatefulWidget` class.
-    - A `State` class; the `StatefulWidget` class itself is immutable, but the state held in the `State` class may change during the widget's lifecycle.
+2. Le widget avec état se compose d'au moins deux classes.
+    - Une classe `StatefulWidget`.
+    - Une classe `État`  ; la classe `StatefulWidget` elle-même est immuable, mais l'état détenu dans la classe `State` peut changer au cours du cycle de vie du widget.
 
-   The `_MyHomePageState` class is the state class corresponding to the `MyHomePage` class. Here, the reader may have noticed: Unlike the `MyApp` class, there is no `build` method in the `MyHomePage` class, instead, the `build` method has been moved to the `_MyHomePageState` method.
+   La classe `_MyHomePageState` est la classe d'état correspondant à la classe `MyHomePage`. Ici, le lecteur a peut-être remarqué : Contrairement à la classe `MyApp` , il n'y a pas de méthode `build` dans la classe `MyHomePage` , à la place, la méthode `build` a été déplacée vers la méthode `_MyHomePageState`.
 
-### State class
+### Classe d'état
 
-Next, let's see what is contained in `_MyHomePageState`.
+Voyons ensuite ce que contient `_MyHomePageState`.
 
-1. the state of the component. Since we only need to maintain a click counter, define a ``_counter`` state.
+1. l'état du composant. Puisque nous n'avons besoin de maintenir qu'un compteur de clics, définissez un état `_counter`.
 
-   ``dart
-   int _counter = 0; // used to record the total number of button clicks
+   ``dard int _counter = 0 ; // utilisé pour enregistrer le nombre total de clics sur le bouton
    ```
 
-   `_counter` is the state that holds the number of button clicks with a "+" sign in the bottom right corner of the screen.
+   `_counter` est l'état qui contient le nombre de clics sur le bouton avec un signe "+" dans le coin inférieur droit de l'écran.
 
-2. Set the self-increment function for the status.
+2. Définissez la fonction d'auto-incrémentation pour l'état.
 
    ```dart
    void _incrementCounter() {
      setState(() {
         _counter++;
      });
-   }
+}
    ```
 
-   This function is called when the button is clicked. The function works by first self-incrementing `_counter` and then calling the `setState` method. The purpose of the `setState` method is to notify the Flutter framework that a state has changed. When the Flutter framework receives the notification, it will execute the `build` method to rebuild the interface based on the new state. so you can rebuild anything that needs to be updated without having to modify individual widgets.
+   Cette fonction est appelée lorsque le bouton est cliqué. La fonction fonctionne en auto-incrémentant d'abord `_counter` puis en appelant la méthode `setState`. Le but de la méthode `setState` est de notifier au framework Flutter qu'un état a changé. Lorsque le framework Flutter reçoit la notification, il exécute la méthode `build` pour reconstruire l'interface en fonction du nouvel état. vous pouvez donc reconstruire tout ce qui doit être mis à jour sans avoir à modifier les widgets individuels.
 
-3. Build UI interface
+3. Créer une interface utilisateur
 
-   The logic for building the UI interface is in the `build` method. When `MyHomePage` is created for the first time, the `_MyHomePageState` class will be created, and when the initialization is complete, the Flutter framework will call the `build` method of the widget to build the widget tree, and finally render the widget tree to the device screen . So, let's see what is done in the `build` method of `_MyHomePageState`.
+   La logique de construction de l'interface utilisateur se trouve dans la méthode `build`. Lorsque `MyHomePage` est créé pour la première fois, la classe `_MyHomePageState` sera créée, et lorsque l'initialisation sera terminée, le framework Flutter appellera la méthode `build` du widget pour construire l'arborescence du widget, et enfin affichera le arborescence de widgets à l'écran de l'appareil. Voyons donc ce qui est fait dans la méthode `build` de `_MyHomePageState`.
 
    ```dart
      Widget build(BuildContext context) {
@@ -109,69 +108,69 @@ Next, let's see what is contained in `_MyHomePageState`.
          ),
          body: new Center(
            child: new Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
+             mainAxisAlignment: MainAxisAlignment.center ,
+             enfants : <Widget>[
                new Text(
-                 'You have pushed the button this many times:',
+                 'Vous avez appuyé plusieurs fois sur le bouton :',
                ),
                new Text(
                  '$_counter',
-                 style: Theme.of(context).textTheme.headline4,
+                 style : Theme.of(context).textTheme.headline4,
                ),
              ],
            ),
          ),
-         floatingActionButton: new FloatingActionButton(
-           onPressed: _incrementCounter,
-           tooltip: 'Increment',
-           child: new Icon(Icons.add),
+         floatingActionButton : new FloatingActionButton(
+           onPressed : _incrementCounter,
+           tooltip : 'Increment',
+           child : new Icon(Icons.add),
          ),
        );
-     }
+}
    ```
 
-    - `Scaffold` is a page scaffold provided in the Material library that provides a default navigation bar, a header, and a `body` property containing the main screen widget tree (later referred to as the "component tree" or "widget tree"). Component trees can be very complex. In the examples later in this book, routes are created via `Scaffold` by default.
-    - The component tree of `body` contains a `Center` component, and `Center` can align its child component trees to the center of the screen. In this case, the `Center` subcomponent is a `Column` component, and the role of `Column` is to align all its subcomponents vertically along the screen; in this case, the `Column` subcomponent is two `Text`s, and the first `Text` displays the fixed text "You have pushed the button this many times:", and the second `Text` displays the value of the `_counter` state.
-    - The `floatingActionButton` is the hover button with `+` in the bottom right corner of the page, its `onPressed` property accepts a callback function that represents its handler when it is clicked, in this case the `_incrementCounter` method is directly used as its handler function.
+    - `Scaffold` est un échafaudage de page fourni dans la bibliothèque de matériaux qui fournit une barre de navigation par défaut, un en-tête et une propriété `corps` contenant l'arborescence des widgets de l'écran principal (appelée plus tard "arborescence des composants" ou "arborescence des widgets") . Les arbres de composants peuvent être très complexes. Dans les exemples plus loin dans ce livre, les routes sont créées via `Scaffold` par défaut.
+    - L'arborescence de composants de `corps` contient un composant `Center` et `Center` peut aligner ses arbres de composants enfants sur le centre de l'écran. Dans ce cas, le sous-composant `Centre` est un composant `Colonne` , et le rôle de `Colonne` est d'aligner tous ses sous-composants verticalement le long de l'écran ; dans ce cas, le sous-composant `Colonne` est composé de deux `Texte`s, et le premier `Texte` affiche le texte fixe "Vous avez appuyé sur le bouton plusieurs fois :", et le second `Texte` affiche la valeur du `_état du compteur`.
+    - Le `flottantActionButton` est le bouton de survol avec `+` dans le coin inférieur droit de la page, sa propriété `onPressed` accepte une fonction de rappel qui représente son gestionnaire lorsqu'il est cliqué, dans ce cas, la méthode `_incrementCounter` est directement utilisée comme sa fonction de gestionnaire.
 
-Now, let's string together the entire counter execution flow: when the `floatingActionButton` button in the bottom-right corner is clicked, the `_incrementCounter` method is called. In the `_incrementCounter` method, first the `_counter` counter (state) will be self-incremented, then `setState` will notify the Flutter framework that the state has changed, then the Flutter framework will call the `build` method to rebuild the UI with the new state and finally display it on the device screen.
+Maintenant, enchaînons l'intégralité du flux d'exécution du compteur : lorsque le bouton `floatingActionButton` dans le coin inférieur droit est cliqué, la méthode `_incrementCounter` est appelée. Dans la méthode `_incrementCounter` , d'abord le compteur `_counter` (état) sera auto-incrémenté, puis `setState` notifiera le framework Flutter que l'état a changé, puis le framework Flutter appellera la méthode `build` pour reconstruire l'interface utilisateur avec le nouvel état et enfin l'afficher sur l'écran de l'appareil.
 
-#### Why put the build method in State and not in StatefulWidget?
+#### Pourquoi mettre la méthode build dans State et non dans StatefulWidget ?
 
-Now, let's answer the question raised earlier, why is the `build()` method placed in State (instead of `StatefulWidget`) ? This is mainly to increase the flexibility of development. If the `build()` method is placed in the `StatefulWidget` there are two problems.
+Maintenant, répondons à la question posée précédemment, pourquoi la méthode `build()` est-elle placée dans State (au lieu de `StatefulWidget`) ? Il s'agit principalement d'augmenter la flexibilité du développement. Si la méthode `build()` est placée dans le `StatefulWidget` , il y a deux problèmes.
 
-- Inconvenient state access
+- Accès à l'État peu pratique
 
-  Imagine if our `StatefulWidget` has many states, and each time the state changes, we have to call the `build` method, since the state is stored in State, if the `build` method is in `StatefulWidget`, then the `build` method and the state are in two separate classes, so it will be very inconvenient to read the state when building! would be very inconvenient! Imagine if you actually put the `build` method in a StatefulWidget, since the process of building the UI depends on the State, the `build` method would have to have a `State` parameter, something like the following.
+  Imaginez si notre `StatefulWidget` a plusieurs états, et à chaque fois que l'état change, nous devons appeler la méthode `build` , puisque l'état est stocké dans State, si la méthode `build` est dans `StatefulWidget`, alors le `la méthode build` et l'état sont dans deux classes distinctes, il sera donc très gênant de lire l'état lors de la construction ! serait très gênant ! Imaginez si vous mettez réellement la méthode `build` dans un StatefulWidget, puisque le processus de construction de l'interface utilisateur dépend de l'état, la méthode `build` devrait avoir un paramètre `State` , quelque chose comme ce qui suit.
 
   ```dart
-    Widget build(BuildContext context, State state){
+    Widget build (contexte BuildContext, état de l'état){
         //state.counter
-        ...
+...
     }
   ```
 
-  In this case, you can only declare all the state of the State as public, so that you can access the state outside the State class! However, by making the state public, the state will no longer be private, which means that modifications to the state will become uncontrollable. But if you put the `build()` method in the State, the build process not only has direct access to the state, but also does not need to expose the private state, which is very convenient.
+  Dans ce cas, vous pouvez uniquement déclarer tout l'état de l'état comme public, de sorte que vous pouvez accéder à l'état en dehors de la classe State ! Cependant, en rendant l'État public, l'État ne sera plus privé, ce qui signifie que les modifications de l'État deviendront incontrôlables. Mais si vous mettez la méthode `build()` dans l'état, le processus de construction a non seulement un accès direct à l'état, mais n'a pas non plus besoin d'exposer l'état privé, ce qui est très pratique.
 
-- Inheriting `StatefulWidget` is inconvenient
+- L'héritage de `StatefulWidget` n'est pas pratique
 
-  For example, Flutter has a base class `AnimatedWidget` for animated widgets, which inherits from the `StatefulWidget` class. An abstract method `build(BuildContext context)` is introduced in `AnimatedWidget`, and all animated widgets that inherit from `AnimatedWidget` have to implement this `build` method. Now imagine that if the `StatefulWidget` class already has a `build` method, as described above, the `build` method needs to receive a state object, which means that the `AnimatedWidget` has to pass its own State object (noted as _ animatedWidgetState) to its child class, because the child class needs to call the parent class's `build` method in its `build` method, and the code might look like this.
+  Par exemple, Flutter a une classe de base `AnimatedWidget` pour les widgets animés, qui hérite de la classe `StatefulWidget`. Une méthode abstraite `build(BuildContext context)` est introduite dans `AnimatedWidget`, et tous les widgets animés qui héritent de `AnimatedWidget` doivent implémenter cette méthode `build`. Imaginez maintenant que si la classe `StatefulWidget` a déjà une méthode `build` , comme décrit ci-dessus, la méthode `build` doit recevoir un objet d'état, ce qui signifie que le `AnimatedWidget` doit passer son propre objet State (noté comme _animatedWidgetState) à sa classe enfant, car la classe enfant doit appeler la méthode `build` de la classe parent dans sa méthode `build` , et le code peut ressembler à ceci.
 
   ```dart
-  class MyAnimationWidget extends AnimatedWidget{
+  class MyAnimationWidget étend AnimatedWidget{
       @override
       Widget build(BuildContext context, State state){
-        //since the subclass is going to use the AnimatedWidget's state object _animatedWidgetState.
-        //so the AnimatedWidget must somehow expose its state object _animatedWidgetState
-        // Expose it to its subclasses   
+        //puisque la sous-classe va utiliser l'objet d'état _animatedWidgetState de l'AnimatedWidget.
+        // donc l'AnimatedWidget doit d'une manière ou d'une autre exposer son objet d'état _animatedWidgetState
+        // l'exposer à ses sous-classes   
         super.build(context, _animatedWidgetState)
       }
-  }
+}
   ```
 
-  This obviously doesn't make sense, because
+  Cela n'a évidemment aucun sens, car
 
-    1. the state object of `AnimatedWidget` is an internal implementation detail of `AnimatedWidget` and should not be exposed to the outside.
-    2. if the parent class state is to be exposed to the child class, then there must be a passing mechanism, and it is pointless to do this set of passing mechanism, because the passing of state between parent and child classes is irrelevant to the logic of the child class itself.
+    1. l'objet d'état de `AnimatedWidget` est un détail d'implémentation interne de `AnimatedWidget` et ne doit pas être exposé à l'extérieur.
+    2. si l'état de la classe parent doit être exposé à la classe enfant, alors il doit y avoir un mécanisme de passage, et il est inutile de faire cet ensemble de mécanismes de passage, car le passage de l'état entre les classes parent et enfant n'est pas pertinent pour la logique de la classe enfant elle-même.
 
-To sum up, it can be found that for `StatefulWidget`, putting the `build` method in State can bring a lot of flexibility to the development.
+En résumé, on peut constater que pour `StatefulWidget`, mettre la méthode `build` dans State peut apporter beaucoup de souplesse au développement.

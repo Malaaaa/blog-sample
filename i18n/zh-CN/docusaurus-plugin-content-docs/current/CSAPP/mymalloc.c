@@ -1,45 +1,45 @@
 #ifdef COMPILETIME
-#include <stdio.h>
-#include <malloc.h>
+#includes <stdio.h>
+#includes <malloc.h>
 
-/* malloc wrapper function */
+/* malloc包装器函数 */
 void *mymalloc(size_t size)
 {
     void *ptr = malloc(size);
     printf("malloc(%d)=%p\n",
-           (int)size, ptr);
-    return ptr;
+           (int)大小，ptr)；
+    返回ptr；
 }
 
-/* free wrapper function */
+/* 免费包装器函数 */
 void myfree(void *ptr)
 {
-    free(ptr);
+    免费(ptr)；
     printf("free(%p)\n", ptr);
-       printf("COMPILETIME");
+       printf(“COMPILETIME”)；
 }
 #endif
 
 
 
 #ifdef LINKTIME
-#include <stdio.h>
+#includes <stdio.h>
 
-void *__real_malloc(size_t size);
-void __real_free(void *ptr);
+无效 *__real_malloc(size_t size)；
+无效 __real_free(无效*ptr)；
 
-/* malloc wrapper function */
+/* malloc包装器函数 */
 void *__wrap_malloc(size_t size)
 {
-    void *ptr = __real_malloc(size); /* Call libc malloc */
+    无效 *ptr = __real_malloc(大小); /* 调用 libc malloc */
     printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    返回ptr；
 }
 
-/* free wrapper function */
-void __wrap_free(void *ptr)
+/* 免费包装器函数 */
+无效 __wrawrap_free(无效*ptr)
 {
-    __real_free(ptr); /* Call libc free */
+    __real_free(ptr); /* 拨打libc free */
     printf("free(%p)\n", ptr);
     printf("LINKTIME");
 
@@ -49,43 +49,43 @@ void __wrap_free(void *ptr)
 
 
 #ifdef RUNTIME
-#define _GNU_SOURCE
-#include <stdio.h>
-#include <stdlib.h>
-#include <dlfcn.h>
+#definer _GNU_SOURCE
+#includes <stdio.h>
+#includes <stdlib.h>
+#includes <dlfcn.h>
 
-/* malloc wrapper function */
+/* malloc包装器函数 */
 void *malloc(size_t size)
 {
     void *(*mallocp)(size_t size);
-    char *error;
+    字符*错误;
 
-    mallocp = dlsym(RTLD_NEXT, "malloc"); /* Get address of libc   malloc */
-    if ((error = dlerror()) != NULL) {
-        fputs(error, stderr);
-        exit(1);
+    mallocp = dlsym(RTLD_NEXT, "malloc"); /* 获取 libc malloc 的地址 */
+    如果(错误 = dlerrer()) != NULL)
+        fputs(错误，标准错误)；
+        出口(1)；
     }
-    char *ptr = mallocp(size); /* Call libc malloc */
+    字符 *ptr = mallocp(大小); /* 调用 libc malloc */
 //    printf("malloc(%d) = %p\n", (int)size, ptr);
-    return ptr;
+    返回ptr；
 }
 
-/* free wrapper function */
-void free(void *ptr)
+/* 免费包装器函数 */
+空空闲(空*ptr)
 {
-    void (*freep)(void *) = NULL;
-    char *error;
+    空(*freep)(无效*) = NUL;
+    字符*错误;
 
     if (!ptr)
-    return;
+    返回；
 
-    freep = dlsym(RTLD_NEXT, "free"); /* Get address of libc free */
-    if ((error = dlerror()) != NULL) {
-        fputs(error, stderr);
-        exit(1);
+    freep = dlsym(RTLD_NEXT, "free"); /* 获取地址 libc free */
+    如果(错误 = dlerrer()) != NULL)
+        fputs(错误，标准错误)；
+        出口(1)；
     }
-    freep(ptr); /* Call libc free */
+    freep(ptr); /* 免费呼叫libc */
     printf("free(%p)\n", ptr);
-    printf("RUNTIME\n");
+    打印("RUNTIME\n");
 }
 #endif

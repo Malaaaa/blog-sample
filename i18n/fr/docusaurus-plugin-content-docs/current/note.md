@@ -1,21 +1,16 @@
-# Note
+# Noter
 
-## install BT
+## installer BT
 
 yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
 
-- Close notification 
-rm -f /www/server/panel/data/bind.pl
-- install chrome。
+- Fermer la notification rm -f /www/server/panel/data/bind.pl
+- installer chrome。
 
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i ./google-chrome*.deb
-sudo apt-get install -f
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb sudo dpkg -i ./google-chrome*.deb sudo apt-get install -f
 
-- webdriver [https://chromedriver.chromium.org/downloads]，copy。
-cd /usr/bin/store
-wget https://chromedriver.storage.googleapis.com/92.0.4515.107/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
+- pilote web [https://chromedriver.chromium.org/downloads]，copie。 cd /usr/bin/store wget https://chromedriver.storage.googleapis.com/92.0.4515.107/chromedriver_linux64.zip décompressez chromedriver_linux64. Zip *: français
+
 
 <!-- 
 chrome_options = webdriver.ChromeOptions()

@@ -1,28 +1,28 @@
-#  HomeChain
+# HomeChain
 
-## Background 
+## 背景
 
--  **(IoT) Current Status**
-- Question **secure and efficient remote user authentication solution.**
-- existing solutions **a single-server architecture**
-- critical challenges **providing regulation of behaviors and privacy protection of access policy)**
-- In this article **novel secure mutual authentication system** integrates blockchain
+-  **(Iot) 当前状态**
+- 问题 **安全和有效的远程用户认证解决方案**
+- 现有解析器 **单服务器架构**
+- 严重挑战 **为访问政策提供行为管理和隐私保护**
+- 在这篇文章中， **新建安全的相互认证系统** 集成了区块链。
 
-## Introduction
+## 导 言
 
-- home gateway **provides network access between local area network (LAN) hosts to a wide area network (WAN) (like the Internet) via a modem.** IP port
-- remotely communicate can be targeted and subject to exploitation.
-- The information from any single device may not be deemed sensitive
-- remote authentication approaches.
-  - password-based authentication. (limitations)
-    1. Lack of Privacy and Anonymity
-    2. Lack of Completeness and Confidentiality
-  - One-time password (OTP) authentication 
+- 主网关 **通过调制解调器为广域网络 (LAN) 主机之间的网络访问广域网络 (例如互联网)。** IP 端口
+- 远距离通信可能成为攻击目标并受到剥削。
+- 来自任何单一设备的信息可能不敏感。
+- 远程认证方式。
+  - 密码身份验证。 (限制)
+    1. 缺少隐私和匿名性
+    2. 缺乏完整性和保密
+  - 一次性密码 (OTP) 身份验证
 
-- Remote user authentication schemes based on smart cards [11] have also been widely used in applications involving remote user login, Web access, and other online services, due to their efficiency, convenience, and low computational cost.
-- blockchain-based authentications **a more secure, reliable and convenient IoT systems ** 
-  - limitation : the user behaviors cannot be effectively regulated .
-  - all the request transactions or access policy are in plaintext, which can be  collected to statistically analyze user daily life, and thus, compromising user privacy.
-  - Contributions: To further provide traceability and privacy protection of access policy, we integrate both blockchain and group signature
-  - Organization: organize the reminder of this article as follows. Section II reviews the current blockchain-based smart home systems.
+- 基于智能卡 [11] 的远程用户认证计划也被广泛用于涉及远程用户登录的应用程序。 网络访问和其他在线服务，因为它们的效率、方便性和计算成本低。
+- 基于blockchain的身份验证 **一个更安全、可靠和方便的 IoT 系统**
+  - 限制：用户行为无法有效管理。
+  - 所有请求交易或访问策略都是纯整形的，可以收集到来统计分析用户日常生活，从而损害用户的隐私。
+  - 贡献：为了进一步提供访问政策的可追踪性和隐私保护，我们整合了区块链和群组签名
+  - 组织：组织这篇文章的提醒内容如下。 第二节审查当前基于区块链的智能家居系统。
 

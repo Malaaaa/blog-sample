@@ -1,3 +1,3 @@
-When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.
+当React看到一个代表用户定义组件的元素时，它会将JSX属性和子组件作为单个对象传递到这个组件上。 我们把这个目标称为“props”。
 
-Always remember using the copid value in case change the original value, Use ... to make a copied array value.
+在更改原始值时，总是记住使用副本值。使用... 制作一个复制的数组值。

@@ -1,21 +1,16 @@
-# Note
+# 说明
 
-## install BT
+## 安装 BT
 
-yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+yum 安装-y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
 
-- Close notification 
-rm -f /www/server/panel/data/bind.pl
-- install chrome。
+- 关闭通知 rm -f /www/server/panel/data/bind.pl
+- 安装chromeing。
 
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i ./google-chrome*.deb
-sudo apt-get install -f
+wget https://dl.google.com/linux/direct/googlechrome-stable_current_amd64.deb sudo dpkg -i ./google-chrome*.deb sudo apt-get install-f
 
-- webdriver [https://chromedriver.chromium.org/downloads]，copy。
-cd /usr/bin/store
-wget https://chromedriver.storage.googleapis.com/92.0.4515.107/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
+- webdriver [https://chromedriver.chromium.org/downloads],copying. cd /usr/bin/store wget https://chromedriver.storage.googleapis.com/92.0.4515.107/chromedriver_linux64.zip unzip chromedriver_linux64.zip
+
 
 <!-- 
 chrome_options = webdriver.ChromeOptions()

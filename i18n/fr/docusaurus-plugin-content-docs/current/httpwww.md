@@ -1,19 +1,19 @@
-## Books
-+ The Tipping Point: How Little Things Can Make a Big Difference
-  + Law of the Few(Specail Person), the Stickiness Factor(Get interest), the Power of Context(Environment)
+## Livres
++ Le point de basculement : comment de petites choses peuvent faire une grande différence
+  + Loi de la minorité (personne spéciale), le facteur d'adhérence (obtenir de l'intérêt), le pouvoir du contexte (environnement)
 
-+ How Emotions Are Made: The Secret Life of the Brain
-    + Emotion is a memory-based judgment of the brain about reality
++ Comment se fabriquent les émotions : la vie secrète du cerveau
+    + L'émotion est un jugement basé sur la mémoire du cerveau à propos de la réalité
 
-+ The End of Jobs: Money, Meaning and Freedom Without the 9-to-5
++ La fin des jobs : argent, sens et liberté sans le 9 à 5
 
-    + Known needs will be gradually replaced by machines. Technological innovations have eroded low-threshold jobs. The advantages of finding people beyond machines and entrepreneurship that finds people's deeper needs will bring more work and social happiness.
+    + Les besoins connus seront progressivement remplacés par des machines. Les innovations technologiques ont érodé les emplois à bas seuil. Les avantages de trouver des personnes au-delà des machines et de l'entrepreneuriat qui trouvent les besoins les plus profonds des gens apporteront plus de travail et de bonheur social.
 
-+ How to Make Anyone Fall in Love with You              
-    + Be more empathetic and understand each other's ideas instead of simply using your own ideas to understand each other.
++ Comment faire en sorte que quelqu'un tombe amoureux de vous
+    + Soyez plus empathique et comprenez les idées de l'autre au lieu d'utiliser simplement vos propres idées pour vous comprendre.
 
-+ Nonviolent Communication: A Language of Life
-    + Four elements of nonviolent communication: 1. Observation (facts); 2. Feelings (emotions); 3. Needs (solutions); 4. Requests (sincere).
++ Communication non violente : un langage de vie
+    + Quatre éléments de la communication non violente : 1. Observation (faits); 2. Sentiments (émotions); 3. Besoins (solutions); 4. Demandes (sincères).
 
-+ Boundless: Cognitive Upgrade in the Age of Artificial Intelligence
-    + A good summary book, through the mainstream thinking on the market now, to say that the cognitive upgrade in the artificial age is a bit exaggerated. But most theories are the most mainstream cognition, and it is a book list that can broaden the scope of knowledge.
++ Sans limites : mise à niveau cognitive à l'ère de l'intelligence artificielle
+    + Un bon livre de synthèse, à travers la pensée dominante sur le marché actuellement, pour dire que la mise à niveau cognitive à l'ère artificielle est un peu exagérée. Mais la plupart des théories sont la cognition la plus courante, et c'est une liste de livres qui peut élargir la portée des connaissances.

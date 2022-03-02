@@ -1,62 +1,61 @@
-# Debugging Flutter applications
+# 调试流器应用
 
-### Dart Analyzers
+### 暗色分析器
 
-Before running your application, run `flutter analyze` to test your code. This tool is a static code checking tool that is a wrapper around the `dartanalyzer` tool and is mainly used to analyze code and help developers find possible errors. For example, the Dart analyzer makes heavy use of type annotations in the code to help track down problems and avoid `var`, untyped parameters, untyped list text, etc.
+在运行您的应用程序之前，运行 `流量分析` 来测试您的代码。 此工具是一个静态代码检查工具，它是一个围绕 `dartanalyzer` 工具的包装器，主要用于分析代码和帮助开发者发现可能的错误。 例如， Dart 分析器大量使用代码中的类型注释来帮助跟踪问题并避免 `var`， 未输入参数、未输入列表文本等。
 
-If you are using the Flutter plugin for IntelliJ, the parser is automatically enabled when you open the IDE. If the reader is using another IDE, it is highly recommended that the reader enable the Dart parser because most of the time, the Dart parser can find most of the problems before the code runs.
+如果您在 IntelliJ 中使用 Flutter 插件，当您打开 IDE 时，解析器将自动启用。 如果读者正在使用另一个IDE，强烈建议读者启用Dart 解析器，因为大部分时间， Dart 解析器可以在代码运行前找到大多数问题。
 
-### Dart Observatory (statement-level single-step debugger and parser)
+### Dart Observatory (statementlevel level level debugger and parser)
 
-If we start the application using `flutter run`, then when it runs, we can open the web page of Observatory tool, for example Observatory listens to <http://127.0.0.1:8100/> by default and can open the link directly in the browser. Connect to your application directly using the statement-level single-step debugger. If you are using IntelliJ, you can also use its built-in debugger to debug your application.
+如果我们使用 `flotter 运行`, 则运行时, 我们可以打开观测站工具的网页，如观测站监听到 [http://127。 0.0.1：8100/](http://127.0.0.1:8100/) 默认情况下，可以在浏览器中直接打开链接。 直接使用状态级单步调试器连接到您的应用程序。 如果您正在使用 IntelliJ，您也可以使用它内置的调试器调试您的应用程序。
 
-Observatory also supports analysis, heap checking, and more. For more information about Observatory refer to the [Observatory documentation](https://dart-lang.github.io/observatory/).
+天文台还支持分析、堆积检查等等。 欲了解更多关于天文台的信息，请参阅 [天文台文档](https://dart-lang.github.io/observatory/)。
 
-If you use Observatory for analysis, be sure to run the `flutter run` command with the `-profile` option to run the application. Otherwise, the main issue that will appear in the profile will be debugging assertions to verify the various invariants of the framework (see "Debugging Mode Assertions" below).
+如果您使用天文台进行分析， 请务必运行 `flotter 使用 <code>-profile` 选项运行应用程序的</code> 命令。 否则， 概况中出现的主要问题将是调试断语，以核实框架的各种不变因素(见下文“调试模式声明”)。
 
-### `debugger()` declaration
+### `debugger()` 声明
 
-This `debugger()` statement can be used to insert programmatic breakpoints when using Dart Observatory (or another Dart debugger, such as the debugger in the IntelliJ IDE). To use this, you must add `import 'dart:developer';` to the top of the relevant file.
+此 `debugger()` 语句可用来在使用 Dart 观测站时插入程序断点 (或另一个 Dart 调试器)。 例如IntelliJ IDE中的调试器。 要使用此项，您必须添加 `导入'dart:developer';` 到相关文件的顶部。
 
-The `debugger()` statement takes an optional `when` reference.
+`debugger()` 语句在</code> 引用时需要一个可选的 `</p>
 
-parameter, you can specify that the parameter will only be interrupted when a specific condition is true, as follows.
+<p spaces-before="0">参数，您可以指定只有当特定条件为 true时参数才会被中断，如下所示。</p>
 
-```dart
-void someFunction(double offset) {
-  debugger(when: offset > 30.0);
+<pre><code class="dart">虚空函数(双向偏移) 然后
+  debugger(时间：偏移 > 30.0);
   // ...
 }
-```
+`</pre>
 
-### `print`、`debugPrint`、`flutter logs`
+### `打印``调试打印`计时`流体日志`
 
-The Dart `print()` function will output to the system console and you can use `flutter logs` to view it (basically a wrapper `adb logcat`).
+Dart `print()` 函数将输出到系统控制台，您可以使用 `flotter 日志` 查看它(基本上是一个包装器 `adb logcat`)。
 
-If you output too much at once, then Android will sometimes discard some log lines. To avoid this, you can use [`debugPrint()`](https://docs.flutter.io/flutter/foundation/debugPrint.html) from Flutter's `foundation` library. This is a wrapper print that limits the output to a level that avoids being dropped by the Android kernel.
+如果您一次输出太多，那么安卓系统有时会丢弃一些日志行。 为了避免这种情况，您可以使用 [`debugPrint()`](https://docs.flutter.io/flutter/foundation/debugPrint.html) 来自Flutter的 `基础` 库。 这是一个包装打印，将输出限制在一个能避免被安卓内核丢弃的水平。
 
-Many classes in the Flutter framework have `toString` implementations. By convention, this output usually includes the `runtimeType` single-line output of the object, usually in the form ClassName(more information about this instance...). Some classes used in the tree also have `toStringDeep`, which returns a multi-line description of the entire subtree from that point. Already some classes with detailed information `toString` will implement a `toStringShort` which returns only the type of the object or other very short (one or two word) description.
+Flutter 框架中的许多类有 `toString` 实现。 按惯例，这个输出通常包括对象的 `运行时间类型` 单行输出, 通常是在 ClassName(有关此实例的更多信息...)。 在树中使用的一些类也有 `toStringDeep`，从那个点返回整个子树的多行描述。 已经有些类具有详细信息 `toString` 将实现一个 `toStringShort` 只返回对象的类型或其他非常短的描述(一个或两个单词)。
 
-### Debug Mode Assertions
+### 调试模式声明
 
-During Flutter application debugging, the Dart `assert` statement is enabled and used by the Flutter framework to perform a number of runtime checks to verify that some immutable rule is not violated.
+在 Flutter 应用程序调试过程中， Dart `断言说` 语句已被Flutter框架启用和使用来执行一些运行时间检查，以核实某些不可变规则没有被违反。
 
-When an immutable rule is violated, it is reported to the console with some contextual information to help track down the root cause of the problem.
+1. 违反一项不可改变的规则， 它被报告到控制台，带有一些上下文信息，以帮助追踪问题的根源。
 
-To turn off debug mode and use release mode, run your application with `flutter run --release`. This also turns off the Observatory debugger. An intermediate mode that turns off all debugging aids except Observatory is called `-profile mode`, just replace `-release` with `-profile`.
+要关闭调试模式并使用发布模式，请使用 `flotter 运行 --release` 运行您的应用程序。 这也会关闭观测台调试器。 关闭除天文台以外的所有调试助手的中间模式称为 `-profile 模式`， 只用 `-profile` 替换 `-release`
 
-### Debugging application layers
+### 调试应用程序图层
 
-Each layer of the Flutter framework provides the ability to dump (dump) its current state or events to the console (using `-debugPrint`).
+Flutter框架的每一层都能够将当前状态或事件转储到控制台(使用 `-debugprint`)。
 
-#### Widget tree
+#### 小部件树
 
-To dump the state of the Widgets tree, call [`debugDumpApp()`](https://docs.flutter.io/flutter/widgets/debugDumpApp.html). You can call this method (after calling `runApp()`) at any time when the application is not in the build phase (i.e., not called within the `build()` method), as long as the application has been built at least once (i.e., at any time after calling `build()`).
+要转储小部件树的状态，请调用 [`debugDump()`](https://docs.flutter.io/flutter/widgets/debugDumpApp.html)。 您可以在应用程序未处于构建阶段的任何时候调用此方法(即在调用 `runApp()`之后) 只要应用程序至少构建了一次(i)，就不能调用 `build()` 方法中。 ., 在调用 `build()` 之后的任何时间.
 
-For example, this application:
+例如，此应用程序：
 
 ```dart
-import 'package:flutter/material.dart';
+导入“包：颤振/material.dart”；
 
 void main() {
   runApp(
@@ -66,115 +65,115 @@ void main() {
   );
 }
 
-class AppHome extends StatelessWidget {
+类 AppHome 扩展 StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return new Material(
-      child: new Center(
-        child: new FlatButton(
-          onPressed: () {
+  小部件构建（BuildContext 上下文）{
+    返回新材料（
+      子：新中心（
+        子：新 FlatButton（
+          onPressed：（）{
             debugDumpApp();
-          },
-          child: new Text('Dump App'),
-        ),
-      ),
-    );
+          }，
+          孩子：新文本（'转储应用'），
+        ），
+      ），
+    ）；
   }
 }
 ```
 
-...will output something like this (the exact details will vary depending on the version of the framework, the size of the device, etc.).
+...将会输出类似的内容(确切的细节将根据框架的版本、设备的大小等而有所不同。
 
 ```shell
-I/flutter ( 6559): WidgetsFlutterBinding - CHECKED MODE
-I/flutter ( 6559): RenderObjectToWidgetAdapter<RenderBox>([GlobalObjectKey RenderView(497039273)]; renderObject: RenderView)
-I/flutter ( 6559): └MaterialApp(state: _MaterialAppState(1009803148))
-I/flutter ( 6559):  └ScrollConfiguration()
-I/flutter ( 6559):   └AnimatedTheme(duration: 200ms; state: _AnimatedThemeState(543295893; ticker inactive; ThemeDataTween(ThemeData(Brightness.light Color(0xff2196f3) etc...) → null)))
-I/flutter ( 6559):    └Theme(ThemeData(Brightness.light Color(0xff2196f3) etc...))
-I/flutter ( 6559):     └WidgetsApp([GlobalObjectKey _MaterialAppState(1009803148)]; state: _WidgetsAppState(552902158))
-I/flutter ( 6559):      └CheckedModeBanner()
-I/flutter ( 6559):       └Banner()
-I/flutter ( 6559):        └CustomPaint(renderObject: RenderCustomPaint)
-I/flutter ( 6559):         └DefaultTextStyle(inherit: true; color: Color(0xd0ff0000); family: "monospace"; size: 48.0; weight: 900; decoration: double Color(0xffffff00) TextDecoration.underline)
-I/flutter ( 6559):          └MediaQuery(MediaQueryData(size: Size(411.4, 683.4), devicePixelRatio: 2.625, textScaleFactor: 1.0, padding: EdgeInsets(0.0, 24.0, 0.0, 0.0)))
-I/flutter ( 6559):           └LocaleQuery(null)
-I/flutter ( 6559):            └Title(color: Color(0xff2196f3))
+I/flutter ( 6559)：小部件-CHECKED MODE
+I/flutter ( 6559)：RenderObjectToWidgetAdapter<RenderBox>([GlobalObjectKey RenderView(497039273)]； renderObject: RenderView
+I/flutter ( 6559): Recommended MaterialApp(state: _MaterialAppState(1009803148))
+I/flutter ( 6559): recordScrollConfiguration()
+I/flutter ( 6559): recentAnimatedTheme(dur: 200ms; 状态: _AnimatedThemeState(543295893; ticker 禁用; ThemeDataTween(ThemeData(Brightnes) ight Color(0xff2196f3) 等...) -> null)
+I/flutter ( 6559): ringTheme(ThemeData(Brightness.light Color(0xff2196f3) 等...))
+I/flutter (6559)：小部件App([GlobalObjectKey _MaterialAppState(1009803148)]； state: _WidgetsAppState(552902158))
+I/flutter ( 6559): CheckedModeBanner()
+I/flutter ( 6559): RecommendeBanner()
+I/flutter ( 6559): RecordCustomPaint(renderObject: RenderCustomCustomPaint)
+I/flutter ( 6559): RecentDefaultTextStyle(继承: true; 颜色：Color(0xd0ff0000)；家庭：“单一空间”；大小：48。 重量：900；装饰：双色(0xffffff00) TextDecoration. nderline
+I/flotter ( 6559): ediaQuery(MediaQueryData(size: Size(411.4, 683.4), devicePixelRatio: 2.625, textScaleFactor: 1. , 填充: EdgeInsets(0, 24.0, 0.0, 0.0 )
+I/flutter ( 6559): LocaleQuery(null)
+I/flutter ( 6559): 约束标题(颜色: Color(0xff2196f3))
 ... 
 ```
 
-This is a "flat" tree showing all the widgets projected by the various build functions (if you call `toStringDeepwidget` at the root of the widget tree, this is the tree you get). You will see many widgets that do not appear in your application source code because they were inserted by the `build()` function of the widget in the framework. For example, [`InkFeature`](https://docs.flutter.io/flutter/material/InkFeature-class.html) is an implementation detail of the Material widget .
+这是一个“平整”树，显示各种构建函数投放的小部件(如果你在小部件树根处调用 `toStringDeepWid` )， 这是你得到的树木)。 您将看到许多小部件没有出现在您的应用程序源代码中，因为它们是由 `build()` 框架中的小部件插入的。 例如， [`InkFeature`](https://docs.flutter.io/flutter/material/InkFeature-class.html) 是材料小部件的实现细节。
 
-When debugDumpApp() is called when the button changes from being pressed to being released, the FlatButton object also calls `setState()` and marks itself as `dirty`. That's why if you look at the dump, you will see specific objects marked as "dirty". You can also see which gesture listeners have been registered; in this case, a single GestureDetector is listed and listens to the "tap" gesture ("tap" is `TapGestureDetector`s `toStringShort` function outputs)
+当调试令App() 被调用时，按钮从被按下变为被释放， FlatButton 对象也调用 `setState()` 并标记为 `dirty`。 这就是为什么如果你看到倾倒，你会看到特定的对象被标记为“脏”。 您还可以看到哪些手势监听器已注册； 在这种情况下， 单个动作检测器被列出并监听“tap”手势("tap" 是 `TapGestureDetor`s `toStringShort` 函数输出)
 
-If you write your own widget, you can add information by overriding [`debugFillProperties()`](https://docs.flutter.io/flutter/widgets/Widget/debugFillProperties.html). Take the [DiagnosticsProperty](https://docs.flutter.io/flutter/foundation/DiagnosticsProperty-class.html) object as a method parameter and call the parent class method. This function is used by this `toString` method to populate the widget description information.
+如果您写了自己的小部件，您可以通过覆盖 [`调试FillProperties()`](https://docs.flutter.io/flutter/widgets/Widget/debugFillProperties.html) 添加信息。 将 [诊断属性](https://docs.flutter.io/flutter/foundation/DiagnosticsProperty-class.html) 对象作为方法参数并调用父类方法。 此函数用于此 `toString` 方法来填充小部件描述信息。
 
-#### Rendering tree
+#### 渲染树
 
-If you try to debug layout issues, the widget tree may not be detailed enough. In this case, you can dump the render tree by calling `debugDumpRenderTree()`. As with `debugDumpApp()`, you can call this function at any time other than during the layout or drawing phase. As a general rule, calling it from the [frame callback](https://docs.flutter.io/flutter/scheduler/SchedulerBinding/addPersistentFrameCallback.html) or from an event handler is the best solution.
+如果你试图调试布局问题，小部件树可能不够详细。 在这种情况下，您可以通过调用 `debugDumpRenderTree()` 来输出渲染树。 与 `debugDumpApp()`一样，您可以在布局或绘图阶段以外的任何时候调用此函数。 一般来说，从 [帧回调](https://docs.flutter.io/flutter/scheduler/SchedulerBinding/addPersistentFrameCallback.html) 或从事件处理程序调用它是最好的解决办法。
 
-To call `debugDumpRenderTree()`, you need to add `import'package:flutter/rendering.dart';` to your source file.
+要调用 `debugDumpRenderTree()`, 你需要添加 `导入包:flutter/rendering.dart';` 到你的源文件。
 
-The output of the small example above is shown below.
+下面是小示例的输出。
 
 ```shell
-I/flutter ( 6559): RenderView
-I/flutter ( 6559):  │ debug mode enabled - android
-I/flutter ( 6559):  │ window size: Size(1080.0, 1794.0) (in physical pixels)
-I/flutter ( 6559):  │ device pixel ratio: 2.625 (physical pixels per logical pixel)
-I/flutter ( 6559):  │ configuration: Size(411.4, 683.4) at 2.625x (in logical pixels)
-I/flutter ( 6559):  │
-I/flutter ( 6559):  └─child: RenderCustomPaint
-I/flutter ( 6559):    │ creator: CustomPaint ← Banner ← CheckedModeBanner ←
-I/flutter ( 6559):    │   WidgetsApp-[GlobalObjectKey _MaterialAppState(1009803148)] ←
-I/flutter ( 6559):    │   Theme ← AnimatedTheme ← ScrollConfiguration ← MaterialApp ←
-I/flutter ( 6559):    │   [root]
-I/flutter ( 6559):    │ parentData: <none>
-I/flutter ( 6559):    │ constraints: BoxConstraints(w=411.4, h=683.4)
-I/flutter ( 6559):    │ size: Size(411.4, 683.4)
+I/flutter (6559): RenderView
+I/flutter (6559): │ 启用调试模式 - android
+I/flutter (6559): │ 窗口大小: Size(1080.0, 1794.0) (物理像素)
+I/flutter ( 6559): │ 设备像素比: 2.625 (物理像素/逻辑像素)
+I/flutter (6559): │ 配置: Size(411.4, 683.4) at 2.625x (inlogical pixel)
+I/flutter (6559): │
+I/flutter (6559): └─child: RenderCustomPaint
+I/flutter (6559): │ creator: CustomPaint ← Banner ← CheckedModeBanner ←
+I/flutter (6559): │ WidgetsApp-[GlobalObjectKey _MaterialAppState(1009803148)] ←
+I/flutter (6559): │ Theme ← AnimatedTheme ← ScrollConfiguration ← MaterialApp ←
+I/flutter (6559): │   [root]
+I/flutter (6559): │ parentData: <none>
+I/flutter (6559): │ 约束: BoxConstraints （w=411.4，h=683.4）
+I/颤振（6559）：│尺寸：尺寸（411.4，683.4）
 ... 
 ```
 
-This is the output of the `toStringDeep` function of the root `RenderObject` object.
+这是根 `RenderObject` 对象的 `toStringDeep` 函数的输出。
 
-When debugging layout issues, the key things to look at are the `size` and `constraints` fields. Constraints are passed down the tree and sizes are passed up.
+当调试布局出现问题时，关键的问题是 `大小` 和 `约束` 字段。 限制因素会被传递到树上，大小会被传递。
 
-If you write your own rendering objects, you can add the information to the dump by overriding [`debugFillProperties()`](https://docs.flutter.io/flutter/rendering/Layer/debugFillProperties.html). Take the [DiagnosticsProperty](https://docs.flutter.io/flutter/foundation/DiagnosticsProperty-class.html) object as a parameter to the method and call the parent method.
+如果您写了自己的渲染对象，您可以通过覆盖 [`debugFillProperties()`](https://docs.flutter.io/flutter/rendering/Layer/debugFillProperties.html) 将信息添加到输出中。 将 [诊断属性](https://docs.flutter.io/flutter/foundation/DiagnosticsProperty-class.html) 对象作为方法的参数，然后调用父方法。
 
-#### Layer tree
+#### 图层树
 
-The reader can understand that the rendering tree can be layered, and the final drawing requires composing different layers, while Layer is the layer to be composited when drawing. If you try to debug the composing problem, you can use [`debugDumpLayerTree()`](<https://docs.flutter.io/flutter/> rendering/debugDumpLayerTree.html). For the above example, it would output.
+阅读器可以理解渲染树可以分层， 和最后绘图需要合成不同的图层，而图层则是绘图时要合成的图层。 如果你试图调试合成问题，你可以使用 [`debugDumpLayerTree()`](<https://docs.flutter.io/flutter/> rendering/debugDumpLayerTree.html)。 就上述例子而言，它将产生结果。
 
 ```
-I/flutter : TransformLayer
-I/flutter :  │ creator: [root]
-I/flutter :  │ offset: Offset(0.0, 0.0)
-I/flutter :  │ transform:
-I/flutter :  │   [0] 3.5,0.0,0.0,0.0
-I/flutter :  │   [1] 0.0,3.5,0.0,0.0
-I/flutter :  │   [2] 0.0,0.0,1.0,0.0
-I/flutter :  │   [3] 0.0,0.0,0.0,1.0
-I/flutter :  │
-I/flutter :  ├─child 1: OffsetLayer
-I/flutter :  │ │ creator: RepaintBoundary ← _FocusScope ← Semantics ← Focus-[GlobalObjectKey MaterialPageRoute(560156430)] ← _ModalScope-[GlobalKey 328026813] ← _OverlayEntry-[GlobalKey 388965355] ← Stack ← Overlay-[GlobalKey 625702218] ← Navigator-[GlobalObjectKey _MaterialAppState(859106034)] ← Title ← ⋯
-I/flutter :  │ │ offset: Offset(0.0, 0.0)
-I/flutter :  │ │
-I/flutter :  │ └─child 1: PictureLayer
-I/flutter :  │
-I/flutter :  └─child 2: PictureLayer
+I/flutter：TransformLayer
+I/flutter：│创建者： [root]
+I/flutter：│偏移量：Offset(0.0, 0.0)
+I/flutter：│变换：
+I/flutter：   [0] 3.5,0.0,0.0,0.0
+I/颤振：│   [1] 0.0,3.5,0.0,0.0
+I/颤振：│   [2] 0.0,0.0,1.0,0.0
+I/颤振：│   [3] 0.0,0.0,0.0,1.0
+I/颤振：│
+I /flutter : ├─child 1: OffsetLayer
+I/flutter : │ │ creator: RepaintBoundary ← _FocusScope ← Semantics ← Focus-[GlobalObjectKey MaterialPageRoute(560156430)] ← _ModalScope-[GlobalKey 328026813] ← _OverlayEntry-[GlobalKey 388965355] ← Stack ← Overlay-[GlobalKey 625702218] ← Navigator-[GlobalObjectKey _MaterialAppState(859106034)] ← Title ← ⋯
+I/flutter : │ │ offset: Offset(0.0, 0.0)
+I/flutter : │ │
+I/flutter : │ └─ child 1: PictureLayer
+I/flutter : │
+I/flutter : └─child 2: PictureLayer
 ```
 
-This is the output of the `toStringDeep` of the root `Layer`.
+这是root `Layer <code>toStringDeep`</code> 的输出。
 
-The root transformation is a transformation that applies a device pixel ratio; in this case, each logical pixel represents 3.5 device pixels.
+根转换是一个转换，使用设备像素比率；在这种情况下，每个逻辑像素代表3.5设备像素。
 
-The `RepaintBoundary` widget creates a `RenderRepaintBoundary` in the layer of the render tree. This is used to reduce the amount of repainting required.
+`修复边界` 小部件在渲染树的图层中创建 `渲染修复边界` 这用于减少所需的再循环量。
 
-### Semantics
+### 语句
 
-You can also call [`debugDumpSemanticsTree()`](https://docs.flutter.io/flutter/rendering/debugDumpSemanticsTree.html) to get a dump of the semantics tree (the tree presented to the system accessibility API). To use this function, you must first enable the helper functions, such as enabling the system helper or `SemanticsDebugger` (discussed below).
+您也可以调用 [`debugDumpSemanticsTree()`](https://docs.flutter.io/flutter/rendering/debugDumpSemanticsTree.html) 获取语义树的转储(向系统可访问性API展示的树)。 要使用此函数, 您必须首先启用辅助函数, 例如启用系统助手或 `SemanticsDebugger` (下面讨论)。
 
-For the above example, it will output :
+对于以上示例，它将输出：
 
 ```
 I/flutter : SemanticsNode(0; Rect.fromLTRB(0.0, 0.0, 411.4, 683.4))
@@ -184,81 +183,81 @@ I/flutter :  └SemanticsNode(3; Rect.fromLTRB(0.0, 0.0, 411.4, 683.4))
 I/flutter :    └SemanticsNode(4; Rect.fromLTRB(0.0, 0.0, 82.0, 36.0); canBeTapped; "Dump App")
 ```
 
-### Scheduling
+### 计划中
 
-To find out where the start/end events occur relative to the frame, you can toggle the [`debugPrintBeginFrameBanner`](https://docs.flutter.io/flutter/scheduler/debugPrintBeginFrameBanner.html) and [`debugPrintEndFrameBanner`](https://docs.flutter.io/flutter/scheduler/debugPrintEndFrameBanner.html) boolean values to print the start and end of the frame to the console.
+查找相对于帧的开始/结束事件发生地点， 您可以切换 [`debugPrintBeginFramework Banner`](https://docs.flutter.io/flutter/scheduler/debugPrintBeginFrameBanner.html) 和 [`debugPrintEndFramework Banner`](https://docs.flutter.io/flutter/scheduler/debugPrintEndFrameBanner.html) 布尔值以打印帧的起始和结尾到控制台。
 
-Example:
+示例：
 
 ```
-I/flutter : ▄▄▄▄▄▄▄▄ Frame 12         30s 437.086ms ▄▄▄▄▄▄▄▄
-I/flutter : Debug print: Am I performing this work more than once per frame?
-I/flutter : Debug print: Am I performing this work more than once per frame?
+I/flutter : ▄▄▄▄▄▄▄▄ 第 12 帧 30 秒 437.086ms ▄▄▄▄▄▄▄▄
+I/flutter : 调试打印：我是否每帧不止一次执行这项工作？
+I/flutter : 调试打印: 每帧我执行一次以上的工作?
 I/flutter : ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ```
 
-[`debugPrintScheduleFrameStacks`](https://docs.flutter.io/flutter/scheduler/debugPrintScheduleFrameStacks.html)It can also be used to print the call stack that caused the current frame to be dispatched.
+[`debugPrintScheduleFrameworks`](https://docs.flutter.io/flutter/scheduler/debugPrintScheduleFrameStacks.html)它也可以用于打印导致当前帧被调度的调用堆栈。
 
-### Visual debugging
+### 视觉调试
 
-You can also debug layout issues visually by setting `debugPaintSizeEnabled` to `true`. This is a boolean value from the `rendering` library. It can be enabled at any time and affects drawing when it is true. The easiest way to set it is to set it at the top of `void main()`.
+您也可以通过设置 `调试PaintSize启用` 到 `true` 来视觉调试布局问题。 这是来自 `渲染` 库的布尔值。 它可以在任何时候启用，并且当它是真实时会影响绘画。 设置它的最简单的方法是将它设置在 `无效的 main()` 的顶部。
 
-When it is enabled, all boxes get a bright dark cyan border, padding (from widgets like Padding) is shown in light blue, child widgets have a dark blue box around them, and alignment (from widgets like Center and Align) is shown as a yellow arrow. Blank (e.g. Container without any child nodes) is shown in gray.
+当启用时，所有方框都会有亮黑暗圆环边框，填充(从小部件如填充)会以亮蓝色显示， 子部件周围有一个深蓝色框，对齐(来自中心和对齐等小部件)显示为黄箭头。 空白(例如容器没有任何子节点)以灰色显示。
 
-[`debugPaintBaselinesEnabled`](https://docs.flutter.io/flutter/rendering/debugPaintBaselinesEnabled.html) does something similar, but for objects with baselines, the text baseline is shown in green and ideographic baselines are shown in orange.
+[`调试PaintBaselines已启用`](https://docs.flutter.io/flutter/rendering/debugPaintBaselinesEnabled.html) 做了类似的事情， 但对于有基线的物体，文本基线以绿线标出，理想度基线以橙色标出。
 
-The [``debugPaintPointersEnabled``](https://docs.flutter.io/flutter/rendering/debugPaintPointersEnabled.html) flag turns on a special mode where any object being clicked on is highlighted in dark cyan highlighting. This can help you determine if an object is hit-tested in some incorrect way (Flutter detects if the clicked location has a widget that responds to the user's actions), for example, if it is actually out of range of its parent item, it will not be considered for the hit test in the first place.
+[`调试PaintPointers启用`](https://docs.flutter.io/flutter/rendering/debugPaintPointersEnabled.html) 标志打开了一种特殊模式，在这种模式下，任何被点击的对象都会被高亮显示在暗色高亮中。 这可以帮助您确定某个对象是否以某种不正确的方式进行命中测试(如果点击的位置有响应用户动作的小部件的话， 例如，如果其母项目实际上超出其母项目的范围， 它首先不会被考虑进行撞击试验。
 
-If you are trying to debug a composite layer, for example to determine if and where to add a `RepaintBoundary` widget, you can use [`debugPaintLayerBordersEnabled`](https://docs.flutter.io/flutter/rendering) /debugPaintLayerBordersEnabled.html) flag, which marks the borders of each layer with an orange or outlined line, or use the [`debugRepaintRainbowEnabled`](https://docs.flutter.io/flutter/ rendering/debugRepaintRainbowEnabled.html) flag whenever they redraw, which causes the layer to be covered by a set of rotating colors.
+如果你试图调试一个复合图层，比如用来确定是否和在哪里添加 `修复边界` 小部件， 您可以使用 [`调试绘图布局Borders启用`](https://docs.flutter.io/flutter/rendering) /debugPaintLayerBorders启用 tml标记每个图层的边界有橙色或概述的行，或使用[`debugRepaintRainbow已启用`](https://docs)。 lutter.io/flutter/rendering/debugRepainbowEnabled.html）旗帜每次重新绘制时都会导致图层被一组旋转颜色覆盖。
 
-All these flags only work in debug mode. Normally, anything in the Flutter framework that starts with ``debug... `" will only work in debug mode.
+所有这些标记只能在调试模式下工作。 通常，Flutter框架中以``debug... `为起点的任何东西只能在调试模式下工作。
 
-### Debugging animations
+### 调试动画
 
-The easiest way to debug animations is to slow them down. To do this, set the [`timeDilation`](https://docs.flutter.io/flutter/scheduler/timeDilation.html) variable (in the scheduler library) to a number greater than 1.0, e.g. 50.0. It is best to set this only once when the application starts once. If you change it on the fly, and especially if you change its value to a smaller value while the animation is running, you may get regressions on observation, which may result in assertion hits, and this usually interferes with our development efforts.
+调试动画的最简单方式是减缓动画。 要做到这一点，请设置 [`timeDilation`](https://docs.flutter.io/flutter/scheduler/timeDilation.html) 变量(在调度程序库中) 大于 1.0，例如：50.0。 最好只在应用程序启动一次时设置一次。 如果您在飞行时更改它，特别是如果您在动画运行时将其值更改为较小的值， 你可能会在观察上出现倒退，这可能会导致命中弹，这通常会干扰我们的发展努力。
 
-### Debugging performance issues
+### 调试性能问题
 
-To understand what causes your application to re-layout or re-draw, you can set [`debugPrintMarkNeedsLayoutStacks`](https://docs.flutter.io/flutter/rendering/) separately debugPrintMarkNeedsLayoutStacks.html) and [`debugPrintMarkNeedsPaintStacks`](https://docs.flutter.io/flutter/rendering/ debugPrintMarkNeedsPaintStacks.html) flags. These log the stack trace to the console whenever the render box is asked to re-layout and repaint. If this method works for you, you can use the `debugPrintStack()` method in the `services` library to print the stack trace on demand.
+要了解什么原因导致应用程序重新布局或重新绘制，您可以设置 [`debugPrintMarkNeedsLayoutStacks`](https://docs.flutter.io/flutter/rendering/) 单独调试PrintMarkNeedsLayoutStacks。 tml和[`debugPrintMarkNeedsPaintStacks`](https://docs.flutter.io/flutter/rendering/debugPrintMarkNeedsPaintStacks.html) 标志 每当请求渲染方框重新布局并重新修复时，这些记录堆栈跟踪到控制台。 如果此方法适用于您， 您可以在 `服务` 库中使用 `debugPrintStack()` 方法来按需打印堆栈跟踪。
 
-### Statistical application startup time
+### 统计应用程序启动时间
 
-To gather detailed information about how long it takes for a Flutter application to start, you can use the `trace-startup` and `profile` options when running `flutter run`.
+收集Flutter应用程序启动所需时间的详细信息， 您可以在运行 `通风机运行` 时使用 `跟踪启动` 和 `配置` 选项。
 
 ```shell
 flutter run --trace-startup --profile
 ```
 
-The trace output is saved as ``start_up_info.json`` in the Flutter project directory under the build directory. The output lists the time spent from application startup to these trace events (captured in microseconds).
+跟踪输出被保存为 `start_up_info.json` 在 Flutter 项目目录下的构建目录下。 输出列出了从应用程序启动到这些跟踪事件所花费的时间(在微秒中捕获)。
 
-- When entering the Flutter engine.
-- When displaying the first frame of the application.
-- When initializing the Flutter framework.
-- When completing the initialization of the Flutter framework.
+- 当进入流体引擎时。
+- 当显示应用程序的第一帧时。
+- 初始化流体框架。
+- 当完成流体框架的初始化时。
 
-As :
+以 :
 
 ```json
-{
-  "engineEnterTimestampMicros": 96025565262,
-  "timeToFirstFrameMicros": 2171978,
+主席:
+  "engineEnterTimestampMicros": 960255565262,
+  "timeToFirstFramers": 2171978,
   "timeToFrameworkInitMicros": 514585,
   "timeAfterFrameworkInitMicros": 1657393
 }
 ```
 
-### Tracking Dart code performance
+### 跟踪暗色代码性能。
 
-To perform a custom performance trace and measure the wall/CPU time of any code segment of Dart (similar to using [systrace](https://developer.android.com/studio/profile/systrace.html) on Android) Use ``dart:developer``s [Timeline](https://api.dartlang.org/stable/dart-developer/Timeline-class.html) tool to include the block of code you want to test, e.g.
+要执行自定义性能跟踪并测量Dart 任意代码段的壁/CPU时间(类似于Android上使用 [systrace](https://developer.android.com/studio/profile/systrace.html) )，使用 `dart:developer`s [时间线](https://api.dartlang.org/stable/dart-developer/Timeline-class.html) 工具包括您想要测试的代码块。 例如:
 
 ```dart
-Timeline.startSync('interesting function');
+Timeline.startSync('有趣的函数');
 // iWonderHowLongThisTakes();
 Timeline.finishSync();
 ```
 
-Then open your application's Observatory timeline page, select the 'Dart' checkbox in 'Recorded Streams', and perform the function you want to measure.
+然后打开您的应用程序观测站时间线页，在“录音流”中选择“Dart”复选框，并执行您想要测量的函数。
 
-Refreshing the page will display the application's timeline records in chronological order in Chrome's [Tracking Tools](https://www.chromium.org/developers/how-tos/trace-event-profiling-tool).
+刷新页面将在 Chrome 的 [跟踪工具](https://www.chromium.org/developers/how-tos/trace-event-profiling-tool) 中按时间顺序显示应用程序的时间线记录。
 
-Please make sure to run `flutter run` with the `-profile` flag to ensure that the runtime performance characteristics are minimally different from your final product.
+请确保使用 `-profile` 标志运行 `flutter run` ，以确保运行时性能特征与最终产品的差异最小。
