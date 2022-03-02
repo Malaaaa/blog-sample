@@ -1,29 +1,32 @@
-# 计算机系统
+# Computer Systems
+## A Tour of Computer Systems
+  
+Even though we made a substantial improvement to a major part of the system, our net speed up was significantly less than the speedup for the one part.
+虽然我们对系统的一个主要部分做出了重大改进，但是获得的系统加速比却明显小于这部分的加速比。这就是 Amdahl 定律的主要观点——要想显著加速整个系统，必须提升全系统中相当大的部分的速度。  
 
-## 计算机系统之旅行
-
-即使我们对该系统的主要部分作出了重大改进， 我们的净速度大大低于其中一个部分的加速速度。
-
-
-整数计算总是遵循一项原则：较小的数字延伸到较大的数字。 短号 -> 无签名的短号 -> int -> 无签名整数
+整形数运算，总是遵循一个原则：小的往大的扩展。
+从小到大：short -> unsigned short -> int -> unsigned int  
 
 Float IEEE754 ：https://blog.csdn.net/K346K346/article/details/50487127
 
-文件必须包含一个主要函数
+文件中必须含有一个 main 函数
 
-CF (unsigned) t < (unsigned) aunsigned overflow ZF (t == 0)ZI SF (t < 0)Negative \ of a<0==b<0)&&(t<0! a<0)已签署溢出
+CF    (unsigned) t < (unsigned) aUnsigned overflow \
+ZF    (t == 0)Zero \
+SF    (t < 0)Negative \
+OF   (a<0==b<0)&&(t<0!=a<0)Signed overflow
 
 ![img.png](img.png)
 
-![计算元素i的原始和优化代码，固定长度数组的矩阵产品的 k。编译器自动执行这些优化。](img_1.png) 计算固定长度数组矩阵产品元素i的原始和优化代码。编译器自动执行这些优化。
+![Original and optimized code to compute element i, k of matrix product for fixed-length arrays.The compiler performs these optimizations automatically.](img_1.png)
+Original and optimized code to compute the element i, k of matrix product for fixed-length arrays.The compiler performs these optimizations automatically.
 
-**理解指针**
-
-+ 每个指针都有一个关联的类型。 特殊真空*类型代表一个通用指针。
-+ 每个指针都有一个值。 此值是指定类型某些对象的地址。 specNUL(0) 值表示指向器不指向任何地方。
-+ 点数是通过&的操作员创建的。 ses the leaq 指令来计算表达式值，因为此指令旨在计算内存引用的地址。
-+ 指针与'*'操作员互用。 结果是一个与指针相关联的值。
-+ 数组和指针密切相关。 数组引用(如，[3]) 具有与指针算法和反引用完全相同的效果(如，*(a+3))。
-+ 从一种指针到另一种指针，会改变其类型，但不会改变其值。
-+ 指针也可以指向函数。
+**Understanding Pointers**
++ Every pointer has an associated type. The special void *type represents a generic pointer.
++ Every  pointer  has  a  value. This  value  is  an  address  of  some  object  of  the designated type. The specialNULL(0) value indicates that the pointer does not point anywhere.
++ Pointers are created with the ‘&’ operator.uses the leaq instruction to compute the expression value, since this instruction is designed to compute the addressof a memory reference.
++ Pointers are dereferenced with the ‘*’ operator. The result is a value having the type associated with the pointer.
++ Arrays and pointers are closely related. Array  referencing  (e.g.,a[3]) has the exact same effect as pointer arithmetic and dereferencing (e.g.,*(a+3)). 
++ Casting from one type of pointer to another changes its type but not its value.
++ Pointers can also point to functions.
 
