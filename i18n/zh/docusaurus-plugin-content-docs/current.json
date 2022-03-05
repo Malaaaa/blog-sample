@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "下一个",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.CSAPP": {
+    "message": "CSAPP",
+    "description": "The label for category CSAPP in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.I": {
+    "message": "一",
+    "description": "The label for category I in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Flutter": {
+    "message": "流体",
+    "description": "The label for category Flutter in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.React": {
+    "message": "React",
+    "description": "The label for category React in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Skill": {
+    "message": "技能",
+    "description": "The label for category Skill in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Leetcode": {
+    "message": "Leetcode",
+    "description": "The label for category Leetcode in sidebar tutorialSidebar"
+  }
+}

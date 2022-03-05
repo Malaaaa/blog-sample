@@ -28,7 +28,7 @@ La transmission de paquets**(paquets Internet)** de l'adresse source **à la des
 
 **Objet de service** Protocole UDP User Datagram Protocol (couche transport)
 
-Services nécessitant grande et tels que HTTP, SMTP, etc.
+Services nécessitant grande et **tels que HTTP,**, SMTP, etc.
 
 - **Protocole UDP Protocole de datagramme utilisateur (couche transport)**
 

@@ -2,6 +2,8 @@
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
  */
+ @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100&display=swap');
+
 
 .heroBanner {
   padding: 4rem 0;
@@ -35,6 +37,10 @@
   font-size: x-large;
   text-align: center;
     height: auto;
+}
+.card__footer{
+  font-family: 'Smooch Sans', sans-serif;
+
 }
 
 .discrpition{
