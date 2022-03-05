@@ -1,0 +1,10 @@
+{
+  "title": {
+    "message": "我的恢复",
+    "description": "The title in the navbar"
+  },
+  "item.label.My notes": {
+    "message": "我的笔记",
+    "description": "Navbar item with label My notes"
+  }
+}

@@ -18,3 +18,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+i18n/zh/docusaurus-plugin-content-docs/current/Leetcode
+
+i18n/fr/docusaurus-plugin-content-docs/current/Leetcode
