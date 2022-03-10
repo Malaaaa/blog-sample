@@ -45,7 +45,6 @@ const Skills = () => {
         <strong>Automates tool:</strong> Selenium
         <br/>
         <strong>Activities: </strong> <a href='https://malaaa.mljlls.tech/'>https://malaaa.mljlls.tech/</a>（A blog that documents the learning process）
-
       </pre>
     </div>
   </div>)
