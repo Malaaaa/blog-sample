@@ -49,3 +49,16 @@
   height: 15vh;
   align-content: flex-start;
 }
+
+.skill::before{
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(../../static/img/skill.gif);
+  width: 28px;
+  height: 28px;
+  background-size:100%;
+  position: relative;
+  top:0.5rem;
+  right: 0.5rem;
+}

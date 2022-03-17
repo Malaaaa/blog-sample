@@ -55,11 +55,14 @@ h3{
 }
 strong{
   font-family: 'Courier New', Courier, monospace;
-  margin: auto;
+  font-size:large;
+  margin: 3px;
 
 }
 strong~p{
   text-align: left;
+  font-size: medium;
+
 }
 p{
   margin: 2px;

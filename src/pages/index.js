@@ -1,63 +1,50 @@
+import { Developtools } from './components/Developtools';
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import csharp from '../../static/img/icons8-c-sharp-logo-48.png';
+import aws from '../../static/img/icons8-amazon-web-services-32.png';
 import Layout from '@theme/Layout';
 import ji from "../../static/img/Ji.png";
 import styles from './index.module.css';
+import Frontendab from './components/Frontendab';
+import Backendab from './components/Backendab';
 
-function HomepageHeader() {
-  return (
-    <header>
-      <div className="container">
-        <div className={styles.warp}>
-          <div className={styles.left}>
-            <img src={ji} className={styles.img} />
-            <h2>Liangji Ma</h2>
-            <div>
-              <p className='work'>Software Developer Engineer</p>
-              <p className='location'>Toronto, CA</p>
-              <p className='email'>liangji_ma@hotmail.com</p>
-              <p className='linkedin'>linkedin.com/in/liangji-ma</p>
-            </div>
-            <hr />
-            <h3>Skills</h3>
-            <strong>Program Language</strong>
-            <p><i>Frontend side : </i>HTML CSS JavaScript</p>
-            <div>
-            <div>90%</div>
-            </div>
-            <p><i>Backend side : </i>Java C++ Python C#</p>
-            <div>
-            <div>70%</div>
-            </div>
-            <strong>Development Tools</strong>
-            <p><i>Development : </i>
-              ASP.NET MVC / Core, Spring Boot,
-              React, Redux, MySQL, Git, AWS,</p>
-            <p><i>Test and Operations : </i>Jenkins,  Kubernetes, K8s, Distributed System,
-               Agile Development (Scrum)</p>
-          </div>
-          <div className={styles.right}></div>
-
-
-        </div>
-      </div>
-    </header>
-  );
-}
 export default function Home() {
-  const [option, setOption] = useState(true);
 
   return (
     <main>
       <Layout
         title={`Liangji Ma Resume`}
         description="This is a resume and blog for my program">
-        <HomepageHeader />
-        <div className={styles.warp}>
+        <div className="container">
+          <div className={styles.warp}>
+            <div className={styles.left}>
+              <img src={ji} className={styles.img} />
+              <h2>Liangji Ma</h2>
+              <div>
+                <p className='work'>Software Developer Engineer</p>
+                <p className='location'>Toronto, CA</p>
+                <p className='email'>liangji_ma@hotmail.com</p>
+                <p className='linkedin'>linkedin.com/in/liangji-ma</p>
+              </div>
+              <hr />
+              <h3 className={styles.skill}>Skills</h3>
+              <strong>Program Language</strong>
+              <>
+              <Frontendab />
+              <Backendab csharp={csharp} />
+              </>
+              <strong>Development Tools</strong>
+              <Developtools   aws={aws}  />
+            </div>
+            <div className={styles.right}></div>
+            <div className={styles.education}>
 
-        </div>
-        <div className="container" >
-          <div className={styles.description}>
+            </div>
+            <div className={styles.experience}>
+
+            </div>
+
           </div>
         </div>
       </Layout>
