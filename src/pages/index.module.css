@@ -9,6 +9,7 @@
   overflow: hidden;
 }
 
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
@@ -25,12 +26,11 @@
   padding: 2rem;
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 20rem auto;
 }
 
 .left,
-.right,
-.middle {
+.right{
   font-size: x-large;
   text-align: center;
     height: auto;
@@ -44,4 +44,8 @@
   font-size: x-large;
   text-align: center;
     height: auto;
+}
+.img{
+  height: 15vh;
+  align-content: flex-start;
 }
