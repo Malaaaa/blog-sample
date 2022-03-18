@@ -1,6 +1,6 @@
 import React from "react";
 function Frontendab({}) {
-      return (<p><i>Frontend side: </i>
+      return (<p><i>Frontend  </i>
                 <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="28
             " height="28
             " /> </a>

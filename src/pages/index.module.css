@@ -34,6 +34,7 @@
   font-size: x-large;
   text-align: center;
     height: auto;
+  margin-inline-start: 2rem;
 }
 .card__footer{
 	font-family: Hiragino Sans GB, MicroSoft YaHei;
@@ -61,4 +62,87 @@
   position: relative;
   top:0.5rem;
   right: 0.5rem;
+}
+.education{
+  text-align: left;
+}
+.education::before{
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(https://img.icons8.com/ios/50/000000/education.png);
+  width: 28px;
+  height: 28px;
+  background-size:100%;
+  position: relative;
+  top:0.5rem;
+  right: 0.5rem;
+}
+.bishop::before{
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(https://www.ubishops.ca/wp-content/themes/ubishops/assets/images/favicon.svg);
+  width: 28px;
+  height: 28px;
+  background-size:100%;
+  position: relative;
+  top:0.5rem;
+  right: 0.5rem;
+}
+.xupt::before{
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(../../static/img/xupt.jpg);
+  width: 25px;
+  height: 25px;
+  background-size:100%;
+  position: relative;
+  top:0.5rem;
+  right: 0.5rem;
+}
+.time{
+  display: inline-block;
+}
+.time::before{
+  margin: 1px;
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(https://img.icons8.com/material-rounded/24/000000/calendar--v1.png);
+  width: 16px;
+  height: 16px;
+  background-size:100%;
+  position: relative;
+}
+.place{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.locate::before{
+  margin: 1px;
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(https://img.icons8.com/ios-glyphs/30/000000/worldwide-location.png);
+  width: 16px;
+  height: 16px;
+  background-size:100%;
+  position: relative;
+}
+a{
+  color: #333;
+}
+.experience::before{
+  margin: 1px;
+  content: '';
+  display: inline-block;
+  clear:both;
+  background-image: url(https://img.icons8.com/external-outline-juicy-fish/60/000000/external-work-digital-nomad-outline-outline-juicy-fish-7.png);
+  width: 20px;
+  height: 20px;
+  background-size:100%;
+  position: relative;
 }
