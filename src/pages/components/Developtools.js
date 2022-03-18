@@ -1,5 +1,5 @@
 import React from "react";
-export function Developtools({
+function Developtools({
   aws
 }) {
   return <div><p><i>Development : </i>
@@ -49,3 +49,4 @@ export function Developtools({
                   </a>
                 </p></div>;
 }
+export default Developtools;

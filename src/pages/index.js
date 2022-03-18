@@ -1,4 +1,4 @@
-import { Developtools } from './components/Developtools';
+import Developtools  from './components/Developtools';
 import React from 'react';
 import csharp from '../../static/img/icons8-c-sharp-logo-48.png';
 import aws from '../../static/img/icons8-amazon-web-services-32.png';
