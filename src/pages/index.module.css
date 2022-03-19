@@ -22,19 +22,29 @@
   justify-content: center;
 }
 
+@media screen and (max-width: 966px){
+  .warp {
+    padding: 2rem;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20rem auto;
+  }
+}
 .warp {
   padding: 2rem;
   display: grid;
   width: 100%;
-  grid-template-columns: 20rem auto;
+  grid-template-columns: auto;
 }
 
 .left,
 .right{
+
   font-size: x-large;
   text-align: center;
     height: auto;
-  margin-inline-start: 2rem;
+  margin: 2rem;
+
 }
 .card__footer{
 	font-family: Hiragino Sans GB, MicroSoft YaHei;
