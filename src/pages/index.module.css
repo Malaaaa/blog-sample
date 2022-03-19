@@ -22,7 +22,7 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 966px){
+@media screen and (min-width: 765px){
   .warp {
     padding: 2rem;
     display: grid;
@@ -30,16 +30,18 @@
     grid-template-columns: 20rem auto;
   }
 }
-.warp {
-  padding: 2rem;
-  display: grid;
-  width: 100%;
-  grid-template-columns: auto;
+@media screen and (max-width: 765px){
+  .warp {
+    padding: 2rem;
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto;
+  }
 }
+
 
 .left,
 .right{
-
   font-size: x-large;
   text-align: center;
     height: auto;

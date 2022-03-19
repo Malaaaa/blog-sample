@@ -58,6 +58,7 @@ export default function Home() {
             <hr></hr>
             <div className={styles.experience}>Activeties rigth now
             </div>
+            <hr/>
             <div> A sum accounting website</div>
             <div> Check the bug in the MDN docs zh-CN version</div>
             <div> Learn some Photoshop</div>
