@@ -59,7 +59,7 @@ export default function Home() {
             <div className={styles.experience}>Activeties rigth now
             </div>
             <hr/>
-            <div> A sum accounting website</div>
+            <div> A Jira project</div>
             <div> Check the bug in the MDN docs zh-CN version</div>
             <div> Learn some Photoshop</div>
             <div> Publish npm pack: Objects-list-export-to-CSV</div>
