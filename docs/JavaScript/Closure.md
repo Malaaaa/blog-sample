@@ -41,7 +41,7 @@ Just press `F12`and chose source to get the js function location
 
 ![devtool](F:\Github\blog-sample\docs\JavaScript\img\image-20220324134517641.png)
 
-I used create react app to build this test project. So you can see at the sope area there is a Closure (./src/App.js) and we can see the only Global scope window. The Closure between them is index.js, and the top one also the deepest one is Closure (testClosure) in Clouser exmaple
+ At the sope area there is a Closure (./src/App.js) and we can see the only Global scope window. The Closure between them is index.js, and the top one also the deepest one is Closure (testClosure) in Clouser exmaple
 
 ![Scope](F:\Github\blog-sample\docs\JavaScript\img\scople.png)
 
@@ -53,21 +53,24 @@ I put a break point at line 22,The first time we call **testClosure**() , in the
 
 From the picture, It is obvious the `const add` is undifined before Assignment. That is  Hoisting but you can't use it, for `let` and `const` there will be an  `Throws ReferenceError` you can see [MDN get more about hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 
-Click next, step in testClosuer there is there attribute [this, effect, let] and their Hoisting value undefined.
+Click next, step in testClosuer there are attributes [this, effect, let], and their Hoisting value undefined. Look at scope it is under (./src/App.js).
 
 ![image-20220324142854729](F:\Github\blog-sample\docs\JavaScript\img\testClosure.png)  	 
 
-Just click next excute `const add = testClosure();` and we can see the return value is a **Anonymous** Function named effect (this name attribute is given for locate the function) .
+Just click next excute `const add = testClosure();` and we can see the return value is a **Anonymous** Function named effect (this name attribute is given for locate the function) .This add is same as effect but can be called in  function App scope.(effect can just called in function testClosure)
 
 ![image-20220324143430450](F:\Github\blog-sample\docs\JavaScript\img\returnValue.png)
 
-Continue click to excute `const unmount = add();` and the return value is a **unmount** Function which is difined to log in console.
+Continue click to execute `const unmount = add();` It execute add() which get value from **testClosure** with num=0 and execute num+=1 then return a **funtion** unmount()(not a anonymous funtion) to unmount.(at end you can see the full scope)
 
-![image-20220324163932432](F:\Github\blog-sample\docs\JavaScript\img\unmount.png)
+![image-20220324192022626](F:\Github\blog-sample\docs\JavaScript\img\add.png)
 
-Here is why the result is `num value in message：1` 
+Here is why the result is `num value in message：1`, The`const unmountis`assigned a property {message:"num value in message:1"}.
 
-The unmount() is assigned a property {message:"num value in message:1"}.
+add() will change the num every call but don't excute **unmount** **function** so console have no output. But we can use `add()();`to get execute the inner function .This is also about Currying [click here know more about currying](https://javascript.info/currying-partials)
 
-add() will change the num every call but don't excute **unmount** **function** so console have no output. But we can use `add()();`to get excute the inner function `num value in message：2`. This is also about Currying [click here know more about currying](https://javascript.info/currying-partials)
+![image-20220324185224217](F:\Github\blog-sample\docs\JavaScript\img\inner.png)
 
+At the end when we excute **unmount**(), we can see scope why the result is `num value in message：1` , unmount() is under **Closure** (effect) this **Closure** is created at `const unmount = add();` 
+
+![image-20220324190442533](C:\Users\LMA192\AppData\Roaming\Typora\typora-user-images\image-20220324190442533.png)
