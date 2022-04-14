@@ -24,3 +24,13 @@ JavaScript code executed in the browser, if we define a property in the top-leve
 ![browser](./image/2022-04-10-19-28-43.png) Top level var add to GO, const dont add to GO as an attribute.const is a module.
 ![node](./image/2022-04-10-19-31-56.png) REPL var a add to GO. In script is module. so don't add.
 ![nodeModule](./image/2022-04-10-19-36-40.png)
+
+`const bar = require('exposts')` '=' shallow copy exports object. exports is module.exports.
+module is instance of Class module. `module.exports = exports`
+![Module](./image/2022-04-11-13-25-03.png)
+
+`Loaded true` cached did't add. Deep first.
+
+[**browser**]import module is Compilation load at parsing and run async.import(module) is async funtion.
+[**node**]require module is sync funtion. run at execute.
+webpack import() single pack. require and import can use both.
