@@ -2,11 +2,16 @@ import Developtools from "./components/Developtools";
 import React from "react";
 import csharp from "../../static/img/icons8-c-sharp-logo-48.png";
 import aws from "../../static/img/icons8-amazon-web-services-32.png";
+import sumacc from "../../static/img/ninth-glider-325616.web.app_.png";
+import jira from "../../static/img/malaaaaaa.github.io_.png";
+import stmic from "../../static/img/stmichaelscollegeschool.com.png";
 import Layout from "@theme/Layout";
 import ji from "../../static/img/Ji.png";
 import styles from "./index.module.css";
 import Frontendab from "./components/Frontendab";
 import Backendab from "./components/Backendab";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 export default function Home() {
   return (
@@ -69,12 +74,19 @@ export default function Home() {
                 </div>
               </div>
               <hr></hr>
-              <div className={styles.experience}>Activeties rigth now</div>
+              <div className={styles.experience}>My Portfolio</div>
               <hr />
-              <div> A Jira project</div>
-              <div> Check the bug in the MDN docs zh-CN version</div>
-              <div> Learn some Photoshop</div>
-              <div> Publish npm pack: Objects-list-export-to-CSV</div>
+              <Carousel thumbs={false}>
+                <a href="https://ninth-glider-325616.web.app/">
+                    <img src={sumacc} />
+                </a>
+                <a href="https://malaaaaaa.github.io/">
+                    <img src={jira}  />
+                </a>
+                <a href="https://stmichaelscollegeschool.com/">
+                    <img src={stmic} />
+                </a>
+            </Carousel>
             </div>
           </div>
         </div>
