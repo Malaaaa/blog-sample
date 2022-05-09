@@ -29,8 +29,8 @@ export default function Home() {
                 <p className='work'>Software Developer Engineer</p>
                 <p className='location'>Toronto, CA</p>
                 <p className='email'>
-                  <a href='mailto:liangji_ma@hotmail.com'>
-                    liangji_ma@hotmail.com
+                  <a href='mailto:ethan@liangjima.com'>
+                  ethan@liangjima.com
                   </a>
                 </p>
                 <p className='linkedin'>
