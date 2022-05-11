@@ -81,6 +81,7 @@ export default function Home() {
               <a href="https://ninth-glider-325616.web.app/"><h4>Sum Accounting Website</h4></a>
               <a href="https://malaaaaaa.github.io/"><h4>Jira Website</h4></a>
               <a href="https://stmichaelscollegeschool.com/"><h4>st-michaels-colleges-chool website</h4></a>
+              <strong>More projects in github and my study notes record some insipire idea when I learning</strong>
               <button className={styles.arrowbutton}>↓</button>
 
             </div>
