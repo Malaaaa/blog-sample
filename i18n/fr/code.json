@@ -227,5 +227,44 @@
   "theme.tags.tagsPageTitle": {
     "message": "Mots clés",
     "description": "The title of the tag list page"
+  },
+  "Liangji Ma": {
+    "message": "Liangji Ma"
+  },
+  "Software Developer Engineer": {
+    "message": "Ingénieur développeur de logiciels"
+  },
+  "Toronto, CA": {
+    "message": "Toronto, CA"
+  },
+  "Education": {
+    "message": "Éducation"
+  },
+  "Bishop's University": {
+    "message": "Université Bishop's"
+  },
+  "Master of Computer Science": {
+    "message": "Maîtrise en informatique"
+  },
+  "Xian University of Posts Telecommunications University": {
+    "message": "Université des postes et télécommunications de Xian"
+  },
+  "Bachelor of Electrical Engineering": {
+    "message": "Baccalauréat en génie électrique"
+  },
+  "My Portfolio": {
+    "message": "Mon portefeuille"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Page d'accueil",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Fil d'Ariane",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Basculer le retour à la ligne",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   }
 }

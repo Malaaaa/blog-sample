@@ -227,5 +227,44 @@
   "theme.tags.tagsPageTitle": {
     "message": "标签",
     "description": "The title of the tag list page"
+  },
+  "Liangji Ma": {
+    "message": "马良骥"
+  },
+  "Software Developer Engineer": {
+    "message": "软件开发工程师"
+  },
+  "Toronto, CA": {
+    "message": "Toronto, CA"
+  },
+  "Education": {
+    "message": "教育"
+  },
+  "Bishop's University": {
+    "message": "毕索大学"
+  },
+  "Master of Computer Science": {
+    "message": "计算机科学硕士"
+  },
+  "Xian University of Posts Telecommunications University": {
+    "message": "西安邮电大学"
+  },
+  "Bachelor of Electrical Engineering": {
+    "message": "电气工程学士"
+  },
+  "My Portfolio": {
+    "message": "我的作品"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "主页面",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "页面路径",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "切换换词",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   }
 }

@@ -227,5 +227,44 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "Liangji Ma": {
+    "message": "Liangji Ma"
+  },
+  "Software Developer Engineer": {
+    "message": "Software Developer Engineer"
+  },
+  "Toronto, CA": {
+    "message": "Toronto, CA"
+  },
+  "Education": {
+    "message": "Education"
+  },
+  "Bishop's University": {
+    "message": "Bishop's University"
+  },
+  "Master of Computer Science": {
+    "message": "Master of Computer Science"
+  },
+  "Xian University of Posts Telecommunications University": {
+    "message": "Xian University of Posts Telecommunications University"
+  },
+  "Bachelor of Electrical Engineering": {
+    "message": "Bachelor of Electrical Engineering"
+  },
+  "My Portfolio": {
+    "message": "My Portfolio"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Home page",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Breadcrumbs",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Toggle word wrap",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   }
 }

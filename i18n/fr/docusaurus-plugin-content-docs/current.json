@@ -26,5 +26,29 @@
   "sidebar.tutorialSidebar.category.Leetcode": {
     "message": "Leetcode",
     "description": "The label for category Leetcode in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Apprentissage flottant": {
+    "message": "Apprentissage flottant",
+    "description": "The label for category Apprentissage flottant in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Exemple Javascript utile": {
+    "message": "Exemple Javascript utile",
+    "description": "The label for category Exemple Javascript utile in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Linux": {
+    "message": "Linux",
+    "description": "The label for category Linux in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.WSL": {
+    "message": "WSL",
+    "description": "The label for category WSL in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Architecture": {
+    "message": "Architecture",
+    "description": "The label for category Architecture in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TypeScript": {
+    "message": "TypeScript",
+    "description": "The label for category TypeScript in sidebar tutorialSidebar"
   }
 }

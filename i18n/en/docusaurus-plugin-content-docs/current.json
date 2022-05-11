@@ -46,5 +46,17 @@
   "sidebar.tutorialSidebar.category.TypeScript": {
     "message": "TypeScript",
     "description": "The label for category TypeScript in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Flutter Learning": {
+    "message": "Flutter Learning",
+    "description": "The label for category Flutter Learning in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Useful Javascript exmaple": {
+    "message": "Useful Javascript exmaple",
+    "description": "The label for category Useful Javascript exmaple in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Architecture": {
+    "message": "Architecture",
+    "description": "The label for category Architecture in sidebar tutorialSidebar"
   }
 }
