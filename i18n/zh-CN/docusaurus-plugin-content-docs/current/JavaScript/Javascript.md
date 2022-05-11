@@ -1,11 +1,11 @@
 # 有用的 Javascript Exmaple
 
 ```Javascript
-导出 const 文件 = [...document.querySelectorAll(".formfile")];
+export const file = [...document.querySelectorAll(".formfile")];
 
 files.forEach(item)=>
 item.style. isplay = "none";
 });
 
-const failureitems = arr.map(项目=> `<li class="text-warning">${item}</li>`); //迭代器 
+const failureitems = arr.map(project=> `<li class="text-warning">${item}</li>`); //迭代器 
 ```

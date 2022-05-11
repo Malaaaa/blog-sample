@@ -12,6 +12,8 @@ import Frontendab from "./components/Frontendab";
 import Backendab from "./components/Backendab";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Translate, {translate} from '@docusaurus/Translate';
+import Link from "@docusaurus/Link";
 
 export default function Home() {
   return (
@@ -23,11 +25,11 @@ export default function Home() {
         <div className='container'>
           <div className={styles.warp}>
             <div className={styles.left}>
-              <img src={ji} className={styles.img} />
-              <h2>Liangji Ma</h2>
+              <img src={ji} className={styles.img} alt="Logo"/>
+              <h2><Translate>Liangji Ma</Translate></h2>
               <div>
-                <p className='work'>Software Developer Engineer</p>
-                <p className='location'>Toronto, CA</p>
+                <p className='work'><Translate>Software Developer Engineer</Translate></p>
+                <p className='location'><Translate>Toronto, CA</Translate></p>
                 <p className='email'>
                   <a href='mailto:ethan@liangjima.com'>
                   ethan@liangjima.com
@@ -40,7 +42,7 @@ export default function Home() {
                 </p>
               </div>
               <hr />
-              <h3 className={styles.skill}>Skills</h3>
+              <h4 className={styles.skill}>Skills</h4>
               <h5>Program Language</h5>
               <>
                 <Frontendab />
@@ -51,43 +53,43 @@ export default function Home() {
             </div>
             <div className={styles.right}>
               <div className={styles.education}>
-                Education
+              <Translate>Education</Translate>
                 <div>
-                  <h6 className={styles.bishop}>Bishop's University</h6>
+                  <h6 className={styles.bishop}><Translate>Bishop's University</Translate></h6>
                   <p className={styles.place}>
                     <b className={styles.locate}>Sherbrooke, Québec</b>
                     <i className={styles.time}>Sep. 2020 - Jan. 2022</i>
                     <br />
                   </p>
-                  <p>Master of Computer Science</p>
+                  <p><Translate>Master of Computer Science</Translate></p>
                 </div>
                 <div>
                   <h6 className={styles.xupt}>
-                    Xian University of Posts Telecommunications University
+                    <Translate>Xian University of Posts Telecommunications University</Translate>
                   </h6>
                   <p className={styles.place}>
                     <b className={styles.locate}>Xian. China</b>
                     <i className={styles.time}>Sep. 2015 - Jun. 2019</i>
                     <br />
                   </p>
-                  <p>Bachelor of Electrical Engineering</p>
+                  <p><Translate>Bachelor of Electrical Engineering</Translate></p>
                 </div>
               </div>
               <hr></hr>
-              <div className={styles.experience}>My Portfolio</div>
+              <div className={styles.experience}><Translate>My Portfolio</Translate></div>
               <hr />
-              <Carousel thumbs={false}>
-                <a href="https://ninth-glider-325616.web.app/">
-                    <img src={sumacc} />
-                </a>
-                <a href="https://malaaaaaa.github.io/">
-                    <img src={jira}  />
-                </a>
-                <a href="https://stmichaelscollegeschool.com/">
-                    <img src={stmic} />
-                </a>
-            </Carousel>
+              <a href="https://ninth-glider-325616.web.app/"><h4>Sum Accounting Website</h4></a>
+              <a href="https://malaaaaaa.github.io/"><h4>Jira Website</h4></a>
+              <a href="https://stmichaelscollegeschool.com/"><h4>st-michaels-colleges-chool website</h4></a>
+              <button className={styles.arrowbutton}>↓</button>
+
             </div>
+          </div>
+          <div>
+              <iframe src="https://ninth-glider-325616.web.app/"></iframe>
+              <iframe src="https://malaaaaaa.github.io/"></iframe>
+              <iframe src="https://stmichaelscollegeschool.com/"></iframe>
+
           </div>
         </div>
       </Layout>

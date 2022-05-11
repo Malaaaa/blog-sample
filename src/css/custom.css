@@ -127,3 +127,10 @@ b{
   top:0.5rem;
   right: 0.5rem;
 }
+
+iframe{
+  margin: 5% 5% ;
+  width: 90%;
+  height: 80vh;
+  overflow: hidden;
+}
