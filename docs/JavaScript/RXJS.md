@@ -183,9 +183,11 @@ The rxjs Subject class can trigger the data flow from outside, and the ready sta
 **Promise**
 Pro: a good way to solve single asynchronous function. The chaining is a elegant way to execute Callback Functions. With Async/Await keywords the readability and maintenance improve a lot.
 Con: Native ES specification of promise cannot be called externally from resolve.
+
 **Rxjs**
 Pro: Simplifying Asynchronous JavaScript Logic. RxJS encapsulates all asynchronous events into Observable. Because all asynchronous events are encapsulated as Observable, all asynchronous events can be subscribed to with the same api. RxJS's Operator makes it very easy to implement very complex asynchronous operations.
 Con: Learning curve complex, There is some difficulty in debugging the code also.
+
 **Ganerator**
 Pro: Very easy to implement custom iterators to lazy load values. Using generators can be combine with promise, using a synchronous coding style to handle asynchronous cases.
 Con: Therefore a generator allows us to define a potentially infinite data structure. And it is synchronous may be blocking other functions.
