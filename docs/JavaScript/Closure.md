@@ -1,4 +1,4 @@
-# Use Chrome devtools understanding **Closure** .
+# Use Chrome devtools understanding Closure .
 
 
 
