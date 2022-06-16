@@ -10,7 +10,7 @@ const config = {
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
   organizationName: "malaaaa", // Usually your GitHub org/user name.
   projectName: "malaaaa.github.io", // Usually your repo name.
 
